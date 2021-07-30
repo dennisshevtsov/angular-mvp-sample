@@ -10,7 +10,6 @@ import {
   GetTodoListComponent,
 } from './components';
 
-
 @NgModule({
   declarations: [
     AddTodoListComponent,
