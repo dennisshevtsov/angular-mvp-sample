@@ -1,5 +1,8 @@
+import { Location, } from '@angular/common';
 import { Component, OnInit, } from '@angular/core';
-import { TodoList } from '../../models/todo-list.model';
+import { Router, } from '@angular/router';
+
+import { TodoList, } from '../../models/todo-list.model';
 
 @Component({
   selector: 'app-search-todo-lists',
@@ -11,15 +14,18 @@ import { TodoList } from '../../models/todo-list.model';
 export class SearchTodoListsComponent implements OnInit {
   private todoLists: TodoList[] | undefined;
 
-  public constructor() { }
+  public constructor(
+    private location: Location,
+    private router: Router,
+  ) { }
 
   public ngOnInit(): void {
     this.todoLists = [
-      new TodoList("test", "test", "test"),
-      new TodoList("test", "test", "test"),
-      new TodoList("test", "test", "test"),
-      new TodoList("test", "test", "test"),
-      new TodoList("test", "test", "test"),
+      new TodoList('test', 'test', 'test'),
+      new TodoList('test', 'test', 'test'),
+      new TodoList('test', 'test', 'test'),
+      new TodoList('test', 'test', 'test'),
+      new TodoList('test', 'test', 'test'),
     ];
   }
 
@@ -29,5 +35,12 @@ export class SearchTodoListsComponent implements OnInit {
     }
 
     return [];
+  }
+
+  public onNavigateToUpdate(todoListId: string): void {
+    this.router.navigate([
+      'todo-list',
+      todoListId,
+    ]);
   }
 }
