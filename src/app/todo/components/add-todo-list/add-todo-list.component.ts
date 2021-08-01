@@ -1,15 +1,35 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, } from '@angular/core';
 
-import { AddTodoListView, } from '../../views';
+import { AddTodoListRequestDto, } from '../../models';
+import { TodoListServiceService, } from '../../services/todo-list-service.service';
+import { AddTodoListPresenter, } from './add-todo-list.presenter';
+import { AddTodoListView, } from './add-todo-list.view';
 
 @Component({
   selector: 'app-add-todo-list',
   templateUrl: './add-todo-list.component.html',
   styleUrls: ['./add-todo-list.component.scss']
 })
-export class AddTodoListComponent implements OnInit, AddTodoListView {
-  public constructor() { }
+export class AddTodoListComponent implements AddTodoListView {
+  private readonly _presenter: AddTodoListPresenter;
 
-  public ngOnInit(): void {
+  private _datasource: AddTodoListRequestDto | undefined;
+
+  public constructor(
+    private _service: TodoListServiceService,
+  ) {
+    this._presenter = new AddTodoListPresenter(this, _service);
+  }
+
+  public get datasource(): AddTodoListRequestDto {
+    if (!this._datasource) {
+      this._datasource = new AddTodoListRequestDto();
+    }
+
+    return this._datasource;
+  }
+
+  public onSave(): void {
+    this._presenter.save();
   }
 }

@@ -2,8 +2,8 @@ import { Component, OnInit, } from '@angular/core';
 import { Router, } from '@angular/router';
 
 import { GetTodoListRecordResponseDto, } from '../../models';
-import { SearchTodoListsPresenter, } from '../../presenters';
-import { SearchTodoListsView, } from '../../views';
+import { SearchTodoListsPresenter, } from './search-todo-lists.presenter';
+import { SearchTodoListsView, } from './search-todo-lists.view';
 
 @Component({
   selector: 'app-search-todo-lists',
@@ -14,8 +14,8 @@ import { SearchTodoListsView, } from '../../views';
 })
 export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
   private readonly presenter: SearchTodoListsPresenter;
-  
-  private todoLists: GetTodoListRecordResponseDto[] | undefined;
+
+  private datasource: GetTodoListRecordResponseDto[] | undefined;
 
   public constructor(
     private readonly router: Router,
@@ -28,13 +28,13 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
     this.presenter.search();
   }
 
-  public loadTodoLists(todoLists: GetTodoListRecordResponseDto[]): void {
-    this.todoLists = todoLists;
+  public loadDatasource(datasource: GetTodoListRecordResponseDto[]): void {
+    this.datasource = datasource;
   }
 
-  public get Items(): GetTodoListRecordResponseDto[] {
-    if (this.todoLists) {
-      return this.todoLists;
+  public get records(): GetTodoListRecordResponseDto[] {
+    if (this.datasource) {
+      return this.datasource;
     }
 
     return [];
