@@ -2,6 +2,7 @@ import { Component, OnInit, } from '@angular/core';
 import { Router, } from '@angular/router';
 
 import { GetTodoListRecordResponseDto, } from '../../models';
+import { SearchTodoListsView, } from '../../views';
 
 @Component({
   selector: 'app-search-todo-lists',
@@ -10,7 +11,7 @@ import { GetTodoListRecordResponseDto, } from '../../models';
     './search-todo-lists.component.scss',
   ],
 })
-export class SearchTodoListsComponent implements OnInit {
+export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
   private todoLists: GetTodoListRecordResponseDto[] | undefined;
 
   public constructor(
