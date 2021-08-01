@@ -1,4 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
+import { ActivatedRoute, ParamMap, } from '@angular/router';
 
 import { TodoListService, } from '../../services/todo-list.service';
 import { UpdateTodoListView, } from './update-todo-list.view';
@@ -18,14 +19,22 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
   private _datasource: UpdateTodoListRequestDto | undefined;
 
   public constructor(
+    private readonly _route: ActivatedRoute,
+
     service: TodoListService,
   ) {
     this._presenter = new UpdateTodoListPresenter(this, service);
   }
 
   public ngOnInit(): void {
-    this._datasource = new UpdateTodoListRequestDto('test');
-    this._presenter.load();
+    this._route.paramMap.subscribe((paramMap: ParamMap) => {
+      const todoListId: string | null = paramMap.get('todoListId');
+
+      if (todoListId) {
+        this.datasource.todoListId = todoListId;
+        this._presenter.load();
+      }
+    });
   }
 
   public set datasource(datasource: UpdateTodoListRequestDto) {
@@ -33,7 +42,7 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
   }
 
   public get datasource(): UpdateTodoListRequestDto {
-    return this._datasource!;
+    return this._datasource ?? (this.datasource = new UpdateTodoListRequestDto());
   }
 
   public update(): void {
