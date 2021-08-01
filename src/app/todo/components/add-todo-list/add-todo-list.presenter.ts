@@ -1,10 +1,10 @@
-import { TodoListServiceService, } from '../../services/todo-list-service.service';
+import { TodoListService, } from '../../services/todo-list.service';
 import { AddTodoListView, } from './add-todo-list.view';
 
 export class AddTodoListPresenter {
   public constructor(
     private readonly _view: AddTodoListView,
-    private readonly _service: TodoListServiceService,
+    private readonly _service: TodoListService,
   ) {}
 
   public save(): void {

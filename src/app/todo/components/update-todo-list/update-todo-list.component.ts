@@ -1,15 +1,42 @@
 import { Component, OnInit, } from '@angular/core';
 
-import { UpdateTodoListView, } from '../../views';
+import { TodoListService, } from '../../services/todo-list.service';
+import { UpdateTodoListView, } from './update-todo-list.view';
+import { UpdateTodoListPresenter, } from './update-todo-list.presenter';
+import { UpdateTodoListRequestDto, } from '../../models';
 
 @Component({
   selector: 'app-update-todo-list',
   templateUrl: './update-todo-list.component.html',
-  styleUrls: ['./update-todo-list.component.scss']
+  styleUrls: [
+    './update-todo-list.component.scss',
+  ],
 })
 export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
-  public constructor() { }
+  private readonly _presenter: UpdateTodoListPresenter;
+
+  private _datasource: UpdateTodoListRequestDto | undefined;
+
+  public constructor(
+    service: TodoListService,
+  ) {
+    this._presenter = new UpdateTodoListPresenter(this, service);
+  }
 
   public ngOnInit(): void {
+    this._datasource = new UpdateTodoListRequestDto('test');
+    this._presenter.load();
+  }
+
+  public set datasource(datasource: UpdateTodoListRequestDto) {
+    this._datasource = datasource;
+  }
+
+  public get datasource(): UpdateTodoListRequestDto {
+    return this._datasource!;
+  }
+
+  public update(): void {
+    this._presenter.update();
   }
 }

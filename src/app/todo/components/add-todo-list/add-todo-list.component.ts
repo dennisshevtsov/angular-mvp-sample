@@ -1,7 +1,7 @@
 import { Component, } from '@angular/core';
 
 import { AddTodoListRequestDto, } from '../../models';
-import { TodoListServiceService, } from '../../services/todo-list-service.service';
+import { TodoListService, } from '../../services/todo-list.service';
 import { AddTodoListPresenter, } from './add-todo-list.presenter';
 import { AddTodoListView, } from './add-todo-list.view';
 
@@ -16,9 +16,9 @@ export class AddTodoListComponent implements AddTodoListView {
   private _datasource: AddTodoListRequestDto | undefined;
 
   public constructor(
-    private _service: TodoListServiceService,
+    service: TodoListService,
   ) {
-    this._presenter = new AddTodoListPresenter(this, _service);
+    this._presenter = new AddTodoListPresenter(this, service);
   }
 
   public get datasource(): AddTodoListRequestDto {
