@@ -1,7 +1,10 @@
 import { Component, OnInit, } from '@angular/core';
-import { Router, } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 
-import { GetTodoListRecordResponseDto, } from '../../models';
+import {
+  SearchTodoListRecordResponseDto,
+  SearchTodoListRequestDto, } from '../../models';
+import { TodoListService, } from '../../services/todo-list.service';
 import { SearchTodoListsPresenter, } from './search-todo-lists.presenter';
 import { SearchTodoListsView, } from './search-todo-lists.view';
 
@@ -13,35 +16,49 @@ import { SearchTodoListsView, } from './search-todo-lists.view';
   ],
 })
 export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
-  private readonly presenter: SearchTodoListsPresenter;
+  private readonly _presenter: SearchTodoListsPresenter;
 
-  private datasource: GetTodoListRecordResponseDto[] | undefined;
+  private _query: SearchTodoListRequestDto | undefined;
+  private _datasource: SearchTodoListRecordResponseDto[] | undefined;
 
   public constructor(
-    private readonly router: Router,
-  )
-  {
-    this.presenter = new SearchTodoListsPresenter(this);
+    private readonly _router: Router,
+    private readonly _route: ActivatedRoute,
+
+    service: TodoListService,
+  ) {
+    this._presenter = new SearchTodoListsPresenter(this, service);
   }
 
   public ngOnInit(): void {
-    this.presenter.search();
+    this._route.paramMap.subscribe((paramMap: ParamMap) => {
+      const term = paramMap.get('term');
+
+      if (term) {
+        this.query.term = term;
+        this._presenter.search();
+      }
+    });
   }
 
-  public loadDatasource(datasource: GetTodoListRecordResponseDto[]): void {
-    this.datasource = datasource;
+  public get query(): SearchTodoListRequestDto {
+    return this._query ?? (this._query = new SearchTodoListRequestDto());
   }
 
-  public get records(): GetTodoListRecordResponseDto[] {
-    if (this.datasource) {
-      return this.datasource;
-    }
+  public set query(query: SearchTodoListRequestDto) {
+    this._query = query;
+  }
 
-    return [];
+  public get datasource(): SearchTodoListRecordResponseDto[] {
+    return this.datasource ?? (this.datasource = []);
+  }
+
+  public set datasource(datasource: SearchTodoListRecordResponseDto[]) {
+    this._datasource = datasource;
   }
 
   public onNavigateToUpdate(todoListId: string): void {
-    this.router.navigate([
+    this._router.navigate([
       'todo-list',
       todoListId,
     ]);

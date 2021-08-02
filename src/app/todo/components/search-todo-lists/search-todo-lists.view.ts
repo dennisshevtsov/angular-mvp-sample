@@ -1,5 +1,11 @@
-import { GetTodoListRecordResponseDto, } from '../../models';
+import { SearchTodoListRecordResponseDto, SearchTodoListRequestDto, } from '../../models';
 
 export interface SearchTodoListsView {
-  loadDatasource(datasource: GetTodoListRecordResponseDto[]): void;
+  get query(): SearchTodoListRequestDto;
+
+  set query(query: SearchTodoListRequestDto);
+
+  get datasource(): SearchTodoListRecordResponseDto[];
+
+  set datasource(datasource: SearchTodoListRecordResponseDto[]);
 }

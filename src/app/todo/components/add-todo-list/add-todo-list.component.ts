@@ -30,6 +30,6 @@ export class AddTodoListComponent implements AddTodoListView {
   }
 
   public onSave(): void {
-    this._presenter.save();
+    this._presenter.add();
   }
 }

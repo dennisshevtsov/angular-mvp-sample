@@ -7,7 +7,7 @@ export class AddTodoListPresenter {
     private readonly _service: TodoListService,
   ) {}
 
-  public save(): void {
+  public add(): void {
     this._service.addTodoList(this._view.datasource);
   }
 }
