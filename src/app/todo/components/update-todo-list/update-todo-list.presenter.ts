@@ -9,13 +9,15 @@ export class UpdateTodoListPresenter {
   ) {}
 
   public load(): void {
-    const getTodoListRequestDto = new GetTodoListRequestDto(
-      this._view.datasource.todoListId,
-    );
-    const getTodoListResponseDto = this._service.getTodoList(getTodoListRequestDto);
+    if (this._view.datasource.todoListId) {
+      const getTodoListRequestDto = new GetTodoListRequestDto(
+        this._view.datasource.todoListId,
+      );
+      const getTodoListResponseDto = this._service.getTodoList(getTodoListRequestDto);
 
-    this._view.datasource.title = getTodoListResponseDto.title;
-    this._view.datasource.description = getTodoListResponseDto.description;
+      this._view.datasource.title = getTodoListResponseDto.title;
+      this._view.datasource.description = getTodoListResponseDto.description;
+    }
   }
 
   public update(): void {

@@ -42,7 +42,7 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
   }
 
   public get datasource(): UpdateTodoListRequestDto {
-    return this._datasource ?? (this.datasource = new UpdateTodoListRequestDto());
+    return this._datasource ?? (this._datasource = new UpdateTodoListRequestDto());
   }
 
   public update(): void {

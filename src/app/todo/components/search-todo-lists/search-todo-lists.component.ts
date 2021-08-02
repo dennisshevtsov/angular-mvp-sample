@@ -50,7 +50,7 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
   }
 
   public get datasource(): SearchTodoListRecordResponseDto[] {
-    return this.datasource ?? (this.datasource = []);
+    return this._datasource ?? (this._datasource = []);
   }
 
   public set datasource(datasource: SearchTodoListRecordResponseDto[]) {

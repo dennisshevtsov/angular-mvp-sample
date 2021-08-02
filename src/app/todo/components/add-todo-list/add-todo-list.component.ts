@@ -22,11 +22,7 @@ export class AddTodoListComponent implements AddTodoListView {
   }
 
   public get datasource(): AddTodoListRequestDto {
-    if (!this._datasource) {
-      this._datasource = new AddTodoListRequestDto();
-    }
-
-    return this._datasource;
+    return this._datasource ?? (this._datasource = new AddTodoListRequestDto());
   }
 
   public onSave(): void {
