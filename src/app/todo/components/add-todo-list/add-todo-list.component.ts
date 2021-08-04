@@ -1,4 +1,5 @@
 import { Component, } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AddTodoListRequestDto, } from '../../models';
 import { TodoListService, } from '../../services/todo-list.service';
@@ -16,6 +17,8 @@ export class AddTodoListComponent implements AddTodoListView {
   private _datasource: AddTodoListRequestDto | undefined;
 
   public constructor(
+    private readonly _router: Router,
+
     service: TodoListService,
   ) {
     this._presenter = new AddTodoListPresenter(this, service);
@@ -27,5 +30,11 @@ export class AddTodoListComponent implements AddTodoListView {
 
   public onSave(): void {
     this._presenter.add();
+  }
+
+  public onCancel(): void {
+    this._router.navigate([
+      'todo-list',
+    ]);
   }
 }
