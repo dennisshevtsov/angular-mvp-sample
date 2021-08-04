@@ -32,12 +32,8 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
 
   public ngOnInit(): void {
     this._route.paramMap.subscribe((paramMap: ParamMap) => {
-      const term = paramMap.get('term');
-
-      if (term) {
-        this.query.term = term;
-        this._presenter.search();
-      }
+      this.query.term = paramMap.get('term') ?? '';
+      this._presenter.search();
     });
   }
 

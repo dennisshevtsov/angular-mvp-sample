@@ -3,7 +3,7 @@
     <legend>New TODO list</legend>
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>
-      <input type="text" class="form-text" id="title" name="title">
+      <input type="text" class="form-control" id="title" name="title">
     </div>
     <div class="mb-3">
       <label for="description" class="form-label">Description</label>
@@ -12,9 +12,7 @@
     <button type="submit" class="btn btn-primary">
       <span>Ok</span>
     </button>
-    <button type="button"
-            class="btn btn-link"
-            (click)="onCancel()">
+    <button type="button" class="btn btn-link" (click)="onCancel()">
       <span>Cancel</span>
     </button>
   </fieldset>
