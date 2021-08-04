@@ -63,4 +63,11 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
       todoListId,
     ]);
   }
+
+  public onNavigateToAdd(): void {
+    this._router.navigate([
+      'todo-list',
+      'new',
+    ]);
+  }
 }

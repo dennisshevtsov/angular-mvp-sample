@@ -6,7 +6,7 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'todo-list',
-  }
+  },
 ];
 
 @NgModule({
@@ -15,6 +15,6 @@ const routes: Routes = [
   ],
   exports: [
     RouterModule,
-  ]
+  ],
 })
 export class AppRoutingModule { }
