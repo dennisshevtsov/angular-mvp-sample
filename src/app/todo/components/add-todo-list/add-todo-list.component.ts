@@ -52,6 +52,9 @@ export class AddTodoListComponent implements OnInit, AddTodoListView {
   }
 
   private buildForm(): FormGroup {
-    return this._formBuilder.group({});
+    return this._formBuilder.group({
+      title: '',
+      description: '',
+    });
   }
 }
