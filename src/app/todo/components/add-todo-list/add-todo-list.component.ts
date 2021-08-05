@@ -1,27 +1,40 @@
-import { Component, } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit,      } from '@angular/core';
+import { FormBuilder, FormGroup, } from '@angular/forms';
+import { Router,                 } from '@angular/router';
 
 import { AddTodoListRequestDto, } from '../../models';
-import { TodoListService, } from '../../services/todo-list.service';
-import { AddTodoListPresenter, } from './add-todo-list.presenter';
-import { AddTodoListView, } from './add-todo-list.view';
+import { TodoListService,       } from '../../services/todo-list.service';
+import { AddTodoListPresenter,  } from './add-todo-list.presenter';
+import { AddTodoListView,       } from './add-todo-list.view';
 
 @Component({
   selector: 'app-add-todo-list',
   templateUrl: './add-todo-list.component.html',
-  styleUrls: ['./add-todo-list.component.scss']
+  styleUrls: [
+    './add-todo-list.component.scss',
+  ],
 })
-export class AddTodoListComponent implements AddTodoListView {
+export class AddTodoListComponent implements OnInit, AddTodoListView {
   private readonly _presenter: AddTodoListPresenter;
 
+  private _form: FormGroup | undefined;
   private _datasource: AddTodoListRequestDto | undefined;
 
   public constructor(
     private readonly _router: Router,
+    private readonly _formBuilder: FormBuilder,
 
     service: TodoListService,
   ) {
     this._presenter = new AddTodoListPresenter(this, service);
+  }
+
+  public ngOnInit(): void {
+    this._form = this.buildForm();
+  }
+
+  public get form(): FormGroup {
+    return this._form ?? (this._form = this.buildForm());
   }
 
   public get datasource(): AddTodoListRequestDto {
@@ -36,5 +49,9 @@ export class AddTodoListComponent implements AddTodoListView {
     this._router.navigate([
       'todo-list',
     ]);
+  }
+
+  private buildForm(): FormGroup {
+    return this._formBuilder.group({});
   }
 }
