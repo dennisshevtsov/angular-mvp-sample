@@ -41,7 +41,7 @@ export class AddTodoListComponent implements OnInit, AddTodoListView {
     return this._datasource ?? (this._datasource = new AddTodoListRequestDto());
   }
 
-  public onSave(): void {
+  public onSubmit(): void {
     this._presenter.add();
   }
 
