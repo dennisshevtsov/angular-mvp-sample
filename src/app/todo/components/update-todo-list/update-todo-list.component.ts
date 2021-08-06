@@ -1,6 +1,6 @@
-import { Component, OnInit,        } from '@angular/core';
+import { Component, OnInit,                } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
-import { FormBuilder, FormGroup,              } from '@angular/forms';
+import { FormBuilder, FormGroup,           } from '@angular/forms';
 
 import { TodoListService,          } from '../../services/todo-list.service';
 import { UpdateTodoListView,       } from './update-todo-list.view';
