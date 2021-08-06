@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 
 @Component({
   selector: 'app-browse-todo-list',
   templateUrl: './browse-todo-list.component.html',
-  styleUrls: ['./browse-todo-list.component.scss']
+  styleUrls: [
+    './browse-todo-list.component.scss',
+  ],
 })
 export class BrowseTodoListComponent implements OnInit {
+  public constructor() { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
-
 }
