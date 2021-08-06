@@ -1,9 +1,10 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit,        } from '@angular/core';
 import { ActivatedRoute, ParamMap, } from '@angular/router';
+import { FormBuilder, FormGroup,              } from '@angular/forms';
 
-import { TodoListService, } from '../../services/todo-list.service';
-import { UpdateTodoListView, } from './update-todo-list.view';
-import { UpdateTodoListPresenter, } from './update-todo-list.presenter';
+import { TodoListService,          } from '../../services/todo-list.service';
+import { UpdateTodoListView,       } from './update-todo-list.view';
+import { UpdateTodoListPresenter,  } from './update-todo-list.presenter';
 import { UpdateTodoListRequestDto, } from '../../models';
 
 @Component({
@@ -16,10 +17,12 @@ import { UpdateTodoListRequestDto, } from '../../models';
 export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
   private readonly _presenter: UpdateTodoListPresenter;
 
+  private _form: FormGroup | undefined;
   private _datasource: UpdateTodoListRequestDto | undefined;
 
   public constructor(
     private readonly _route: ActivatedRoute,
+    private readonly _formBuilder: FormBuilder,
 
     service: TodoListService,
   ) {
@@ -32,9 +35,13 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
 
       if (todoListId) {
         this.datasource.todoListId = todoListId;
-        this._presenter.load();
+        this.load();
       }
     });
+  }
+
+  public get form(): FormGroup {
+    return this._form ?? (this._form = this.buildForm());
   }
 
   public set datasource(datasource: UpdateTodoListRequestDto) {
@@ -45,7 +52,23 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
     return this._datasource ?? (this._datasource = new UpdateTodoListRequestDto());
   }
 
-  public update(): void {
+  public onSubmit(): void {
     this._presenter.update();
+  }
+
+  public onCancel(): void {
+
+  }
+
+  private load(): void {
+    this._presenter.load();
+    this._form = this.buildForm();
+  }
+
+  private buildForm(): FormGroup {
+    return this._formBuilder.group({
+      title: this.datasource.title,
+      description: this.datasource.description,
+    });
   }
 }
