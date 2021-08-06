@@ -1,5 +1,5 @@
 import { Component, OnInit,        } from '@angular/core';
-import { ActivatedRoute, ParamMap, } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 import { FormBuilder, FormGroup,              } from '@angular/forms';
 
 import { TodoListService,          } from '../../services/todo-list.service';
@@ -21,6 +21,7 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
   private _datasource: UpdateTodoListRequestDto | undefined;
 
   public constructor(
+    private readonly _router: Router,
     private readonly _route: ActivatedRoute,
     private readonly _formBuilder: FormBuilder,
 
@@ -57,7 +58,9 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
   }
 
   public onCancel(): void {
-
+    this._router.navigate([
+      'todo-list',
+    ]);
   }
 
   private load(): void {
