@@ -2,8 +2,8 @@ import { Component, OnInit, } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 
 import {
-  SearchTodoListRecordResponseDto,
-  SearchTodoListRequestDto, } from '../../models';
+  SearchTodoListsRecordResponseDto,
+  SearchTodoListsRequestDto, } from '../../models';
 import { TodoListService, } from '../../services/todo-list.service';
 import { SearchTodoListsPresenter, } from './search-todo-lists.presenter';
 import { SearchTodoListsView, } from './search-todo-lists.view';
@@ -18,8 +18,8 @@ import { SearchTodoListsView, } from './search-todo-lists.view';
 export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
   private readonly _presenter: SearchTodoListsPresenter;
 
-  private _query: SearchTodoListRequestDto | undefined;
-  private _datasource: SearchTodoListRecordResponseDto[] | undefined;
+  private _query: SearchTodoListsRequestDto | undefined;
+  private _datasource: SearchTodoListsRecordResponseDto[] | undefined;
 
   public constructor(
     private readonly _router: Router,
@@ -37,19 +37,19 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
     });
   }
 
-  public get query(): SearchTodoListRequestDto {
-    return this._query ?? (this._query = new SearchTodoListRequestDto());
+  public get query(): SearchTodoListsRequestDto {
+    return this._query ?? (this._query = new SearchTodoListsRequestDto());
   }
 
-  public set query(query: SearchTodoListRequestDto) {
+  public set query(query: SearchTodoListsRequestDto) {
     this._query = query;
   }
 
-  public get datasource(): SearchTodoListRecordResponseDto[] {
+  public get datasource(): SearchTodoListsRecordResponseDto[] {
     return this._datasource ?? (this._datasource = []);
   }
 
-  public set datasource(datasource: SearchTodoListRecordResponseDto[]) {
+  public set datasource(datasource: SearchTodoListsRecordResponseDto[]) {
     this._datasource = datasource;
   }
 

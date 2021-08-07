@@ -5,8 +5,8 @@ import {
   GetTodoListRequestDto,
   GetTodoListResponseDto,
   UpdateTodoListRequestDto,
-  SearchTodoListRecordResponseDto,
-  SearchTodoListRequestDto, } from '../models';
+  SearchTodoListsRecordResponseDto,
+  SearchTodoListsRequestDto, } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -22,13 +22,13 @@ export class TodoListService {
     }
   }
 
-  public searchTodoList(searchTodoListRequestDto: SearchTodoListRequestDto): SearchTodoListRecordResponseDto[] {
+  public searchTodoList(searchTodoListRequestDto: SearchTodoListsRequestDto): SearchTodoListsRecordResponseDto[] {
     return [
-      new SearchTodoListRecordResponseDto('49d0a40f-28ed-4332-9335-f55735476b7f', 'test'),
-      new SearchTodoListRecordResponseDto('c3b3125f-b002-48f0-bc13-ab12e6609f42', 'test'),
-      new SearchTodoListRecordResponseDto('53eba009-1efc-4885-8bc7-d2478e9f7bb7', 'test'),
-      new SearchTodoListRecordResponseDto('35817714-faa2-4f20-8e03-2f32d3ddb667', 'test'),
-      new SearchTodoListRecordResponseDto('be10e857-d057-4dbf-bf48-8ea7e02597c9', 'test'),
+      new SearchTodoListsRecordResponseDto('49d0a40f-28ed-4332-9335-f55735476b7f', 'test'),
+      new SearchTodoListsRecordResponseDto('c3b3125f-b002-48f0-bc13-ab12e6609f42', 'test'),
+      new SearchTodoListsRecordResponseDto('53eba009-1efc-4885-8bc7-d2478e9f7bb7', 'test'),
+      new SearchTodoListsRecordResponseDto('35817714-faa2-4f20-8e03-2f32d3ddb667', 'test'),
+      new SearchTodoListsRecordResponseDto('be10e857-d057-4dbf-bf48-8ea7e02597c9', 'test'),
     ];
   }
 

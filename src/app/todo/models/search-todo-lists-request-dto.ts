@@ -1,4 +1,4 @@
-export class SearchTodoListRequestDto {
+export class SearchTodoListsRequestDto {
   public constructor(
     public term?: string,
   ) {}

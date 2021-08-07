@@ -1,4 +1,4 @@
-export class SearchTodoListTaskRecordResponseDto {
+export class SearchTodoListTasksRecordResponseDto {
   public constructor(
     public todoItemId: string,
     public title: string,

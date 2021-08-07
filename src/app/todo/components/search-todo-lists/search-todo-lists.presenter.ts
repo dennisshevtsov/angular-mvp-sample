@@ -1,4 +1,4 @@
-import { SearchTodoListRequestDto, } from '../../models';
+import { SearchTodoListsRequestDto, } from '../../models';
 import { TodoListService, } from '../../services/todo-list.service';
 import { SearchTodoListsView, } from './search-todo-lists.view';
 
@@ -9,7 +9,7 @@ export class SearchTodoListsPresenter {
   ) { }
 
   public search(): void {
-    const searchTodoListRequestDto = new SearchTodoListRequestDto(
+    const searchTodoListRequestDto = new SearchTodoListsRequestDto(
       this._view.query.term,
     );
 
