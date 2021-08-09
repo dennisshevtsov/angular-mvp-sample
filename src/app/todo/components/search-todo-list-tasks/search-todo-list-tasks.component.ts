@@ -1,10 +1,10 @@
 import { Component, OnInit, } from '@angular/core';
+import { ActivatedRoute,    } from '@angular/router';
 
 import { TodoListTaskService,                  } from '../../services/todo-list-task.service';
 import { SearchTodoListTasksPresenter,         } from './search-todo-list-tasks.presenter';
 import { SearchTodoListTasksRecordResponseDto, } from '../../models';
 import { SearchTodoListTasksView,              } from './search-todo-list-tasks.view';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-browse-todo-list',
