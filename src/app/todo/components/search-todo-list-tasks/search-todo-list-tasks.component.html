@@ -14,7 +14,7 @@
       <td><span>{{record.desription}}</span></td>
       <td><span>{{record.start}}</span></td>
       <td><span>{{record.end}}</span></td>
-      <td><input type="checkbox"></td>
+      <td><input type="checkbox" (click)="onComplete(record)"></td>
     </tr>
   </tbody>
 </table>

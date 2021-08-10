@@ -1,6 +1,7 @@
 import { Injectable, } from '@angular/core';
 
-import { SearchTodoListTasksRecordResponseDto,
+import { CompleteTodoListTaskRequestDto,
+         SearchTodoListTasksRecordResponseDto,
          SearchTodoListTasksRequestDto,        } from '../models';
 
 @Injectable({
@@ -19,5 +20,10 @@ export class TodoListTaskService {
       new SearchTodoListTasksRecordResponseDto('5283ed0a-7a9a-4bff-8b35-8e3b4fefb827', 'test'),
       new SearchTodoListTasksRecordResponseDto('5c603fe1-93fc-4872-942c-6212db18664d', 'test'),
     ];
+  }
+
+  public completeTodoListTask(
+    completeTodoListTask: CompleteTodoListTaskRequestDto)
+    : void {
   }
 }

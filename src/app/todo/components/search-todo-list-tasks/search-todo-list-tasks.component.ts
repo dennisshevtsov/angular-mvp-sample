@@ -49,4 +49,12 @@ export class BrowseTodoListComponent implements OnInit, SearchTodoListTasksView 
   public set datasource(datasource: SearchTodoListTasksRecordResponseDto[]) {
     this._datasource = datasource;
   }
+
+  public onComplete(record: SearchTodoListTasksRecordResponseDto): void {
+    if (!record.completed) {
+      this._presenter.complete(record.todoListTaskId);
+
+      record.completed = true;
+    }
+  }
 }
