@@ -2,7 +2,8 @@ import { Injectable, } from '@angular/core';
 
 import { CompleteTodoListTaskRequestDto,
          SearchTodoListTasksRecordResponseDto,
-         SearchTodoListTasksRequestDto,        } from '..//models';
+         SearchTodoListTasksRequestDto,
+         UpdateTodoListTaskRequestDto,         } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -22,8 +23,13 @@ export class TodoListTaskService {
     ];
   }
 
+  public updateTodoListTask(
+    updateTodoListTaskRequestDto: UpdateTodoListTaskRequestDto)
+    : void {
+  }
+
   public completeTodoListTask(
-    completeTodoListTask: CompleteTodoListTaskRequestDto)
+    completeTodoListTaskRequestDto: CompleteTodoListTaskRequestDto)
     : void {
   }
 }
