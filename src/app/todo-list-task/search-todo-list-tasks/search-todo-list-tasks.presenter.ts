@@ -1,6 +1,6 @@
 import { CompleteTodoListTaskRequestDto,
-         SearchTodoListTasksRequestDto   } from '../../models';
-import { TodoListTaskService,            } from '../../services';
+         SearchTodoListTasksRequestDto   } from '../models';
+import { TodoListTaskService,            } from '../services';
 import { SearchTodoListTasksView,        } from './search-todo-list-tasks.view';
 
 export class SearchTodoListTasksPresenter {

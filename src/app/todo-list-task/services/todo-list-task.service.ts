@@ -2,7 +2,7 @@ import { Injectable, } from '@angular/core';
 
 import { CompleteTodoListTaskRequestDto,
          SearchTodoListTasksRecordResponseDto,
-         SearchTodoListTasksRequestDto,        } from '../models';
+         SearchTodoListTasksRequestDto,        } from '..//models';
 
 @Injectable({
   providedIn: 'root',

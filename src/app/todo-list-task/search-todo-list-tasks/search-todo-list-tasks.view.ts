@@ -1,4 +1,4 @@
-import { SearchTodoListTasksRecordResponseDto, } from '../../models';
+import { SearchTodoListTasksRecordResponseDto, } from '../models';
 
 export interface SearchTodoListTasksView {
   todoListId: string;
