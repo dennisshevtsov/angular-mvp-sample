@@ -2,7 +2,6 @@ import { NgModule,             } from '@angular/core';
 import { RouterModule, Routes, } from '@angular/router';
 
 import { AddTodoListComponent,
-         BrowseTodoListComponent,
          SearchTodoListsComponent,
          UpdateTodoListComponent,  } from './components';
 
@@ -14,10 +13,6 @@ const routes: Routes = [
   {
     path: 'todo-list/:todoListId',
     component: UpdateTodoListComponent,
-  },
-  {
-    path: 'todo-list/:todoListId/task',
-    component: BrowseTodoListComponent,
   },
   {
     path: 'todo-list',

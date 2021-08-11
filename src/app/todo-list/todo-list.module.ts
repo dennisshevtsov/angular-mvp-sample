@@ -6,14 +6,13 @@ import { TodoRoutingModule,        } from './todo-list-routing.module';
 import { AddTodoListComponent,
          UpdateTodoListComponent,
          SearchTodoListsComponent, } from './components';
-import { BrowseTodoListComponent } from '../todo-list-task/search-todo-list-tasks/search-todo-list-tasks.component';
+import { SearchTodoListTasksComponent } from '../todo-list-task/components/search-todo-list-tasks/search-todo-list-tasks.component';
 
 @NgModule({
   declarations: [
     AddTodoListComponent,
     UpdateTodoListComponent,
     SearchTodoListsComponent,
-    BrowseTodoListComponent,
   ],
   imports: [
     CommonModule,

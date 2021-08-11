@@ -1,10 +1,15 @@
 import { NgModule,     } from '@angular/core';
 import { CommonModule, } from '@angular/common';
 
-import { TodoListTaskRoutingModule, } from './todo-list-task-routing.module';
+import { TodoListTaskRoutingModule,    } from './todo-list-task-routing.module';
+import { SearchTodoListTasksComponent,
+         UpdateTodoListTaskComponent,  } from './components';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SearchTodoListTasksComponent,
+    UpdateTodoListTaskComponent,
+  ],
   imports: [
     CommonModule,
     TodoListTaskRoutingModule,

@@ -1,8 +1,8 @@
 import { Component, OnInit, } from '@angular/core';
 import { ActivatedRoute,    } from '@angular/router';
 
-import { SearchTodoListTasksRecordResponseDto, } from '../models';
-import { TodoListTaskService,                  } from '../services';
+import { SearchTodoListTasksRecordResponseDto, } from '../../models';
+import { TodoListTaskService,                  } from '../../services';
 import { SearchTodoListTasksPresenter,         } from './search-todo-list-tasks.presenter';
 import { SearchTodoListTasksView,              } from './search-todo-list-tasks.view';
 
@@ -13,7 +13,7 @@ import { SearchTodoListTasksView,              } from './search-todo-list-tasks.
     './browse-todo-list.component.scss',
   ],
 })
-export class BrowseTodoListComponent implements OnInit, SearchTodoListTasksView {
+export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasksView {
   private readonly presenter: SearchTodoListTasksPresenter;
 
   private todoListIdValue: string | undefined;
