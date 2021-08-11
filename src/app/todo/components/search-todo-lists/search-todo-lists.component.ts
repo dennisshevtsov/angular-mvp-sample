@@ -1,12 +1,11 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit,                } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 
-import {
-  SearchTodoListsRecordResponseDto,
-  SearchTodoListsRequestDto, } from '../../models';
-import { TodoListService, } from '../../services/todo-list.service';
-import { SearchTodoListsPresenter, } from './search-todo-lists.presenter';
-import { SearchTodoListsView, } from './search-todo-lists.view';
+import { SearchTodoListsRecordResponseDto,
+        SearchTodoListsRequestDto,         } from '../../models';
+import { TodoListService,                  } from '../../services';
+import { SearchTodoListsPresenter,         } from './search-todo-lists.presenter';
+import { SearchTodoListsView,              } from './search-todo-lists.view';
 
 @Component({
   selector: 'app-search-todo-lists',
@@ -16,52 +15,52 @@ import { SearchTodoListsView, } from './search-todo-lists.view';
   ],
 })
 export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
-  private readonly _presenter: SearchTodoListsPresenter;
+  private readonly presenter: SearchTodoListsPresenter;
 
-  private _query: SearchTodoListsRequestDto | undefined;
-  private _datasource: SearchTodoListsRecordResponseDto[] | undefined;
+  private queryValue: SearchTodoListsRequestDto | undefined;
+  private datasourceValue: SearchTodoListsRecordResponseDto[] | undefined;
 
   public constructor(
-    private readonly _router: Router,
-    private readonly _route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
 
     service: TodoListService,
   ) {
-    this._presenter = new SearchTodoListsPresenter(this, service);
+    this.presenter = new SearchTodoListsPresenter(this, service);
   }
 
   public ngOnInit(): void {
-    this._route.paramMap.subscribe((paramMap: ParamMap) => {
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.query.term = paramMap.get('term') ?? '';
-      this._presenter.search();
+      this.presenter.search();
     });
   }
 
   public get query(): SearchTodoListsRequestDto {
-    return this._query ?? (this._query = new SearchTodoListsRequestDto());
+    return this.queryValue ?? (this.queryValue = new SearchTodoListsRequestDto());
   }
 
   public set query(query: SearchTodoListsRequestDto) {
-    this._query = query;
+    this.queryValue = query;
   }
 
   public get datasource(): SearchTodoListsRecordResponseDto[] {
-    return this._datasource ?? (this._datasource = []);
+    return this.datasourceValue ?? (this.datasourceValue = []);
   }
 
   public set datasource(datasource: SearchTodoListsRecordResponseDto[]) {
-    this._datasource = datasource;
+    this.datasourceValue = datasource;
   }
 
   public onNavigateToUpdate(todoListId: string): void {
-    this._router.navigate([
+    this.router.navigate([
       'todo-list',
       todoListId,
     ]);
   }
 
   public onNavigateToAdd(): void {
-    this._router.navigate([
+    this.router.navigate([
       'todo-list',
       'new',
     ]);

@@ -1,26 +1,26 @@
 import { GetTodoListRequestDto, } from '../../models';
-import { TodoListService, } from '../../services/todo-list.service';
-import { UpdateTodoListView, } from './update-todo-list.view';
+import { TodoListService,       } from '../../services';
+import { UpdateTodoListView,    } from './update-todo-list.view';
 
 export class UpdateTodoListPresenter {
   public constructor(
-    private readonly _view: UpdateTodoListView,
-    private readonly _service: TodoListService,
+    private readonly view: UpdateTodoListView,
+    private readonly service: TodoListService,
   ) {}
 
   public load(): void {
-    if (this._view.datasource.todoListId) {
+    if (this.view.datasource.todoListId) {
       const getTodoListRequestDto = new GetTodoListRequestDto(
-        this._view.datasource.todoListId,
+        this.view.datasource.todoListId,
       );
-      const getTodoListResponseDto = this._service.getTodoList(getTodoListRequestDto);
+      const getTodoListResponseDto = this.service.getTodoList(getTodoListRequestDto);
 
-      this._view.datasource.title = getTodoListResponseDto.title;
-      this._view.datasource.description = getTodoListResponseDto.description;
+      this.view.datasource.title = getTodoListResponseDto.title;
+      this.view.datasource.description = getTodoListResponseDto.description;
     }
   }
 
   public update(): void {
-    this._service.updateTodoList(this._view.datasource);
+    this.service.updateTodoList(this.view.datasource);
   }
 }

@@ -1,13 +1,13 @@
-import { TodoListService, } from '../../services/todo-list.service';
+import { TodoListService, } from '../../services';
 import { AddTodoListView, } from './add-todo-list.view';
 
 export class AddTodoListPresenter {
   public constructor(
-    private readonly _view: AddTodoListView,
-    private readonly _service: TodoListService,
+    private readonly view: AddTodoListView,
+    private readonly service: TodoListService,
   ) {}
 
   public add(): void {
-    this._service.addTodoList(this._view.datasource);
+    this.service.addTodoList(this.view.datasource);
   }
 }

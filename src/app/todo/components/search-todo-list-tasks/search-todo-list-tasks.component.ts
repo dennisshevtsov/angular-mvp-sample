@@ -1,7 +1,7 @@
 import { Component, OnInit, } from '@angular/core';
 import { ActivatedRoute,    } from '@angular/router';
 
-import { TodoListTaskService,                  } from '../../services/todo-list-task.service';
+import { TodoListTaskService,                  } from '../../services';
 import { SearchTodoListTasksPresenter,         } from './search-todo-list-tasks.presenter';
 import { SearchTodoListTasksRecordResponseDto, } from '../../models';
 import { SearchTodoListTasksView,              } from './search-todo-list-tasks.view';
@@ -14,45 +14,45 @@ import { SearchTodoListTasksView,              } from './search-todo-list-tasks.
   ],
 })
 export class BrowseTodoListComponent implements OnInit, SearchTodoListTasksView {
-  private readonly _presenter: SearchTodoListTasksPresenter;
+  private readonly presenter: SearchTodoListTasksPresenter;
 
-  private _todoListId: string | undefined;
-  private _datasource: SearchTodoListTasksRecordResponseDto[] | undefined;
+  private todoListIdValue: string | undefined;
+  private datasourceValue: SearchTodoListTasksRecordResponseDto[] | undefined;
 
   public constructor(
-    private readonly _route: ActivatedRoute,
+    private readonly route: ActivatedRoute,
 
     service: TodoListTaskService,
   ) {
-    this._presenter = new SearchTodoListTasksPresenter(this, service);
+    this.presenter = new SearchTodoListTasksPresenter(this, service);
   }
 
   public ngOnInit(): void {
-    this._route.paramMap.subscribe((paramMap) =>  {
+    this.route.paramMap.subscribe((paramMap) =>  {
       this.todoListId = paramMap.get('todoListId') ?? '';
-      this._presenter.search();
+      this.presenter.search();
     });
   }
 
   public get todoListId(): string {
-    return this._todoListId ?? '';
+    return this.todoListIdValue ?? '';
   }
 
   public set todoListId(todoListId: string){
-    this._todoListId = todoListId;
+    this.todoListIdValue = todoListId;
   }
 
   public get datasource(): SearchTodoListTasksRecordResponseDto[] {
-    return this._datasource ?? (this._datasource = []);
+    return this.datasourceValue ?? (this.datasourceValue = []);
   }
 
   public set datasource(datasource: SearchTodoListTasksRecordResponseDto[]) {
-    this._datasource = datasource;
+    this.datasourceValue = datasource;
   }
 
   public onComplete(record: SearchTodoListTasksRecordResponseDto): void {
     if (!record.completed) {
-      this._presenter.complete(record.todoListTaskId);
+      this.presenter.complete(record.todoListTaskId);
 
       record.completed = true;
     }

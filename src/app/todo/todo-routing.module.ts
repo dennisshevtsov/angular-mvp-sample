@@ -16,7 +16,7 @@ const routes: Routes = [
     component: UpdateTodoListComponent,
   },
   {
-    path: 'todo-list/:todoListId/todo-item',
+    path: 'todo-list/:todoListId/task',
     component: BrowseTodoListComponent,
   },
   {

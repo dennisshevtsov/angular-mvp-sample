@@ -19,7 +19,7 @@ export class TodoListService {
       todoListId: getTodoListRequestDto.todoListId,
       title: 'test',
       description: 'test',
-    }
+    };
   }
 
   public searchTodoList(searchTodoListRequestDto: SearchTodoListsRequestDto): SearchTodoListsRecordResponseDto[] {
