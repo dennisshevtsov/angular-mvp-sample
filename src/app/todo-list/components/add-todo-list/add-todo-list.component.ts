@@ -8,7 +8,6 @@ import { AddTodoListPresenter,  } from './add-todo-list.presenter';
 import { AddTodoListView,       } from './add-todo-list.view';
 
 @Component({
-  selector: 'app-add-todo-list',
   templateUrl: './add-todo-list.component.html',
   styleUrls: [
     './add-todo-list.component.scss',

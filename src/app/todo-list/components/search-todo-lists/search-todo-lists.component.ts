@@ -8,7 +8,6 @@ import { SearchTodoListsPresenter,         } from './search-todo-lists.presenter
 import { SearchTodoListsView,              } from './search-todo-lists.view';
 
 @Component({
-  selector: 'app-search-todo-lists',
   templateUrl: './search-todo-lists.component.html',
   styleUrls: [
     './search-todo-lists.component.scss',
@@ -66,7 +65,7 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
     ]);
   }
 
-  public onNavidateToView(todoListId: string): void {
+  public onNavigateToView(todoListId: string): void {
     this.router.navigate([
       'todo-list',
       todoListId,

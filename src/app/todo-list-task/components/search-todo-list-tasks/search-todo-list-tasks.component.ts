@@ -7,10 +7,9 @@ import { SearchTodoListTasksPresenter,         } from './search-todo-list-tasks.
 import { SearchTodoListTasksView,              } from './search-todo-list-tasks.view';
 
 @Component({
-  selector: 'app-browse-todo-list',
-  templateUrl: './browse-todo-list.component.html',
+  templateUrl: './search-todo-list-tasks.component.html',
   styleUrls: [
-    './browse-todo-list.component.scss',
+    './search-todo-list-tasks.component.scss',
   ],
 })
 export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasksView {

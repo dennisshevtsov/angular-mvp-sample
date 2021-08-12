@@ -8,7 +8,6 @@ import { UpdateTodoListPresenter,  } from './update-todo-list.presenter';
 import { UpdateTodoListRequestDto, } from '../../models';
 
 @Component({
-  selector: 'app-update-todo-list',
   templateUrl: './update-todo-list.component.html',
   styleUrls: [
     './update-todo-list.component.scss',

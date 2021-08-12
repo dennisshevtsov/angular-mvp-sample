@@ -6,7 +6,6 @@ import { TodoListTaskService,          } from '../../services';
 import { UpdateTodoListTaskPresenter,  } from './update-todo-list-task.presenter';
 
 @Component({
-  selector: 'app-update-todo-list-task',
   templateUrl: './update-todo-list-task.component.html',
   styleUrls: [
     './update-todo-list-task.component.scss',
