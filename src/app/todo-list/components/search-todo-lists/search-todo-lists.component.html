@@ -15,11 +15,11 @@
   <tbody>
     <tr *ngFor="let item of datasource">
       <td><span>{{ item.title }}</span></td>
-      <td><a class="link"
+      <td><a class="btn btn-link"
              (click)="onNavigateToView(item.todoListId)">
              <span>view</span>
           </a>
-          <a class="link"
+          <a class="btn btn-link"
              (click)="onNavigateToUpdate(item.todoListId)">
              <span>edit</span>
           </a>
