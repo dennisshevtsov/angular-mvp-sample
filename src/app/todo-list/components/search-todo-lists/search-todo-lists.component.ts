@@ -2,7 +2,7 @@ import { Component, OnInit,                } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 
 import { SearchTodoListsRecordResponseDto,
-        SearchTodoListsRequestDto,         } from '../../models';
+         SearchTodoListsRequestDto,        } from '../../models';
 import { TodoListService,                  } from '../../services';
 import { SearchTodoListsPresenter,         } from './search-todo-lists.presenter';
 import { SearchTodoListsView,              } from './search-todo-lists.view';
@@ -63,6 +63,14 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
     this.router.navigate([
       'todo-list',
       'new',
+    ]);
+  }
+
+  public onNavidateToView(todoListId: string): void {
+    this.router.navigate([
+      'todo-list',
+      todoListId,
+      'task',
     ]);
   }
 }
