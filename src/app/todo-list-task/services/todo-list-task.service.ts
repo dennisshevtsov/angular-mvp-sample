@@ -1,6 +1,8 @@
 import { Injectable, } from '@angular/core';
+import { SearchTodoListsRecordResponseDto } from 'src/app/todo-list/models';
 
-import { CompleteTodoListTaskRequestDto,
+import { AddTodoListTaskRequestDto,
+         CompleteTodoListTaskRequestDto,
          SearchTodoListTasksRecordResponseDto,
          SearchTodoListTasksRequestDto,
          UpdateTodoListTaskRequestDto,         } from '../models';
@@ -9,6 +11,8 @@ import { CompleteTodoListTaskRequestDto,
   providedIn: 'root',
 })
 export class TodoListTaskService {
+  private readonly todoListTasksMap : Map<string, AddTodoListTaskRequestDto[]> = new Map();
+
   public constructor() { }
 
   public searchTodoListTasks(
@@ -21,6 +25,17 @@ export class TodoListTaskService {
       new SearchTodoListTasksRecordResponseDto('5283ed0a-7a9a-4bff-8b35-8e3b4fefb827', 'test'),
       new SearchTodoListTasksRecordResponseDto('5c603fe1-93fc-4872-942c-6212db18664d', 'test'),
     ];
+  }
+
+  public addTodoListTask(
+    addTodoListTaskRequestDto: AddTodoListTaskRequestDto)
+    : void {
+    if (!this.todoListTasksMap.has(addTodoListTaskRequestDto.todoListId)) {
+      this.todoListTasksMap.set(addTodoListTaskRequestDto.todoListId, []);
+    }
+
+    this.todoListTasksMap.get(addTodoListTaskRequestDto.todoListId)!
+                         .push(addTodoListTaskRequestDto);
   }
 
   public updateTodoListTask(
