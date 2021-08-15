@@ -3,7 +3,7 @@ export class AddTodoListTaskRequestDto {
     public todoListId: string,
     public title: string,
     public description: string,
-    public start: string,
-    public deadline: string,
+    public start?: string,
+    public deadline?: string,
   ) { }
 }
