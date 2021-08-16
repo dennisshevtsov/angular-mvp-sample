@@ -1,7 +1,7 @@
 import { Injectable, } from '@angular/core';
-import { SearchTodoListsRecordResponseDto } from 'src/app/todo-list/models';
 
 import { AddTodoListTaskRequestDto,
+         AddTodoListTaskResponseDto,
          CompleteTodoListTaskRequestDto,
          SearchTodoListTasksRecordResponseDto,
          SearchTodoListTasksRequestDto,
@@ -29,13 +29,15 @@ export class TodoListTaskService {
 
   public addTodoListTask(
     addTodoListTaskRequestDto: AddTodoListTaskRequestDto)
-    : void {
+    : AddTodoListTaskResponseDto {
     if (!this.todoListTasksMap.has(addTodoListTaskRequestDto.todoListId)) {
       this.todoListTasksMap.set(addTodoListTaskRequestDto.todoListId, []);
     }
 
     this.todoListTasksMap.get(addTodoListTaskRequestDto.todoListId)!
                          .push(addTodoListTaskRequestDto);
+
+    return new AddTodoListTaskResponseDto('5c603fe1-93fc-4872-942c-6212db18664d')
   }
 
   public updateTodoListTask(
