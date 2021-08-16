@@ -1,7 +1,8 @@
 import { NgModule,             } from '@angular/core';
 import { RouterModule, Routes, } from '@angular/router';
 
-import { SearchTodoListTasksComponent,
+import { AddTodoListTaskComponent,
+         SearchTodoListTasksComponent,
          UpdateTodoListTaskComponent,  } from './components';
 
 const routes: Routes = [
@@ -10,9 +11,13 @@ const routes: Routes = [
     component: SearchTodoListTasksComponent,
   },
   {
+    path: 'todo-list/:todoListId/task/new',
+    component: AddTodoListTaskComponent,
+  },
+  {
     path: 'todo-list/:todoListId/task/:todoListTaskId',
     component: UpdateTodoListTaskComponent,
-  }
+  },
 ];
 
 @NgModule({
@@ -23,4 +28,5 @@ const routes: Routes = [
     RouterModule,
   ],
 })
-export class TodoListTaskRoutingModule { }
+export class TodoListTaskRoutingModule {
+}

@@ -1,10 +1,10 @@
-import { Component, OnInit, } from '@angular/core';
-import { ActivatedRoute,    } from '@angular/router';
+import { Component, OnInit,      } from '@angular/core';
+import { ActivatedRoute, Router, } from '@angular/router';
 
-import { SearchTodoListTasksRecordResponseDto, } from '../../models';
-import { TodoListTaskService,                  } from '../../services';
 import { SearchTodoListTasksPresenter,         } from './search-todo-list-tasks.presenter';
 import { SearchTodoListTasksView,              } from './search-todo-list-tasks.view';
+import { SearchTodoListTasksRecordResponseDto, } from '../../models';
+import { TodoListTaskService,                  } from '../../services';
 
 @Component({
   templateUrl: './search-todo-list-tasks.component.html',
@@ -20,6 +20,7 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
 
   public constructor(
     private readonly route: ActivatedRoute,
+    private readonly router: Router,
 
     service: TodoListTaskService,
   ) {
@@ -55,5 +56,14 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
 
       record.completed = true;
     }
+  }
+
+  public onAdd(): void {
+    this.router.navigate([
+      'todo-list',
+      this.todoListId,
+      'task',
+      'new',
+    ]);
   }
 }
