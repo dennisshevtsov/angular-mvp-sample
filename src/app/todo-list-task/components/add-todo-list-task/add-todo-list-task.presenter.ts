@@ -12,6 +12,6 @@ export class AddTodoListTaskPresenter {
     const responseDto: AddTodoListTaskResponseDto =
       this.service.addTodoListTask(this.view.datasource);
 
-    
+    this.view.todoListTaskId = responseDto.todoListTaskId;
   }
 }

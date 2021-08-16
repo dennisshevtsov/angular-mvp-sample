@@ -50,15 +50,12 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
 
   public onSubmit(): void {
     this.presenter.add();
-
-    if (this.todoListTaskId) {
-      this.router.navigate([
-        'todo-list',
-        this.datasource.todoListId,
-        'task',
-        this.todoListTaskId,
-      ]);
-    }
+    this.router.navigate([
+      'todo-list',
+      this.datasource.todoListId,
+      'task',
+      this.todoListTaskId,
+    ]);
   }
 
   private createEmptyTodoListTask(): AddTodoListTaskRequestDto {
