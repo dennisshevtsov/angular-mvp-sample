@@ -1,4 +1,5 @@
 import { Component, OnInit,                } from '@angular/core';
+import { FormBuilder, FormGroup,           } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 
 import { AddTodoListTaskPresenter,  } from './add-todo-list-task.presenter';
@@ -19,9 +20,13 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   private todoListTaskIdValue: string | undefined;
   private datasourceValue: AddTodoListTaskRequestDto | undefined;
 
+  private formValue: FormGroup | undefined;
+
   public constructor(
     private readonly router: Router,
     private readonly route: ActivatedRoute,
+
+    private readonly builder: FormBuilder,
 
     service: TodoListTaskService,
   ) {
@@ -48,6 +53,10 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     return this.datasourceValue ?? (this.datasourceValue = this.createEmptyTodoListTask());
   }
 
+  public get form(): FormGroup {
+    return this.formValue ?? (this.formValue = this.buildForm());
+  }
+
   public onSubmit(): void {
     this.presenter.add();
     this.router.navigate([
@@ -58,7 +67,24 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     ]);
   }
 
+  public onCancel(): void {
+    this.router.navigate([
+      'todo-list',
+      this.datasource.todoListId,
+      'task',
+    ]);
+  }
+
   private createEmptyTodoListTask(): AddTodoListTaskRequestDto {
     return new AddTodoListTaskRequestDto('', '', '');
+  }
+
+  private buildForm(): FormGroup {
+    return this.builder.group({
+      'title': '',
+      'description': '',
+      'start': '',
+      'deadline': '',
+    });
   }
 }
