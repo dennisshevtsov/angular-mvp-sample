@@ -1,6 +1,6 @@
 export class GetTodoListResponseDto {
   public constructor(
-    public todoListId: string,
+    public todoListId: number,
     public title: string,
     public description: string,
   ) {}

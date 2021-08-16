@@ -1,5 +1,5 @@
 export class GetTodoListRequestDto {
   public constructor(
-    public todoListId: string,
+    public todoListId: number,
   ) {}
 }
