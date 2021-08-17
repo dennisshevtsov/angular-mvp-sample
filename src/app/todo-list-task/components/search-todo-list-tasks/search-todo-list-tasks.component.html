@@ -15,7 +15,7 @@
     <tr *ngFor="let record of datasource">
       <td><span>{{record.title}}</span></td>
       <td><span>{{record.description}}</span></td>
-      <td><span>{{record.start}}</span></td>
+      <td><span>{{record.startDate}}</span></td>
       <td><span>{{record.deadline}}</span></td>
       <td><input type="checkbox" (click)="onComplete(record)"></td>
     </tr>
