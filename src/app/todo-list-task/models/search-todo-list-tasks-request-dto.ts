@@ -1,5 +1,5 @@
 export class SearchTodoListTasksRequestDto {
   public constructor(
-    public todoListId: string,
+    public todoListId: number,
   ) { }
 }

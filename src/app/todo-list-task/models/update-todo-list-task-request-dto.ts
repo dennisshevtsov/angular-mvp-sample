@@ -1,10 +1,10 @@
 export class UpdateTodoListTaskRequestDto {
   public constructor(
-    public todoListId: string,
-    public todoListTaskId: string,
+    public todoListId: number,
+    public todoListTaskId: number,
     public title: string,
     public description: string,
-    public start: string,
-    public end: string,
+    public startDate: string,
+    public deadline: string,
   ) {}
 }

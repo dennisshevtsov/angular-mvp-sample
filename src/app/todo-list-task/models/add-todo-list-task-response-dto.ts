@@ -1,5 +1,5 @@
 export class AddTodoListTaskResponseDto {
   public constructor(
-    public todoListTaskId: string,
+    public todoListTaskId: number,
   ) { }
 }

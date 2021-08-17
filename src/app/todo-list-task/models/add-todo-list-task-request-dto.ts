@@ -1,9 +1,9 @@
 export class AddTodoListTaskRequestDto {
   public constructor(
-    public todoListId: string,
+    public todoListId: number,
     public title: string,
     public description: string,
-    public start?: string,
-    public deadline?: string,
+    public startDate: string,
+    public deadline: string,
   ) { }
 }

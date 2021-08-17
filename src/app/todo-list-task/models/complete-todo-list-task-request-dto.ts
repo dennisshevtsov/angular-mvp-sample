@@ -1,5 +1,6 @@
 export class CompleteTodoListTaskRequestDto {
   public constructor(
-    public todoListTaskId: string,
+    public todoListId: number,
+    public todoListTaskId: number,
   ) { }
 }

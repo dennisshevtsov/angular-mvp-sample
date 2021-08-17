@@ -11,20 +11,28 @@ import { AddTodoListTaskRequestDto,
   providedIn: 'root',
 })
 export class TodoListTaskService {
-  private readonly todoListTasksMap : Map<string, AddTodoListTaskRequestDto[]> = new Map();
+  private readonly todoListTasksMap : Map<number, {
+    todoListTaskId: number,
+    title: string,
+    description: string,
+    startDate: string,
+    deadline: string,
+    completed: boolean,
+  }[]> = new Map();
 
   public constructor() { }
 
   public searchTodoListTasks(
     searchTodoListTasksRequestDto: SearchTodoListTasksRequestDto)
     : SearchTodoListTasksRecordResponseDto[] {
-    return [
-      new SearchTodoListTasksRecordResponseDto('91ebb054-43e5-4ed1-b6e2-f853c0c5d30b', 'test'),
-      new SearchTodoListTasksRecordResponseDto('ffd832c4-742f-4782-9bfa-a83cb3a179dc', 'test'),
-      new SearchTodoListTasksRecordResponseDto('b348a4ef-168c-4b63-aa44-a8ce6bf631a7', 'test'),
-      new SearchTodoListTasksRecordResponseDto('5283ed0a-7a9a-4bff-8b35-8e3b4fefb827', 'test'),
-      new SearchTodoListTasksRecordResponseDto('5c603fe1-93fc-4872-942c-6212db18664d', 'test'),
-    ];
+    return this.todoListTasksMap.get(searchTodoListTasksRequestDto.todoListId)!
+                                .map(todoListTask => new SearchTodoListTasksRecordResponseDto(
+                                  todoListTask.todoListTaskId,
+                                  todoListTask.title,
+                                  todoListTask.description,
+                                  todoListTask.startDate,
+                                  todoListTask.deadline,
+                                ));
   }
 
   public addTodoListTask(
@@ -34,19 +42,41 @@ export class TodoListTaskService {
       this.todoListTasksMap.set(addTodoListTaskRequestDto.todoListId, []);
     }
 
-    this.todoListTasksMap.get(addTodoListTaskRequestDto.todoListId)!
-                         .push(addTodoListTaskRequestDto);
+    const todoListTasks = this.todoListTasksMap.get(addTodoListTaskRequestDto.todoListId)!;
+    const todoListTaskId = todoListTasks.length + 1;
 
-    return new AddTodoListTaskResponseDto('5c603fe1-93fc-4872-942c-6212db18664d')
+    todoListTasks.push({
+                   todoListTaskId: todoListTaskId,
+                   title: addTodoListTaskRequestDto.title,
+                   description: addTodoListTaskRequestDto.description,
+                   startDate: addTodoListTaskRequestDto.startDate,
+                   deadline: addTodoListTaskRequestDto.deadline,
+                   completed: false,
+                 });
+
+    return new AddTodoListTaskResponseDto(todoListTaskId)
   }
 
   public updateTodoListTask(
     updateTodoListTaskRequestDto: UpdateTodoListTaskRequestDto)
     : void {
+    const todoListTasks = this.todoListTasksMap.get(updateTodoListTaskRequestDto.todoListId)!;
+    const todoListTaskIndex = todoListTasks.findIndex(todoListTask => todoListTask.todoListTaskId === updateTodoListTaskRequestDto.todoListTaskId);
+    const todoListTask = todoListTasks[todoListTaskIndex];
+
+    todoListTask.title = updateTodoListTaskRequestDto.title;
+    todoListTask.description = updateTodoListTaskRequestDto.description;
+    todoListTask.startDate = updateTodoListTaskRequestDto.startDate;
+    todoListTask.deadline = updateTodoListTaskRequestDto.deadline;
   }
 
   public completeTodoListTask(
     completeTodoListTaskRequestDto: CompleteTodoListTaskRequestDto)
     : void {
+    const todoListTasks = this.todoListTasksMap.get(completeTodoListTaskRequestDto.todoListId)!;
+    const todoListTaskIndex = todoListTasks.findIndex(todoListTask => todoListTask.todoListTaskId === completeTodoListTaskRequestDto.todoListTaskId);
+    const todoListTask = todoListTasks[todoListTaskIndex];
+
+    todoListTask.completed = true;
   }
 }
