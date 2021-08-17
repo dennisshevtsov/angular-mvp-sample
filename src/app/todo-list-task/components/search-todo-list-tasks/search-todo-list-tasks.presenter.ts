@@ -10,13 +10,16 @@ export class SearchTodoListTasksPresenter {
   ) { }
 
   public search(): void {
-    const requestDto = new SearchTodoListTasksRequestDto(this.view.todoListId);
+    const requestDto = new SearchTodoListTasksRequestDto(
+      this.view.todoList.todoListId);
 
-    this.view.datasource = this.service.searchTodoListTasks(requestDto);
+    this.view.todoListTasks = this.service.searchTodoListTasks(requestDto);
   }
 
-  public complete(todoListTaskId: string): void {
-    const requestDto = new CompleteTodoListTaskRequestDto(todoListTaskId);
+  public complete(): void {
+    const requestDto = new CompleteTodoListTaskRequestDto(
+      this.view.todoList.todoListId,
+      this.view.selectedTodoListTask.todoListTaskId);
 
     this.service.completeTodoListTask(requestDto);
   }

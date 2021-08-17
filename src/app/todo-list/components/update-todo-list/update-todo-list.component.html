@@ -1,7 +1,14 @@
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a (click)="onCancel()"><span>TODO Lists</span></a></li>
+    <li class="breadcrumb-item active"><span>{{ datasource.title }}</span></li>
+  </ol>
+</nav>
+
 <form [formGroup]="form"
       (ngSubmit)="onSubmit()">
   <fieldset>
-    <legend>New TODO list</legend>
+    <legend>Update TODO list</legend>
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>
       <input type="text"

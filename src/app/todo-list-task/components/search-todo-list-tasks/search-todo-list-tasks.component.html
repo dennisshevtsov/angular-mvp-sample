@@ -1,3 +1,15 @@
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a (click)="onCancel()"><span>TODO Lists</span></a>
+    </li>
+    <li class="breadcrumb-item">
+      <a routerLink="[ 'todo-list', todoList.todoListId ]"><span>{{ todoList.title }}</span></a>
+    </li>
+    <li class="breadcrumb-item active"><span>Tasks</span></li>
+  </ol>
+</nav>
+
 <a class="link"
    (click)="onAdd()"><span>Add</span></a>
 
@@ -12,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let record of datasource">
+    <tr *ngFor="let record of todoLists">
       <td><span>{{record.title}}</span></td>
       <td><span>{{record.description}}</span></td>
       <td><span>{{record.startDate}}</span></td>

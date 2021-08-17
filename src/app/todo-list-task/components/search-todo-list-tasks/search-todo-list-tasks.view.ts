@@ -1,7 +1,10 @@
+import { GetTodoListResponseDto,               } from '../../../todo-list/models';
 import { SearchTodoListTasksRecordResponseDto, } from '../../models';
 
 export interface SearchTodoListTasksView {
-  todoListId: string;
+  todoList: GetTodoListResponseDto;
 
-  datasource: SearchTodoListTasksRecordResponseDto[];
+  todoListTasks: SearchTodoListTasksRecordResponseDto[];
+
+  selectedTodoListTask: SearchTodoListTasksRecordResponseDto;
 }

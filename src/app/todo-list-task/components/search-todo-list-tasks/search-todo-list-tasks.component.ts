@@ -5,6 +5,7 @@ import { SearchTodoListTasksPresenter,         } from './search-todo-list-tasks.
 import { SearchTodoListTasksView,              } from './search-todo-list-tasks.view';
 import { SearchTodoListTasksRecordResponseDto, } from '../../models';
 import { TodoListTaskService,                  } from '../../services';
+import { GetTodoListResponseDto,               } from '../../../todo-list/models';
 
 @Component({
   templateUrl: './search-todo-list-tasks.component.html',
@@ -15,8 +16,9 @@ import { TodoListTaskService,                  } from '../../services';
 export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasksView {
   private readonly presenter: SearchTodoListTasksPresenter;
 
-  private todoListIdValue: string | undefined;
-  private datasourceValue: SearchTodoListTasksRecordResponseDto[] | undefined;
+  private todoListValue: GetTodoListResponseDto | undefined;
+  private todoListTasksValue: SearchTodoListTasksRecordResponseDto[] | undefined;
+  private selectedTodoListTaskValue: SearchTodoListTasksRecordResponseDto | undefined;
 
   public constructor(
     private readonly route: ActivatedRoute,
@@ -28,31 +30,45 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
   }
 
   public ngOnInit(): void {
-    this.route.paramMap.subscribe((paramMap) =>  {
-      this.todoListId = paramMap.get('todoListId') ?? '';
-      this.presenter.search();
+    this.route.paramMap.subscribe((paramMap) => {
+      const todoListId = paramMap.get('todoListId');
+
+      if (todoListId) {
+        this.todoList.todoListId = +todoListId;
+
+        this.presenter.search();
+      }
     });
   }
 
-  public get todoListId(): string {
-    return this.todoListIdValue ?? '';
+  public get todoList(): GetTodoListResponseDto {
+    return this.todoListValue ?? new GetTodoListResponseDto(0, '', '');
   }
 
-  public set todoListId(todoListId: string){
-    this.todoListIdValue = todoListId;
+  public set todoListId(todoList: GetTodoListResponseDto){
+    this.todoListValue = todoList;
   }
 
-  public get datasource(): SearchTodoListTasksRecordResponseDto[] {
-    return this.datasourceValue ?? (this.datasourceValue = []);
+  public get todoListTasks(): SearchTodoListTasksRecordResponseDto[] {
+    return this.todoListTasksValue ?? (this.todoListTasksValue = []);
   }
 
-  public set datasource(datasource: SearchTodoListTasksRecordResponseDto[]) {
-    this.datasourceValue = datasource;
+  public set todoListTasks(datasource: SearchTodoListTasksRecordResponseDto[]) {
+    this.todoListTasksValue = datasource;
+  }
+
+  public get selectedTodoListTask(): SearchTodoListTasksRecordResponseDto {
+    return this.selectedTodoListTaskValue!;
+  }
+
+  public set selectedTodoListTask(selectedTodoListTask: SearchTodoListTasksRecordResponseDto) {
+    this.selectedTodoListTaskValue = selectedTodoListTask;
   }
 
   public onComplete(record: SearchTodoListTasksRecordResponseDto): void {
     if (!record.completed) {
-      this.presenter.complete(record.todoListTaskId);
+      this.selectedTodoListTask = record;
+      this.presenter.complete();
 
       record.completed = true;
     }
