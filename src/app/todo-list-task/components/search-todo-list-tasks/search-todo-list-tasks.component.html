@@ -4,14 +4,13 @@
       <a (click)="onCancel()"><span>TODO Lists</span></a>
     </li>
     <li class="breadcrumb-item">
-      <a routerLink="[ 'todo-list', todoList.todoListId ]"><span>{{ todoList.title }}</span></a>
+      <a (click)="onNavigateToGetTodoList()"><span>{{ todoList.title }}</span></a>
     </li>
     <li class="breadcrumb-item active"><span>Tasks</span></li>
   </ol>
 </nav>
 
-<a class="link"
-   (click)="onAdd()"><span>Add</span></a>
+<a class="link" (click)="onAdd()"><span>Add</span></a>
 
 <table class="table">
   <thead>

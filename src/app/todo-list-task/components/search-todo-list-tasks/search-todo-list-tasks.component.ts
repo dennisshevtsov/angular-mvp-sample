@@ -82,4 +82,11 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
       'new',
     ]);
   }
+
+  public onNavigateToGetTodoList(): void {
+    this.router.navigate([
+      'todo-list',
+      this.todoListId,
+    ]);
+  }
 }
