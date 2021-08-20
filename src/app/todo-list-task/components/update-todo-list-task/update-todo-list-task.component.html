@@ -1,1 +1,16 @@
-<p>update-todo-list-task works!</p>
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a (click)="onNavigateToSearchTodoLists()"><span>TODO Lists</span></a>
+    </li>
+    <li class="breadcrumb-item">
+      <a (click)="onNavigateToGetTodoList()"><span>{{ todoList.title }}</span></a>
+    </li>
+    <li class="breadcrumb-item active">
+      <a (click)="onNavigateToSearchTodoListTasks()"><span>Tasks</span></a>
+    </li>
+    <li class="breadcrumb-item">
+      <span>{{ todoListTask.title }}</span>
+    </li>
+  </ol>
+</nav>
