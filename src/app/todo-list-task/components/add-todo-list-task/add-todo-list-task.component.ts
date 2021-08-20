@@ -2,6 +2,7 @@ import { Component, OnInit,                } from '@angular/core';
 import { FormBuilder, FormGroup,           } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 
+import { GetTodoListResponseDto,    } from '../../../todo-list/models';
 import { AddTodoListTaskPresenter,  } from './add-todo-list-task.presenter';
 import { AddTodoListTaskView,       } from './add-todo-list-task.view';
 import { AddTodoListTaskRequestDto, } from '../../models';
@@ -17,8 +18,9 @@ import { TodoListTaskService,       } from '../../services';
 export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   private readonly presenter: AddTodoListTaskPresenter;
 
-  private todoListTaskIdValue: string | undefined;
-  private datasourceValue: AddTodoListTaskRequestDto | undefined;
+  private todoListValue: GetTodoListResponseDto | undefined;
+  private todoListTaskIdValue: number | undefined;
+  private todoListTaskValue: AddTodoListTaskRequestDto | undefined;
 
   private formValue: FormGroup | undefined;
 
@@ -35,22 +37,24 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
 
   public ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has('todoListId')) {
-        this.datasource.todoListId = paramMap.get('todoListId')!;
+      const todoListId = paramMap.get('todoListId');
+
+      if (todoListId) {
+        this.todoListTask.todoListId = +todoListId;
       }
     });
   }
 
-  public get todoListTaskId(): string {
-    return this.todoListTaskIdValue ?? (this.todoListTaskIdValue = '');
+  public get todoList(): GetTodoListResponseDto {
+    return this.todoListValue ?? (this.todoListValue = new GetTodoListResponseDto(0, '', ''));
   }
 
-  public set todoListTaskId(todoListTaskId: string) {
-    this.todoListTaskIdValue = todoListTaskId;
+  public get todoListTask(): AddTodoListTaskRequestDto {
+    return this.todoListTaskValue ?? (this.todoListTaskValue = this.createEmptyTodoListTask());
   }
 
-  public get datasource(): AddTodoListTaskRequestDto {
-    return this.datasourceValue ?? (this.datasourceValue = this.createEmptyTodoListTask());
+  public get todoListTaskId(): number {
+    return this.todoListTaskIdValue ?? (this.todoListTaskIdValue = 0);
   }
 
   public get form(): FormGroup {
@@ -61,7 +65,7 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     this.presenter.add();
     this.router.navigate([
       'todo-list',
-      this.datasource.todoListId,
+      this.todoListTask.todoListId,
       'task',
       this.todoListTaskId,
     ]);
@@ -70,13 +74,19 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   public onCancel(): void {
     this.router.navigate([
       'todo-list',
-      this.datasource.todoListId,
+      this.todoListTask.todoListId,
       'task',
     ]);
   }
 
+  public onNavigateToSearchTodoLists(): void {}
+
+  public onNavigateToGetTodoList(): void {}
+
+  public onNavigateToSearchTodoListTasks(): void {}
+
   private createEmptyTodoListTask(): AddTodoListTaskRequestDto {
-    return new AddTodoListTaskRequestDto('', '', '');
+    return new AddTodoListTaskRequestDto(0, '', '', '', '');
   }
 
   private buildForm(): FormGroup {

@@ -10,8 +10,8 @@ export class AddTodoListTaskPresenter {
 
   public add(): void {
     const responseDto: AddTodoListTaskResponseDto =
-      this.service.addTodoListTask(this.view.datasource);
+      this.service.addTodoListTask(this.view.todoListTask);
 
-    this.view.todoListTaskId = responseDto.todoListTaskId;
+    this.view.todoList.todoListId = responseDto.todoListTaskId;
   }
 }

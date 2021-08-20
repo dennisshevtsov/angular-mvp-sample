@@ -1,7 +1,10 @@
+import { GetTodoListResponseDto,    } from '../../../todo-list/models';
 import { AddTodoListTaskRequestDto, } from '../../models';
 
 export interface AddTodoListTaskView {
-  todoListTaskId: string;
+  todoList: GetTodoListResponseDto;
 
-  datasource: AddTodoListTaskRequestDto;
+  todoListTask: AddTodoListTaskRequestDto;
+
+  todoListTaskId: number;
 }

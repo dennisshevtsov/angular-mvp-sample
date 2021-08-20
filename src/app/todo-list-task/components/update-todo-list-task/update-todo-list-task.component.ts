@@ -58,4 +58,12 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   public onSubmit(): void {
     this.presenter.update();
   }
+
+  public onCancel(): void {}
+
+  public onNavigateToSearchTodoLists(): void {}
+
+  public onNavigateToGetTodoList(): void {}
+
+  public onNavigateToSearchTodoListTasks(): void {}
 }
