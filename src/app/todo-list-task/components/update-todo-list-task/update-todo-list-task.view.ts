@@ -1,5 +1,8 @@
+import { GetTodoListResponseDto,       } from '../../../todo-list/models';
 import { UpdateTodoListTaskRequestDto, } from '../../models';
 
 export interface UpdateTodoListTaskView {
-  datasource: UpdateTodoListTaskRequestDto;
+  todoList: GetTodoListResponseDto;
+
+  todoListTask: UpdateTodoListTaskRequestDto;
 }

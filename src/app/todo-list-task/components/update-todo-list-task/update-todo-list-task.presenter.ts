@@ -8,6 +8,6 @@ export class UpdateTodoListTaskPresenter {
   ) { }
 
   public update(): void {
-    this.service.updateTodoListTask(this.view.datasource);
+    this.service.updateTodoListTask(this.view.todoListTask);
   }
 }

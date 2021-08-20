@@ -4,6 +4,7 @@ import { UpdateTodoListTaskView,       } from './update-todo-list-task.view';
 import { UpdateTodoListTaskRequestDto, } from '../../models';
 import { TodoListTaskService,          } from '../../services';
 import { UpdateTodoListTaskPresenter,  } from './update-todo-list-task.presenter';
+import { GetTodoListResponseDto,       } from '../../../todo-list/models';
 
 @Component({
   templateUrl: './update-todo-list-task.component.html',
@@ -14,7 +15,8 @@ import { UpdateTodoListTaskPresenter,  } from './update-todo-list-task.presenter
 export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskView {
   private readonly presenter: UpdateTodoListTaskPresenter;
 
-  private datasourceValue: UpdateTodoListTaskRequestDto | undefined;
+  private todoListValue: GetTodoListResponseDto | undefined;
+  private todoListTaskValue: UpdateTodoListTaskRequestDto | undefined;
 
   public constructor(
     service: TodoListTaskService,
@@ -25,8 +27,12 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   public ngOnInit(): void {
   }
 
-  public get datasource(): UpdateTodoListTaskRequestDto {
-    return this.datasourceValue ?? new UpdateTodoListTaskRequestDto('', '', '', '', '', '');
+  public get todoList(): GetTodoListResponseDto {
+    return this.todoListValue ?? (this.todoListValue = new GetTodoListResponseDto(0, '', ''));
+  }
+
+  public get todoListTask(): UpdateTodoListTaskRequestDto {
+    return this.todoListTaskValue ?? (this.todoListTaskValue = new UpdateTodoListTaskRequestDto(0, 0, '', '', '', ''));
   }
 
   public onSubmit(): void {
