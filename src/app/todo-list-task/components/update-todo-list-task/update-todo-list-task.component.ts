@@ -1,10 +1,12 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit,        } from '@angular/core';
+import { ActivatedRoute, ParamMap, } from '@angular/router';
 
+import { GetTodoListResponseDto,       } from '../../../todo-list/models';
+import { TodoListService,              } from '../../../todo-list/services';
+import { UpdateTodoListTaskPresenter,  } from './update-todo-list-task.presenter';
 import { UpdateTodoListTaskView,       } from './update-todo-list-task.view';
 import { UpdateTodoListTaskRequestDto, } from '../../models';
 import { TodoListTaskService,          } from '../../services';
-import { UpdateTodoListTaskPresenter,  } from './update-todo-list-task.presenter';
-import { GetTodoListResponseDto,       } from '../../../todo-list/models';
 
 @Component({
   templateUrl: './update-todo-list-task.component.html',
@@ -19,12 +21,30 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   private todoListTaskValue: UpdateTodoListTaskRequestDto | undefined;
 
   public constructor(
-    service: TodoListTaskService,
+    private readonly route: ActivatedRoute,
+
+    todoListService: TodoListService,
+    todoListTaskService: TodoListTaskService,
   ) {
-    this.presenter = new UpdateTodoListTaskPresenter(this, service);
+    this.presenter = new UpdateTodoListTaskPresenter(
+      this,
+      todoListService,
+      todoListTaskService);
   }
 
   public ngOnInit(): void {
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      const todoListId = paramMap.get('todoListId');
+      const todoListTaskId = paramMap.get('todoListTaskId');
+
+      if (todoListId && todoListTaskId) {
+        this.todoList.todoListId = +todoListId;
+        this.todoListTask.todoListId = +todoListId;
+        this.todoListTask.todoListTaskId = +todoListTaskId;
+
+        this.presenter.load();
+      }
+    });
   }
 
   public get todoList(): GetTodoListResponseDto {
