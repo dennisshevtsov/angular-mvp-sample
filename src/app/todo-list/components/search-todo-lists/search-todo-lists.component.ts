@@ -17,7 +17,7 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
   private readonly presenter: SearchTodoListsPresenter;
 
   private queryValue: SearchTodoListsRequestDto | undefined;
-  private datasourceValue: SearchTodoListsRecordResponseDto[] | undefined;
+  private todoListsValue: SearchTodoListsRecordResponseDto[] | undefined;
 
   public constructor(
     private readonly router: Router,
@@ -43,33 +43,25 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
     this.queryValue = query;
   }
 
-  public get datasource(): SearchTodoListsRecordResponseDto[] {
-    return this.datasourceValue ?? (this.datasourceValue = []);
+  public get todoLists(): SearchTodoListsRecordResponseDto[] {
+    return this.todoListsValue ?? (this.todoListsValue = []);
   }
 
-  public set datasource(datasource: SearchTodoListsRecordResponseDto[]) {
-    this.datasourceValue = datasource;
+  public set todoLists(datasource: SearchTodoListsRecordResponseDto[]) {
+    this.todoListsValue = datasource;
   }
 
-  public onNavigateToUpdate(todoListId: string): void {
+  public onNavigateToUpdateTodoList(todoListId: number): void {
     this.router.navigate([
       'todo-list',
       todoListId,
     ]);
   }
 
-  public onNavigateToAdd(): void {
+  public onNavigateToAddTodoList(): void {
     this.router.navigate([
       'todo-list',
       'new',
-    ]);
-  }
-
-  public onNavigateToView(todoListId: string): void {
-    this.router.navigate([
-      'todo-list',
-      todoListId,
-      'task',
     ]);
   }
 }

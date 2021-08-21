@@ -13,6 +13,6 @@ export class SearchTodoListsPresenter {
       this.view.query.term,
     );
 
-    this.view.datasource = this.service.searchTodoList(searchTodoListRequestDto);
+    this.view.todoLists = this.service.searchTodoList(searchTodoListRequestDto);
   }
 }

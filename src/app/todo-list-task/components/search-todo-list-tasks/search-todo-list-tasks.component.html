@@ -1,7 +1,7 @@
 <nav>
   <ol class="breadcrumb">
     <li class="breadcrumb-item">
-      <a (click)="onCancel()"><span>TODO Lists</span></a>
+      <a (click)="onNavigateToSearchTodoList()"><span>TODO Lists</span></a>
     </li>
     <li class="breadcrumb-item">
       <a (click)="onNavigateToGetTodoList()"><span>{{ todoList.title }}</span></a>
@@ -10,7 +10,7 @@
   </ol>
 </nav>
 
-<a class="link" (click)="onAdd()"><span>Add</span></a>
+<a class="link" (click)="onNavigateToAddTodoListTask()"><span>Add</span></a>
 
 <table class="table">
   <thead>
@@ -23,12 +23,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let record of todoLists">
-      <td><span>{{record.title}}</span></td>
-      <td><span>{{record.description}}</span></td>
-      <td><span>{{record.startDate}}</span></td>
-      <td><span>{{record.deadline}}</span></td>
-      <td><input type="checkbox" (click)="onComplete(record)"></td>
+    <tr *ngFor="let todoListTask of todoListTasks">
+      <td><input type="checkbox" (click)="onComplete(todoListTask)"></td>
+      <td><span>{{ todoListTask.title }}</span></td>
+      <td><span>{{ todoListTask.description }}</span></td>
+      <td><span>{{ todoListTask.startDate }}</span></td>
+      <td><span>{{ todoListTask.deadline }}</span></td>
     </tr>
   </tbody>
 </table>

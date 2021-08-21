@@ -31,10 +31,10 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
 
   public ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      const todoListId: string | null = paramMap.get('todoListId');
+      const todoListId = paramMap.get('todoListId');
 
       if (todoListId) {
-        this.datasource.todoListId = todoListId;
+        this.datasource.todoListId = +todoListId;
         this.load();
       }
     });
