@@ -17,7 +17,6 @@ export class AddTodoListComponent implements OnInit, AddTodoListView {
   private readonly presenter: AddTodoListPresenter;
 
   private formValue: FormGroup | undefined;
-  private datasourceValue: AddTodoListRequestDto | undefined;
 
   public constructor(
     private readonly router: Router,
@@ -36,15 +35,20 @@ export class AddTodoListComponent implements OnInit, AddTodoListView {
     return this.formValue ?? (this.formValue = this.buildForm());
   }
 
-  public get datasource(): AddTodoListRequestDto {
-    return this.datasourceValue ?? (this.datasourceValue = new AddTodoListRequestDto());
+  public get todoList(): AddTodoListRequestDto {
+    return this.form.value;
   }
 
   public onSubmit(): void {
     this.presenter.add();
+    this.navigateToSearchTodoList();
   }
 
   public onCancel(): void {
+    this.navigateToSearchTodoList();
+  }
+
+  private navigateToSearchTodoList() {
     this.router.navigate([
       'todo-list',
     ]);

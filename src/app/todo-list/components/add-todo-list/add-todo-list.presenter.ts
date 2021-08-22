@@ -8,6 +8,6 @@ export class AddTodoListPresenter {
   ) {}
 
   public add(): void {
-    this.service.addTodoList(this.view.datasource);
+    this.service.addTodoList(this.view.todoList);
   }
 }
