@@ -20,11 +20,16 @@
   </thead>
   <tbody>
     <tr *ngFor="let record of todoLists">
-      <td><span>{{ record.title }}</span></td>
+      <td>
+        <a class="link"
+           (click)="onNavigateToSearchTodoTasks(record.todoListId)">
+          <span>{{ record.title }}</span>
+        </a>
+      </td>
       <td>
           <a class="btn btn-link"
              (click)="onNavigateToUpdateTodoList(record.todoListId)">
-             <span>edit</span>
+            <span>edit</span>
           </a>
       </td>
     </tr>

@@ -48,6 +48,14 @@ export class AddTodoListComponent implements OnInit, AddTodoListView {
     this.navigateToSearchTodoList();
   }
 
+  public onNavigateToSearchTodoTasks(todoListId: number) {
+    this.router.navigate([
+      'todo-list',
+      todoListId,
+      'task',
+    ]);
+  }
+
   private navigateToSearchTodoList() {
     this.router.navigate([
       'todo-list',
