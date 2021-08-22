@@ -6,6 +6,7 @@ import { SearchTodoListTasksView,              } from './search-todo-list-tasks.
 import { SearchTodoListTasksRecordResponseDto, } from '../../models';
 import { TodoListTaskService,                  } from '../../services';
 import { GetTodoListResponseDto,               } from '../../../todo-list/models';
+import { TodoListService,                      } from '../../../todo-list/services';
 
 @Component({
   templateUrl: './search-todo-list-tasks.component.html',
@@ -24,9 +25,11 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
     private readonly route: ActivatedRoute,
     private readonly router: Router,
 
-    service: TodoListTaskService,
+    todoListService: TodoListService,
+    todoListTaskService: TodoListTaskService,
   ) {
-    this.presenter = new SearchTodoListTasksPresenter(this, service);
+    this.presenter = new SearchTodoListTasksPresenter(
+      this, todoListService, todoListTaskService);
   }
 
   public ngOnInit(): void {
@@ -42,7 +45,7 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
   }
 
   public get todoList(): GetTodoListResponseDto {
-    return this.todoListValue ?? new GetTodoListResponseDto(0, '', '');
+    return this.todoListValue ?? (this.todoListValue = new GetTodoListResponseDto(0, '', ''));
   }
 
   public set todoListId(todoList: GetTodoListResponseDto){
