@@ -48,10 +48,6 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
     return this.todoListValue ?? (this.todoListValue = new GetTodoListResponseDto(0, '', ''));
   }
 
-  public set todoListId(todoList: GetTodoListResponseDto){
-    this.todoListValue = todoList;
-  }
-
   public get todoListTasks(): SearchTodoListTasksRecordResponseDto[] {
     return this.todoListTasksValue ?? (this.todoListTasksValue = []);
   }
@@ -80,7 +76,7 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
   public onNavigateToAddTodoListTask(): void {
     this.router.navigate([
       'todo-list',
-      this.todoListId,
+      this.todoList.todoListId,
       'task',
       'new',
     ]);
@@ -95,7 +91,7 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
   public onNavigateToGetTodoList(): void {
     this.router.navigate([
       'todo-list',
-      this.todoListId,
+      this.todoList.todoListId,
     ]);
   }
 }
