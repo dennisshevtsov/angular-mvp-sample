@@ -25,14 +25,19 @@ export class TodoListTaskService {
   public searchTodoListTasks(
     searchTodoListTasksRequestDto: SearchTodoListTasksRequestDto)
     : SearchTodoListTasksRecordResponseDto[] {
-    return this.todoListTasksMap.get(searchTodoListTasksRequestDto.todoListId)!
-                                .map(todoListTask => new SearchTodoListTasksRecordResponseDto(
-                                  todoListTask.todoListTaskId,
-                                  todoListTask.title,
-                                  todoListTask.description,
-                                  todoListTask.startDate,
-                                  todoListTask.deadline,
-                                ));
+    const todoListTasks = this.todoListTasksMap.get(searchTodoListTasksRequestDto.todoListId);
+
+    if (todoListTasks) {
+      return todoListTasks.map(todoListTask => new SearchTodoListTasksRecordResponseDto(
+        todoListTask.todoListTaskId,
+        todoListTask.title,
+        todoListTask.description,
+        todoListTask.startDate,
+        todoListTask.deadline,
+      ));
+    }
+
+    return [];
   }
 
   public addTodoListTask(
@@ -46,13 +51,13 @@ export class TodoListTaskService {
     const todoListTaskId = todoListTasks.length + 1;
 
     todoListTasks.push({
-                   todoListTaskId: todoListTaskId,
-                   title: addTodoListTaskRequestDto.title,
-                   description: addTodoListTaskRequestDto.description,
-                   startDate: addTodoListTaskRequestDto.startDate,
-                   deadline: addTodoListTaskRequestDto.deadline,
-                   completed: false,
-                 });
+      todoListTaskId: todoListTaskId,
+      title: addTodoListTaskRequestDto.title,
+      description: addTodoListTaskRequestDto.description,
+      startDate: addTodoListTaskRequestDto.startDate,
+      deadline: addTodoListTaskRequestDto.deadline,
+      completed: false,
+    });
 
     return new AddTodoListTaskResponseDto(todoListTaskId)
   }

@@ -65,7 +65,7 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     this.presenter.add();
     this.router.navigate([
       'todo-list',
-      this.todoListTask.todoListId,
+      this.todoList.todoListId,
       'task',
       this.todoListTaskId,
     ]);
