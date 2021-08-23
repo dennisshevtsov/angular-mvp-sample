@@ -75,6 +75,11 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   public onNavigateToSearchTodoListTasks(): void {}
 
   private buildForm(): FormGroup {
-    return this.formBuilder.group({});
+    return this.formBuilder.group({
+      'title': '',
+      'description': '',
+      'startDate': '',
+      'deadline': '',
+    });
   }
 }

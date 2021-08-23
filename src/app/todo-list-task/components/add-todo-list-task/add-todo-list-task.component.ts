@@ -40,6 +40,7 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
       const todoListId = paramMap.get('todoListId');
 
       if (todoListId) {
+        this.todoList.todoListId = +todoListId;
         this.todoListTask.todoListId = +todoListId;
       }
     });
@@ -55,6 +56,10 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
 
   public get todoListTaskId(): number {
     return this.todoListTaskIdValue ?? (this.todoListTaskIdValue = 0);
+  }
+
+  public set todoListTaskId(todoListTaskId: number) {
+    this.todoListTaskIdValue = todoListTaskId;
   }
 
   public get form(): FormGroup {
@@ -93,7 +98,7 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     return this.builder.group({
       'title': '',
       'description': '',
-      'start': '',
+      'startDate': '',
       'deadline': '',
     });
   }
