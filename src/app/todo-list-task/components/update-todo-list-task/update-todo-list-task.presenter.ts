@@ -1,6 +1,8 @@
-import { TodoListService,        } from '../../../todo-list/services';
-import { TodoListTaskService,    } from '../../services';
-import { UpdateTodoListTaskView, } from './update-todo-list-task.view';
+import { GetTodoListRequestDto,     } from '../../../todo-list/models';
+import { TodoListService,           } from '../../../todo-list/services';
+import { GetTodoListTaskRequestDto, } from '../../models';
+import { TodoListTaskService,       } from '../../services';
+import { UpdateTodoListTaskView,    } from './update-todo-list-task.view';
 
 export class UpdateTodoListTaskPresenter {
   public constructor(
@@ -11,10 +13,26 @@ export class UpdateTodoListTaskPresenter {
   ) { }
 
   public load(): void {
-    const getTodoListResponseDto = this.todoListService.getTodoList(this.view.todoList);
+    const getTodoListRequestDto = new GetTodoListRequestDto(this.view.todoList.todoListId);
+    const getTodoListResponseDto = this.todoListService.getTodoList(getTodoListRequestDto);
 
-    this.view.todoList.title = getTodoListResponseDto.title;
-    this.view.todoList.description = getTodoListResponseDto.description;
+    if (getTodoListResponseDto) {
+      this.view.todoList.title = getTodoListResponseDto.title;
+      this.view.todoList.description = getTodoListResponseDto.description;
+    }
+
+    const getTodoListTaskRequestDto = new GetTodoListTaskRequestDto(
+      this.view.todoListTask.todoListId,
+      this.view.todoListTask.todoListTaskId,
+    );
+    const getTodoListTaskResponseDto = this.todoListTaskService.getTodoListTask(getTodoListTaskRequestDto);
+
+    if (getTodoListTaskResponseDto) {
+      this.view.todoListTask.title = getTodoListTaskResponseDto.title;
+      this.view.todoListTask.description = getTodoListTaskResponseDto.description;
+      this.view.todoListTask.startDate = getTodoListTaskResponseDto.startDate;
+      this.view.todoListTask.deadline = getTodoListTaskResponseDto.deadline;
+    }
   }
 
   public update(): void {

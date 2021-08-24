@@ -1,5 +1,6 @@
 import { Component, OnInit,        } from '@angular/core';
 import { ActivatedRoute, ParamMap, } from '@angular/router';
+import { FormBuilder, FormGroup,   } from '@angular/forms';
 
 import { GetTodoListResponseDto,       } from '../../../todo-list/models';
 import { TodoListService,              } from '../../../todo-list/services';
@@ -7,7 +8,6 @@ import { UpdateTodoListTaskPresenter,  } from './update-todo-list-task.presenter
 import { UpdateTodoListTaskView,       } from './update-todo-list-task.view';
 import { UpdateTodoListTaskRequestDto, } from '../../models';
 import { TodoListTaskService,          } from '../../services';
-import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   templateUrl: './update-todo-list-task.component.html',

@@ -20,11 +20,18 @@ export class TodoListService {
 
   public constructor() { }
 
-  public getTodoList(getTodoListRequestDto: GetTodoListRequestDto): GetTodoListResponseDto {
+  public getTodoList(
+    getTodoListRequestDto: GetTodoListRequestDto)
+    : GetTodoListResponseDto | null {
     const index = this.todoLists.findIndex(todoList => todoList.todoListId === getTodoListRequestDto.todoListId);
-    const todoList =  this.todoLists[index];
 
-    return { ...todoList, };
+    if (index > -1) {
+      const todoList =  this.todoLists[index];
+
+      return { ...todoList, };
+    }
+
+    return null;
   }
 
   public searchTodoList(searchTodoListRequestDto: SearchTodoListsRequestDto): SearchTodoListsRecordResponseDto[] {

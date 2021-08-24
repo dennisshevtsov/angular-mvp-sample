@@ -3,6 +3,8 @@ import { Injectable, } from '@angular/core';
 import { AddTodoListTaskRequestDto,
          AddTodoListTaskResponseDto,
          CompleteTodoListTaskRequestDto,
+         GetTodoListTaskRequestDto,
+         GetTodoListTaskResponseDto,
          SearchTodoListTasksRecordResponseDto,
          SearchTodoListTasksRequestDto,
          UpdateTodoListTaskRequestDto,         } from '../models';
@@ -21,6 +23,25 @@ export class TodoListTaskService {
   }[]> = new Map();
 
   public constructor() { }
+
+  public getTodoListTask(
+    getTodoListTaskRequestDto: GetTodoListTaskRequestDto)
+    : GetTodoListTaskResponseDto | null {
+    const todoListTasks = this.todoListTasksMap.get(getTodoListTaskRequestDto.todoListId);
+
+    if (todoListTasks) {
+      const todoListTaskIndex = todoListTasks.findIndex(
+        todoListTask => todoListTask.todoListTaskId === getTodoListTaskRequestDto.todoListTaskId);
+
+      if (todoListTaskIndex > -1) {
+        const todoListTask = todoListTasks[todoListTaskIndex];
+
+        return { ...todoListTask };
+      }
+    }
+
+    return null;
+  }
 
   public searchTodoListTasks(
     searchTodoListTasksRequestDto: SearchTodoListTasksRequestDto)
