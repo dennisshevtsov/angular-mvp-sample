@@ -34,7 +34,7 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
       const todoListId = paramMap.get('todoListId');
 
       if (todoListId) {
-        this.datasource.todoListId = +todoListId;
+        this.todoList.todoListId = +todoListId;
         this.load();
       }
     });
@@ -44,11 +44,11 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
     return this.formValue ?? (this.formValue = this.buildForm());
   }
 
-  public set datasource(datasource: UpdateTodoListRequestDto) {
+  public set todoList(datasource: UpdateTodoListRequestDto) {
     this.datasourceValue = datasource;
   }
 
-  public get datasource(): UpdateTodoListRequestDto {
+  public get todoList(): UpdateTodoListRequestDto {
     return this.datasourceValue ?? (this.datasourceValue = new UpdateTodoListRequestDto());
   }
 
@@ -69,8 +69,8 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
 
   private buildForm(): FormGroup {
     return this.formBuilder.group({
-      title: this.datasource.title,
-      description: this.datasource.description,
+      title: this.todoList.title,
+      description: this.todoList.description,
     });
   }
 }

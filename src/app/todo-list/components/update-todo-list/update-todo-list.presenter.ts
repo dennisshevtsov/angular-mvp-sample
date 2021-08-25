@@ -9,20 +9,20 @@ export class UpdateTodoListPresenter {
   ) {}
 
   public load(): void {
-    if (this.view.datasource.todoListId) {
+    if (this.view.todoList.todoListId) {
       const getTodoListRequestDto = new GetTodoListRequestDto(
-        this.view.datasource.todoListId,
+        this.view.todoList.todoListId,
       );
       const getTodoListResponseDto = this.service.getTodoList(getTodoListRequestDto);
 
       if (getTodoListResponseDto) {
-        this.view.datasource.title = getTodoListResponseDto.title;
-        this.view.datasource.description = getTodoListResponseDto.description;
+        this.view.todoList.title = getTodoListResponseDto.title;
+        this.view.todoList.description = getTodoListResponseDto.description;
       }
     }
   }
 
   public update(): void {
-    this.service.updateTodoList(this.view.datasource);
+    this.service.updateTodoList(this.view.todoList);
   }
 }
