@@ -20,7 +20,6 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
 
   private todoListValue: GetTodoListResponseDto | undefined;
   private todoListTaskIdValue: number | undefined;
-  private todoListTaskValue: AddTodoListTaskRequestDto | undefined;
 
   private formValue: FormGroup | undefined;
 
@@ -51,7 +50,13 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   }
 
   public get todoListTask(): AddTodoListTaskRequestDto {
-    return this.todoListTaskValue ?? (this.todoListTaskValue = this.createEmptyTodoListTask());
+    return new AddTodoListTaskRequestDto(
+      this.todoList.todoListId,
+      this.form.value.title,
+      this.form.value.description,
+      this.form.value.startDate,
+      this.form.value.deadline,
+    );
   }
 
   public get todoListTaskId(): number {
@@ -68,27 +73,24 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
 
   public onSubmit(): void {
     this.presenter.add();
-    this.router.navigate([
-      'todo-list',
-      this.todoList.todoListId,
-      'task',
-      this.todoListTaskId,
-    ]);
+    this.onNavigateToSearchTodoListTasks();
   }
 
   public onCancel(): void {
-    this.router.navigate([
-      'todo-list',
-      this.todoListTask.todoListId,
-      'task',
-    ]);
+    this.onNavigateToSearchTodoListTasks();
   }
 
   public onNavigateToSearchTodoLists(): void {}
 
   public onNavigateToGetTodoList(): void {}
 
-  public onNavigateToSearchTodoListTasks(): void {}
+  public onNavigateToSearchTodoListTasks(): void {
+    this.router.navigate([
+      'todo-list',
+      this.todoList.todoListId,
+      'task',
+    ]);
+  }
 
   private createEmptyTodoListTask(): AddTodoListTaskRequestDto {
     return new AddTodoListTaskRequestDto(0, '', '', '', '');

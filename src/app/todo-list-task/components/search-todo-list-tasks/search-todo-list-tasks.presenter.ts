@@ -18,8 +18,10 @@ export class SearchTodoListTasksPresenter {
     const getTodoListResponseDto = this.todoListService.getTodoList(
       getTodoListRequestDto);
 
-    this.view.todoList.title = getTodoListResponseDto.title;
-    this.view.todoList.description = getTodoListResponseDto.description;
+    if (getTodoListResponseDto) {
+      this.view.todoList.title = getTodoListResponseDto.title;
+      this.view.todoList.description = getTodoListResponseDto.description;
+    }
 
     const searchTodoListTasksRequestDto = new SearchTodoListTasksRequestDto(
       this.view.todoList.todoListId);

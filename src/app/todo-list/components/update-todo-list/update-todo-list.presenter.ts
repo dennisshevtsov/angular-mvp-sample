@@ -15,8 +15,10 @@ export class UpdateTodoListPresenter {
       );
       const getTodoListResponseDto = this.service.getTodoList(getTodoListRequestDto);
 
-      this.view.datasource.title = getTodoListResponseDto.title;
-      this.view.datasource.description = getTodoListResponseDto.description;
+      if (getTodoListResponseDto) {
+        this.view.datasource.title = getTodoListResponseDto.title;
+        this.view.datasource.description = getTodoListResponseDto.description;
+      }
     }
   }
 
