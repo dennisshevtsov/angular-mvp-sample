@@ -80,9 +80,18 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     this.onNavigateToSearchTodoListTasks();
   }
 
-  public onNavigateToSearchTodoLists(): void {}
+  public onNavigateToSearchTodoLists(): void {
+    this.router.navigate([
+      'todo-list',
+    ]);
+  }
 
-  public onNavigateToGetTodoList(): void {}
+  public onNavigateToGetTodoList(): void {
+    this.router.navigate([
+      'todo-list',
+      this.todoList.todoListId,
+    ]);
+  }
 
   public onNavigateToSearchTodoListTasks(): void {
     this.router.navigate([
@@ -90,10 +99,6 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
       this.todoList.todoListId,
       'task',
     ]);
-  }
-
-  private createEmptyTodoListTask(): AddTodoListTaskRequestDto {
-    return new AddTodoListTaskRequestDto(0, '', '', '', '');
   }
 
   private buildForm(): FormGroup {
