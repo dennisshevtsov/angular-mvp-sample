@@ -1,6 +1,6 @@
-import { Component, OnInit,        } from '@angular/core';
-import { ActivatedRoute, ParamMap, } from '@angular/router';
-import { FormBuilder, FormGroup,   } from '@angular/forms';
+import { Component, OnInit,                } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
+import { FormBuilder, FormGroup,           } from '@angular/forms';
 
 import { GetTodoListResponseDto,       } from '../../../todo-list/models';
 import { TodoListService,              } from '../../../todo-list/services';
@@ -23,6 +23,7 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   private formValue: FormGroup | undefined;
 
   public constructor(
+    private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly formBuilder: FormBuilder,
 
@@ -82,15 +83,33 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
 
   public onSubmit(): void {
     this.presenter.update();
+    this.onNavigateToSearchTodoListTasks();
   }
 
-  public onCancel(): void {}
+  public onCancel(): void {
+    this.onNavigateToSearchTodoListTasks();
+  }
 
-  public onNavigateToSearchTodoLists(): void {}
+  public onNavigateToSearchTodoLists(): void {
+    this.router.navigate([
+      'todo-list',
+    ]);
+  }
 
-  public onNavigateToGetTodoList(): void {}
+  public onNavigateToGetTodoList(): void {
+    this.router.navigate([
+      'todo-list',
+      this.todoList.todoListId,
+    ]);
+  }
 
-  public onNavigateToSearchTodoListTasks(): void {}
+  public onNavigateToSearchTodoListTasks(): void {
+    this.router.navigate([
+      'todo-list',
+      this.todoList.todoListId,
+      'task',
+    ]);
+  }
 
   private buildForm(): FormGroup {
     return this.formBuilder.group({
