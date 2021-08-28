@@ -26,7 +26,12 @@
   <tbody>
     <tr *ngFor="let todoListTask of todoListTasks">
       <td><input type="checkbox" (click)="onComplete(todoListTask)"></td>
-      <td><span>{{ todoListTask.title }}</span></td>
+      <td>
+        <a class="link"
+           (click)="onNavigateToUpdateTodoListTask(todoListTask)">
+          <span>{{ todoListTask.title }}</span>
+        </a>
+      </td>
       <td><span>{{ todoListTask.description }}</span></td>
       <td><span>{{ todoListTask.startDate }}</span></td>
       <td><span>{{ todoListTask.deadline }}</span></td>

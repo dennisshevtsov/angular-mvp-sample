@@ -94,4 +94,15 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
       this.todoList.todoListId,
     ]);
   }
+
+  public onNavigateToUpdateTodoListTask(
+    todoListTask: SearchTodoListTasksRecordResponseDto)
+    : void {
+    this.router.navigate([
+      'todo-list',
+      this.todoList.todoListId,
+      'task',
+      todoListTask.todoListTaskId,
+    ]);
+  }
 }
