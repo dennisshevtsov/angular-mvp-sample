@@ -19,7 +19,7 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   private readonly presenter: UpdateTodoListTaskPresenter;
 
   private todoListValue: GetTodoListResponseDto | undefined;
-  private todoListTaskValue: UpdateTodoListTaskRequestDto | undefined;
+  private todoListTaskId: number | undefined;
   private formValue: FormGroup | undefined;
 
   public constructor(
@@ -42,8 +42,7 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
 
       if (todoListId && todoListTaskId) {
         this.todoList.todoListId = +todoListId;
-        this.todoListTask.todoListId = +todoListId;
-        this.todoListTask.todoListTaskId = +todoListTaskId;
+        this.todoListTaskId = +todoListId;
 
         this.presenter.load();
       }
@@ -51,11 +50,30 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   }
 
   public get todoList(): GetTodoListResponseDto {
-    return this.todoListValue ?? (this.todoListValue = new GetTodoListResponseDto(0, '', ''));
+    return this.todoListValue ?? (this.todoListValue = new GetTodoListResponseDto());
+  }
+
+  public set todoList(todoList: GetTodoListResponseDto) {
+    this.todoList.title = todoList.title;
+    this.todoList.description = todoList.description;
   }
 
   public get todoListTask(): UpdateTodoListTaskRequestDto {
-    return this.todoListTaskValue ?? (this.todoListTaskValue = new UpdateTodoListTaskRequestDto(0, 0, '', '', '', ''));
+    return new UpdateTodoListTaskRequestDto(
+      this.todoList.todoListId,
+      this.todoListTaskId,
+    );
+  }
+
+  public set todoListTask(todoListTask: UpdateTodoListTaskRequestDto) {
+    this.todoListTaskId = todoListTask.todoListTaskId;
+
+    this.form.setValue({
+      'title': todoListTask.title,
+      'description': todoListTask.description,
+      'startDate': todoListTask.startDate,
+      'deadline': todoListTask.deadline,
+    });
   }
 
   public get form(): FormGroup {

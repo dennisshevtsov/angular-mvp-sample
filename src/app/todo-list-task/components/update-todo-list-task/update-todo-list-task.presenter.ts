@@ -1,6 +1,6 @@
-import { GetTodoListRequestDto,     } from '../../../todo-list/models';
+import { GetTodoListRequestDto, UpdateTodoListRequestDto,     } from '../../../todo-list/models';
 import { TodoListService,           } from '../../../todo-list/services';
-import { GetTodoListTaskRequestDto, } from '../../models';
+import { GetTodoListTaskRequestDto, UpdateTodoListTaskRequestDto, } from '../../models';
 import { TodoListTaskService,       } from '../../services';
 import { UpdateTodoListTaskView,    } from './update-todo-list-task.view';
 
@@ -17,8 +17,7 @@ export class UpdateTodoListTaskPresenter {
     const getTodoListResponseDto = this.todoListService.getTodoList(getTodoListRequestDto);
 
     if (getTodoListResponseDto) {
-      this.view.todoList.title = getTodoListResponseDto.title;
-      this.view.todoList.description = getTodoListResponseDto.description;
+      this.view.todoList = getTodoListResponseDto;
     }
 
     const getTodoListTaskRequestDto = new GetTodoListTaskRequestDto(
@@ -28,10 +27,14 @@ export class UpdateTodoListTaskPresenter {
     const getTodoListTaskResponseDto = this.todoListTaskService.getTodoListTask(getTodoListTaskRequestDto);
 
     if (getTodoListTaskResponseDto) {
-      this.view.todoListTask.title = getTodoListTaskResponseDto.title;
-      this.view.todoListTask.description = getTodoListTaskResponseDto.description;
-      this.view.todoListTask.startDate = getTodoListTaskResponseDto.startDate;
-      this.view.todoListTask.deadline = getTodoListTaskResponseDto.deadline;
+      this.view.todoListTask = new UpdateTodoListTaskRequestDto(
+        0,
+        0,
+        getTodoListTaskResponseDto.title,
+        getTodoListTaskResponseDto.description,
+        getTodoListTaskResponseDto.startDate,
+        getTodoListTaskResponseDto.deadline,
+      );
     }
   }
 
