@@ -19,7 +19,7 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   private readonly presenter: UpdateTodoListTaskPresenter;
 
   private todoListValue: GetTodoListResponseDto | undefined;
-  private todoListTaskId: number | undefined;
+  private todoListTaskIdValue: number | undefined;
   private formValue: FormGroup | undefined;
 
   public constructor(
@@ -43,7 +43,7 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
 
       if (todoListId && todoListTaskId) {
         this.todoList.todoListId = +todoListId;
-        this.todoListTaskId = +todoListId;
+        this.todoListTaskIdValue = +todoListTaskId;
 
         this.presenter.load();
       }
@@ -62,13 +62,15 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   public get todoListTask(): UpdateTodoListTaskRequestDto {
     return new UpdateTodoListTaskRequestDto(
       this.todoList.todoListId,
-      this.todoListTaskId,
+      this.todoListTaskIdValue,
+      this.form.value.title,
+      this.form.value.description,
+      this.form.value.startDate,
+      this.form.value.deadline,
     );
   }
 
   public set todoListTask(todoListTask: UpdateTodoListTaskRequestDto) {
-    this.todoListTaskId = todoListTask.todoListTaskId;
-
     this.form.setValue({
       'title': todoListTask.title,
       'description': todoListTask.description,

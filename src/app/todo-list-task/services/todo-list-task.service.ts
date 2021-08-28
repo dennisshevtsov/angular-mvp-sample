@@ -88,12 +88,15 @@ export class TodoListTaskService {
     : void {
     const todoListTasks = this.todoListTasksMap.get(updateTodoListTaskRequestDto.todoListId)!;
     const todoListTaskIndex = todoListTasks.findIndex(todoListTask => todoListTask.todoListTaskId === updateTodoListTaskRequestDto.todoListTaskId);
-    const todoListTask = todoListTasks[todoListTaskIndex];
 
-    todoListTask.title = updateTodoListTaskRequestDto.title;
-    todoListTask.description = updateTodoListTaskRequestDto.description;
-    todoListTask.startDate = updateTodoListTaskRequestDto.startDate;
-    todoListTask.deadline = updateTodoListTaskRequestDto.deadline;
+    if (todoListTaskIndex > -1) {
+      const todoListTask = todoListTasks[todoListTaskIndex];
+
+      todoListTask.title = updateTodoListTaskRequestDto.title;
+      todoListTask.description = updateTodoListTaskRequestDto.description;
+      todoListTask.startDate = updateTodoListTaskRequestDto.startDate;
+      todoListTask.deadline = updateTodoListTaskRequestDto.deadline;
+    }
   }
 
   public completeTodoListTask(
