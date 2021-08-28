@@ -16,8 +16,7 @@ export class UpdateTodoListPresenter {
       const getTodoListResponseDto = this.service.getTodoList(getTodoListRequestDto);
 
       if (getTodoListResponseDto) {
-        this.view.todoList.title = getTodoListResponseDto.title;
-        this.view.todoList.description = getTodoListResponseDto.description;
+        this.view.todoList = getTodoListResponseDto;
       }
     }
   }

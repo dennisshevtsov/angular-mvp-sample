@@ -17,7 +17,7 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
   private readonly presenter: UpdateTodoListPresenter;
 
   private formValue: FormGroup | undefined;
-  private datasourceValue: UpdateTodoListRequestDto | undefined;
+  private todoListIdValue: number | undefined;
 
   public constructor(
     private readonly router: Router,
@@ -34,7 +34,7 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
       const todoListId = paramMap.get('todoListId');
 
       if (todoListId) {
-        this.todoList.todoListId = +todoListId;
+        this.todoListIdValue = +todoListId;
         this.load();
       }
     });
@@ -44,12 +44,19 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
     return this.formValue ?? (this.formValue = this.buildForm());
   }
 
-  public set todoList(datasource: UpdateTodoListRequestDto) {
-    this.datasourceValue = datasource;
+  public get todoList(): UpdateTodoListRequestDto {
+    return new UpdateTodoListRequestDto(
+      this.todoListIdValue,
+      this.form.value.title,
+      this.form.value.description,
+    );
   }
 
-  public get todoList(): UpdateTodoListRequestDto {
-    return this.datasourceValue ?? (this.datasourceValue = new UpdateTodoListRequestDto());
+  public set todoList(todoList: UpdateTodoListRequestDto) {
+    this.form.setValue({
+      'title': todoList.title,
+      'description': todoList.description,
+    });
   }
 
   public onSubmit(): void {
@@ -69,8 +76,8 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
 
   private buildForm(): FormGroup {
     return this.formBuilder.group({
-      title: this.todoList.title,
-      description: this.todoList.description,
+      'title': '',
+      'description': '',
     });
   }
 }
