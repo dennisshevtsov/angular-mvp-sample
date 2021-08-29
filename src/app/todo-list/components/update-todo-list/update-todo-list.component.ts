@@ -35,7 +35,7 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
 
       if (todoListId) {
         this.todoListIdValue = +todoListId;
-        this.load();
+        this.presenter.load();
       }
     });
   }
@@ -61,20 +61,20 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
 
   public onSubmit(): void {
     this.presenter.update();
+    this.navigateToSearchTodoLists();
   }
 
   public onCancel(): void {
+    this.navigateToSearchTodoLists();
+  }
+
+  private navigateToSearchTodoLists(): void {
     this.router.navigate([
       'todo-list',
     ]);
   }
 
-  private load(): void {
-    this.presenter.load();
-    this.formValue = this.buildForm();
-  }
-
-  private buildForm(): FormGroup {
+  private buildForm() : FormGroup {
     return this.formBuilder.group({
       'title': '',
       'description': '',
