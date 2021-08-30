@@ -2,8 +2,8 @@ import { Component, OnInit,                } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 
 import { SearchTodoListsRecordResponseDto,
-         SearchTodoListsRequestDto,        } from '../../models';
-import { TodoListService,                  } from '../../services';
+         SearchTodoListsRequestDto,
+         TodoListService,                  } from '../../../todo-list-api';
 import { SearchTodoListsPresenter,         } from './search-todo-lists.presenter';
 import { SearchTodoListsView,              } from './search-todo-lists.view';
 

@@ -1,5 +1,5 @@
-import { TodoListTaskService,        } from '../../services';
-import { AddTodoListTaskResponseDto, } from '../../models';
+import { TodoListTaskService,
+         AddTodoListTaskResponseDto, } from '../../../todo-list-task-api';
 import { AddTodoListTaskView,        } from './add-todo-list-task.view';
 
 export class AddTodoListTaskPresenter {

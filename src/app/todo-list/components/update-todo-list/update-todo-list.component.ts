@@ -2,10 +2,10 @@ import { Component, OnInit,                } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 import { FormBuilder, FormGroup,           } from '@angular/forms';
 
-import { TodoListService,          } from '../../services';
+import { TodoListService,
+         UpdateTodoListRequestDto, } from '../../../todo-list-api';
 import { UpdateTodoListView,       } from './update-todo-list.view';
 import { UpdateTodoListPresenter,  } from './update-todo-list.presenter';
-import { UpdateTodoListRequestDto, } from '../../models';
 
 @Component({
   templateUrl: './update-todo-list.component.html',

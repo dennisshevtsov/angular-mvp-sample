@@ -2,8 +2,8 @@ import { Component, OnInit,      } from '@angular/core';
 import { FormBuilder, FormGroup, } from '@angular/forms';
 import { Router,                 } from '@angular/router';
 
-import { AddTodoListRequestDto, } from '../../models';
-import { TodoListService,       } from '../../services';
+import { AddTodoListRequestDto,
+         TodoListService,       } from '../../../todo-list-api';
 import { AddTodoListPresenter,  } from './add-todo-list.presenter';
 import { AddTodoListView,       } from './add-todo-list.view';
 

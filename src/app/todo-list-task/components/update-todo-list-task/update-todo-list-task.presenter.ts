@@ -1,8 +1,9 @@
-import { GetTodoListRequestDto, UpdateTodoListRequestDto,     } from '../../../todo-list/models';
-import { TodoListService,           } from '../../../todo-list/services';
-import { GetTodoListTaskRequestDto, UpdateTodoListTaskRequestDto, } from '../../models';
-import { TodoListTaskService,       } from '../../services';
-import { UpdateTodoListTaskView,    } from './update-todo-list-task.view';
+import { GetTodoListRequestDto,
+         TodoListService,              } from '../../../todo-list-api';
+import { GetTodoListTaskRequestDto,
+         UpdateTodoListTaskRequestDto,
+         TodoListTaskService,          } from '../../../todo-list-task-api';
+import { UpdateTodoListTaskView,       } from './update-todo-list-task.view';
 
 export class UpdateTodoListTaskPresenter {
   public constructor(

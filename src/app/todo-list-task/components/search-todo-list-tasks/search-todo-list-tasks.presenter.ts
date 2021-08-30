@@ -1,8 +1,8 @@
-import { GetTodoListRequestDto } from 'src/app/todo-list/models';
-import { TodoListService,                } from '../../../todo-list/services';
+import { GetTodoListRequestDto,
+         TodoListService,                } from '../../../todo-list-api';
 import { CompleteTodoListTaskRequestDto,
-         SearchTodoListTasksRequestDto   } from '../../models';
-import { TodoListTaskService,            } from '../../services';
+         SearchTodoListTasksRequestDto,
+         TodoListTaskService,            } from '../../../todo-list-task-api';
 import { SearchTodoListTasksView,        } from './search-todo-list-tasks.view';
 
 export class SearchTodoListTasksPresenter {

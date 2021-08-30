@@ -1,5 +1,5 @@
-import { GetTodoListRequestDto, } from '../../models';
-import { TodoListService,       } from '../../services';
+import { GetTodoListRequestDto,
+         TodoListService,       } from '../../../todo-list-api';
 import { UpdateTodoListView,    } from './update-todo-list.view';
 
 export class UpdateTodoListPresenter {

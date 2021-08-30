@@ -6,7 +6,7 @@ import {
   GetTodoListResponseDto,
   UpdateTodoListRequestDto,
   SearchTodoListsRecordResponseDto,
-  SearchTodoListsRequestDto,        } from '../models';
+  SearchTodoListsRequestDto,        } from '../dtos';
 
 @Injectable({
   providedIn: 'root',

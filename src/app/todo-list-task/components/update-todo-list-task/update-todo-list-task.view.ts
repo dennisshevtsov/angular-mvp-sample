@@ -1,5 +1,5 @@
-import { GetTodoListResponseDto,       } from '../../../todo-list/models';
-import { UpdateTodoListTaskRequestDto, } from '../../models';
+import { GetTodoListResponseDto,       } from '../../../todo-list-api';
+import { UpdateTodoListTaskRequestDto, } from '../../../todo-list-task-api';
 
 export interface UpdateTodoListTaskView {
   todoList: GetTodoListResponseDto;
