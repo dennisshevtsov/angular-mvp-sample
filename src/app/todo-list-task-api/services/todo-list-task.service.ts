@@ -104,9 +104,15 @@ export class TodoListTaskService {
     completeTodoListTaskRequestDto: CompleteTodoListTaskRequestDto)
     : void {
     const todoListTasks = this.todoListTasksMap.get(completeTodoListTaskRequestDto.todoListId)!;
-    const todoListTaskIndex = todoListTasks.findIndex(todoListTask => todoListTask.todoListTaskId === completeTodoListTaskRequestDto.todoListTaskId);
-    const todoListTask = todoListTasks[todoListTaskIndex];
 
-    todoListTask.completed = true;
+    if (todoListTasks) {
+      const todoListTaskIndex = todoListTasks.findIndex(todoListTask => todoListTask.todoListTaskId === completeTodoListTaskRequestDto.todoListTaskId);
+
+      if (todoListTaskIndex > -1) {
+        const todoListTask = todoListTasks[todoListTaskIndex];
+
+        todoListTask.completed = true;
+      }
+    }
   }
 }
