@@ -55,6 +55,7 @@ export class TodoListTaskService {
         todoListTask.description,
         todoListTask.startDate,
         todoListTask.deadline,
+        todoListTask.completed,
       ));
     }
 
