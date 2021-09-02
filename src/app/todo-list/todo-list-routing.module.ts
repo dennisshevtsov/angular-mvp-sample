@@ -5,17 +5,19 @@ import { AddTodoListComponent,
          SearchTodoListsComponent,
          UpdateTodoListComponent,  } from './components';
 
+const TODO_LIST_PARAMETER_NAME = 'todoListId';
+const TODO_LIST_ROUTE_BASE = 'todo-list';
 const routes: Routes = [
   {
-    path: 'todo-list/new',
+    path: `${TODO_LIST_ROUTE_BASE}/new`,
     component: AddTodoListComponent,
   },
   {
-    path: 'todo-list/:todoListId',
+    path: `${TODO_LIST_ROUTE_BASE}/:${TODO_LIST_PARAMETER_NAME}`,
     component: UpdateTodoListComponent,
   },
   {
-    path: 'todo-list',
+    path: TODO_LIST_ROUTE_BASE,
     component: SearchTodoListsComponent,
   },
 ];
