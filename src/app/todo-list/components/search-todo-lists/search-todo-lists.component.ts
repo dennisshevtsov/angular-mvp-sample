@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 import { SearchTodoListsRecordResponseDto,
          SearchTodoListsRequestDto,
          TodoListService,                  } from '../../../todo-list-api';
+import { TODO_LIST_ROUTE_BASE,             } from '../../todo-list-routing.module';
 import { SearchTodoListsPresenter,         } from './search-todo-lists.presenter';
 import { SearchTodoListsView,              } from './search-todo-lists.view';
 
@@ -53,21 +54,21 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
 
   public onNavigateToUpdateTodoList(todoListId: number): void {
     this.router.navigate([
-      'todo-list',
+      TODO_LIST_ROUTE_BASE,
       todoListId,
     ]);
   }
 
   public onNavigateToAddTodoList(): void {
     this.router.navigate([
-      'todo-list',
+      TODO_LIST_ROUTE_BASE,
       'new',
     ]);
   }
 
   public onNavigateToSearchTodoTasks(todoListId: number): void {
     this.router.navigate([
-      'todo-list',
+      TODO_LIST_ROUTE_BASE,
       todoListId,
       'task',
     ]);

@@ -6,6 +6,7 @@ import { TodoListService,
          UpdateTodoListRequestDto, } from '../../../todo-list-api';
 import { UpdateTodoListView,       } from './update-todo-list.view';
 import { UpdateTodoListPresenter,  } from './update-todo-list.presenter';
+import { TODO_LIST_ROUTE_BASE,     } from '../../todo-list-routing.module';
 
 @Component({
   templateUrl: './update-todo-list.component.html',
@@ -70,7 +71,7 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
 
   private navigateToSearchTodoLists(): void {
     this.router.navigate([
-      'todo-list',
+      TODO_LIST_ROUTE_BASE,
     ]);
   }
 
