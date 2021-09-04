@@ -2,7 +2,8 @@ import { Component, OnInit,                } from '@angular/core';
 import { FormBuilder, FormGroup,           } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 
-import { GetTodoListResponseDto,    } from '../../../todo-list-api';
+import { GetTodoListResponseDto,
+         TodoListService,           } from '../../../todo-list-api';
 import { AddTodoListTaskRequestDto,
          TodoListTaskService,       } from '../../../todo-list-task-api';
 import { AddTodoListTaskPresenter,  } from './add-todo-list-task.presenter';
@@ -29,9 +30,11 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
 
     private readonly builder: FormBuilder,
 
-    service: TodoListTaskService,
+    todoListService: TodoListService,
+    todoListTaskService: TodoListTaskService,
   ) {
-    this.presenter = new AddTodoListTaskPresenter(this, service);
+    this.presenter = new AddTodoListTaskPresenter(
+      this, todoListService, todoListTaskService);
   }
 
   public ngOnInit(): void {
@@ -41,12 +44,18 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
       if (todoListId) {
         this.todoList.todoListId = +todoListId;
         this.todoListTask.todoListId = +todoListId;
+
+        this.presenter.load();
       }
     });
   }
 
   public get todoList(): GetTodoListResponseDto {
     return this.todoListValue ?? (this.todoListValue = new GetTodoListResponseDto(0, '', ''));
+  }
+
+  public set todoList(todoList: GetTodoListResponseDto) {
+    this.todoListValue = todoList;
   }
 
   public get todoListTask(): AddTodoListTaskRequestDto {
