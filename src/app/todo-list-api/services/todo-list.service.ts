@@ -36,7 +36,9 @@ export class TodoListService {
 
   public searchTodoList(searchTodoListRequestDto: SearchTodoListsRequestDto): SearchTodoListsRecordResponseDto[] {
     return this.todoLists.map(todoList => new SearchTodoListsRecordResponseDto(
-      todoList.todoListId, todoList.title));
+      todoList.todoListId,
+      todoList.title,
+      todoList.description));
   }
 
   public addTodoList(addTodoListRequestDto: AddTodoListRequestDto): void {
