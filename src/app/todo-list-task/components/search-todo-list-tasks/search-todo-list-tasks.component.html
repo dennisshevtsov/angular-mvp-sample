@@ -17,32 +17,21 @@
   </li>
 </ul>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col"><span>Title</span></th>
-      <th scope="col"><span>Desription</span></th>
-      <th scope="col"><span>Start Date</span></th>
-      <th scope="col"><span>Deadline</span></th>
-      <th scope="col"><span></span></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let todoListTask of todoListTasks">
-      <td>
-        <input type="checkbox"
-               [checked]="todoListTask.completed"
-               (click)="onComplete(todoListTask)"></td>
-      <td>
-        <a class="link"
-           (click)="onNavigateToUpdateTodoListTask(todoListTask)">
-          <span>{{ todoListTask.title }}</span>
-        </a>
-      </td>
-      <td><span>{{ todoListTask.description }}</span></td>
-      <td><span>{{ todoListTask.startDate }}</span></td>
-      <td><span>{{ todoListTask.deadline }}</span></td>
-    </tr>
-  </tbody>
-</table>
+<div class="list-group">
+  <label class="list-group-item d-flex gap-3"
+         *ngFor="let todoListTask of todoListTasks">
+    <input class="form-check-input flex-shrink-0"
+           type="checkbox"
+           [checked]="todoListTask.completed"
+           (click)="onComplete(todoListTask)">
+    <span class="pt-1 form-checked-content"
+          (click)="onNavigateToUpdateTodoListTask(todoListTask)">
+      <strong>{{ todoList.title }}</strong>
+      <small class="d-block text-muted">
+        <svg class="bi me-1" width="1em" height="1em"></svg>
+        {{ todoListTask.startDate }} - {{ todoListTask.deadline }}
+      </small>
+      <p>{{ todoList.description }}</p>
+    </span>
+  </label>
+</div>
