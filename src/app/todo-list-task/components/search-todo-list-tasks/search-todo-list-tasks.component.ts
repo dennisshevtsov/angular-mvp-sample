@@ -64,17 +64,16 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
     this.selectedTodoListTaskValue = selectedTodoListTask;
   }
 
-  public onComplete(record: SearchTodoListTasksRecordResponseDto): boolean {
-    const completed: boolean = record.completed;
+  public onComplete(record: SearchTodoListTasksRecordResponseDto): void {
+    this.selectedTodoListTask = record;
 
-    if (!completed) {
-      this.selectedTodoListTask = record;
+    if (!record.completed) {
       this.presenter.complete();
-
-      record.completed = true;
+    } else {
+      this.presenter.uncomplete();
     }
 
-    return !completed;
+    record.completed = !record.completed;
   }
 
   public onNavigateToAddTodoListTask(): void {
