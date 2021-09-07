@@ -7,6 +7,7 @@ import { AddTodoListTaskRequestDto,
          GetTodoListTaskResponseDto,
          SearchTodoListTasksRecordResponseDto,
          SearchTodoListTasksRequestDto,
+         UncompleteTodoListTaskRequestDto,
          UpdateTodoListTaskRequestDto,         } from '../dtos';
 
 @Injectable({
@@ -103,15 +104,35 @@ export class TodoListTaskService {
   public completeTodoListTask(
     completeTodoListTaskRequestDto: CompleteTodoListTaskRequestDto)
     : void {
-    const todoListTasks = this.todoListTasksMap.get(completeTodoListTaskRequestDto.todoListId)!;
+    const todoListTasks = this.todoListTasksMap.get(
+      completeTodoListTaskRequestDto.todoListId)!;
 
     if (todoListTasks) {
-      const todoListTaskIndex = todoListTasks.findIndex(todoListTask => todoListTask.todoListTaskId === completeTodoListTaskRequestDto.todoListTaskId);
+      const todoListTaskIndex = todoListTasks.findIndex(
+        todoListTask => todoListTask.todoListTaskId === completeTodoListTaskRequestDto.todoListTaskId);
 
       if (todoListTaskIndex > -1) {
         const todoListTask = todoListTasks[todoListTaskIndex];
 
         todoListTask.completed = true;
+      }
+    }
+  }
+
+  public uncompleteTodoListTask(
+    uncompleteTodoListTaskRequestDto: UncompleteTodoListTaskRequestDto)
+    : void {
+    const todoListTasks = this.todoListTasksMap.get(
+      uncompleteTodoListTaskRequestDto.todoListId)!;
+
+    if (todoListTasks) {
+      const todoListTaskIndex = todoListTasks.findIndex(
+        todoListTask => todoListTask.todoListTaskId === uncompleteTodoListTaskRequestDto.todoListTaskId);
+
+      if (todoListTaskIndex > -1) {
+        const todoListTask = todoListTasks[todoListTaskIndex];
+
+        todoListTask.completed = false;
       }
     }
   }
