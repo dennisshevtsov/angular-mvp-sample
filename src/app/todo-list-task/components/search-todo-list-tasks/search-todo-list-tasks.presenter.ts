@@ -1,9 +1,10 @@
 import { GetTodoListRequestDto,
-         TodoListService,                } from '../../../todo-list-api';
+         TodoListService,                  } from '../../../todo-list-api';
 import { CompleteTodoListTaskRequestDto,
          SearchTodoListTasksRequestDto,
-         TodoListTaskService,            } from '../../../todo-list-task-api';
-import { SearchTodoListTasksView,        } from './search-todo-list-tasks.view';
+         UncompleteTodoListTaskRequestDto,
+         TodoListTaskService,              } from '../../../todo-list-task-api';
+import { SearchTodoListTasksView,          } from './search-todo-list-tasks.view';
 
 export class SearchTodoListTasksPresenter {
   public constructor(
@@ -35,5 +36,13 @@ export class SearchTodoListTasksPresenter {
       this.view.selectedTodoListTask.todoListTaskId);
 
     this.todoListTaskService.completeTodoListTask(requestDto);
+  }
+
+  public uncomplete(): void {
+    const requestDto = new UncompleteTodoListTaskRequestDto(
+      this.view.todoList.todoListId,
+      this.view.selectedTodoListTask.todoListTaskId);
+
+    this.todoListTaskService.uncompleteTodoListTask(requestDto);
   }
 }
