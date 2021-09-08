@@ -17,18 +17,17 @@
   </li>
 </ul>
 
-<div class="list-group">
-  <label class="list-group-item d-flex gap-3"
+<div class="todo-list-tasks">
+  <label class="todo-list-task"
          *ngFor="let todoListTask of todoListTasks">
-    <input class="form-check-input flex-shrink-0"
+    <input class="todo-list-task-check"
            type="checkbox"
            [checked]="todoListTask.completed"
            (click)="onComplete(todoListTask)">
-    <span class="pt-1 form-checked-content"
+    <span class="todo-list-task-detail"
           (click)="onNavigateToUpdateTodoListTask(todoListTask)">
       <strong>{{ todoList.title }}</strong>
-      <small class="d-block text-muted">
-        <svg class="bi me-1" width="1em" height="1em"></svg>
+      <small class="todo-list-task-period">
         {{ todoListTask.startDate }} - {{ todoListTask.deadline }}
       </small>
       <p>{{ todoList.description }}</p>
