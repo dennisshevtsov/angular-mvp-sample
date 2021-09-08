@@ -1,29 +1,31 @@
 @import "/node_modules/bootstrap/scss/bootstrap";
 
-.todo-lists {
-  @extend .list-group;
-  @extend .list-group-flush;
-  @extend .border-bottom;
-}
-
 .todo-list {
-  @extend .list-group-item;
-  @extend .list-group-item-action;
-  @extend .py-3;
-}
-
-.todo-list-title {
-  @extend .w-100;
-  @extend .align-items-center;
-  @extend .justify-content-between;
-
-  & > strong {
-    @extend .mb-1;
+  &s {
+    @extend .list-group;
+    @extend .list-group-flush;
+    @extend .border-bottom;
   }
-}
 
-.todo-list-description {
-  @extend .col-10;
-  @extend .mb-1;
-  @extend .small;
+  & {
+    @extend .list-group-item;
+    @extend .list-group-item-action;
+    @extend .py-3;
+  }
+
+  &-title {
+    @extend .w-100;
+    @extend .align-items-center;
+    @extend .justify-content-between;
+
+    & > strong {
+      @extend .mb-1;
+    }
+  }
+
+  &-description {
+    @extend .col-10;
+    @extend .mb-1;
+    @extend .small;
+  }
 }
