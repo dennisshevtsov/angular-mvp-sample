@@ -6,23 +6,20 @@
 
 <ul class="nav">
   <li class="nav-item">
-    <a class="nav-link active"
-       (click)="onNavigateToAddTodoList()"><span>Add</span></a>
+    <a class="nav-link active" (click)="onNavigateToAddTodoList()"><span>Add</span></a>
   </li>
 </ul>
 
-<div class="b-flex fle-column align-items-stretch flex-shrink-0 bg-white">
-  <div class="list-group list-group-flush border-bottom scrollarea">
-    <a class="list-group-item list-group-item-action actibe py-3 lh-tight"
-       aria-current="true"
-       *ngFor="let todoList of todoLists"
-       (click)="onNavigateToSearchTodoTasks(todoList.todoListId)">
-       <div class="d-blex w-100 align-items-center justify-content-between">
-         <strong class="mb-1">{{ todoList.title }}</strong>
-       </div>
-       <div class="col-10 mb-1 small">
-         {{ todoList.description }}
-       </div>
-    </a>
-  </div>
+<div class="list-group list-group-flush border-bottom">
+  <a class="list-group-item list-group-item-action actibe py-3"
+     aria-current="true"
+     *ngFor="let todoList of todoLists"
+     (click)="onNavigateToSearchTodoTasks(todoList.todoListId)">
+    <div class="w-100 align-items-center justify-content-between">
+      <strong class="mb-1">{{ todoList.title }}</strong>
+    </div>
+    <div class="col-10 mb-1 small">
+      {{ todoList.description }}
+    </div>
+  </a>
 </div>
