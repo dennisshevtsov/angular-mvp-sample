@@ -10,15 +10,15 @@
   </li>
 </ul>
 
-<div class="list-group list-group-flush border-bottom">
-  <a class="list-group-item list-group-item-action actibe py-3"
+<div class="todo-lists">
+  <a class="todo-list"
      aria-current="true"
      *ngFor="let todoList of todoLists"
      (click)="onNavigateToSearchTodoTasks(todoList.todoListId)">
-    <div class="w-100 align-items-center justify-content-between">
-      <strong class="mb-1">{{ todoList.title }}</strong>
+    <div class="todo-list-title">
+      <strong>{{ todoList.title }}</strong>
     </div>
-    <div class="col-10 mb-1 small">
+    <div class="todo-list-description">
       {{ todoList.description }}
     </div>
   </a>
