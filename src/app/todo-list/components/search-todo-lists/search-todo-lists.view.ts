@@ -1,5 +1,5 @@
 import { SearchTodoListsRecordResponseDto,
-         SearchTodoListsRequestDto,        } from '../../../todo-list-api';
+         SearchTodoListsRequestDto,        } from '../../api';
 
 export interface SearchTodoListsView {
   query: SearchTodoListsRequestDto;

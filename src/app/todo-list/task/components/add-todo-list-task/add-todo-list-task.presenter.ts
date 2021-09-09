@@ -1,7 +1,7 @@
 import { GetTodoListRequestDto,
-         TodoListService,            } from '../../../todo-list-api';
+         TodoListService,            } from '../../../api';
 import { TodoListTaskService,
-         AddTodoListTaskResponseDto, } from '../../../todo-list-task-api';
+         AddTodoListTaskResponseDto, } from '../../api';
 import { AddTodoListTaskView,        } from './add-todo-list-task.view';
 
 export class AddTodoListTaskPresenter {

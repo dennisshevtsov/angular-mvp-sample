@@ -2,9 +2,9 @@ import { Component, OnInit,      } from '@angular/core';
 import { ActivatedRoute, Router, } from '@angular/router';
 
 import { GetTodoListResponseDto,
-         TodoListService,                      } from '../../../todo-list-api';
+         TodoListService,                      } from '../../../api';
 import { SearchTodoListTasksRecordResponseDto,
-         TodoListTaskService,                  } from '../../../todo-list-task-api';
+         TodoListTaskService,                  } from '../../api';
 import { SearchTodoListTasksPresenter,         } from './search-todo-list-tasks.presenter';
 import { SearchTodoListTasksView,              } from './search-todo-list-tasks.view';
 

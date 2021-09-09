@@ -1,4 +1,4 @@
-import { AddTodoListRequestDto, } from '../../../todo-list-api';
+import { AddTodoListRequestDto, } from '../../api';
 
 export interface AddTodoListView {
   todoList: AddTodoListRequestDto;

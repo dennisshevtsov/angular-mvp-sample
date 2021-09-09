@@ -1,5 +1,5 @@
 import { GetTodoListRequestDto,
-         TodoListService,       } from '../../../todo-list-api';
+         TodoListService,       } from '../../api';
 import { UpdateTodoListView,    } from './update-todo-list.view';
 
 export class UpdateTodoListPresenter {

@@ -3,9 +3,9 @@ import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 import { FormBuilder, FormGroup,           } from '@angular/forms';
 
 import { GetTodoListResponseDto,
-         TodoListService,              } from '../../../todo-list-api';
+         TodoListService,              } from '../../../api';
 import { UpdateTodoListTaskRequestDto,
-         TodoListTaskService,          } from '../../../todo-list-task-api';
+         TodoListTaskService,          } from '../../api';
 import { UpdateTodoListTaskPresenter,  } from './update-todo-list-task.presenter';
 import { UpdateTodoListTaskView,       } from './update-todo-list-task.view';
 

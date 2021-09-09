@@ -1,9 +1,9 @@
 import { GetTodoListRequestDto,
-         TodoListService,                  } from '../../../todo-list-api';
+         TodoListService,                  } from '../../../api';
 import { CompleteTodoListTaskRequestDto,
          SearchTodoListTasksRequestDto,
          UncompleteTodoListTaskRequestDto,
-         TodoListTaskService,              } from '../../../todo-list-task-api';
+         TodoListTaskService,              } from '../../api';
 import { SearchTodoListTasksView,          } from './search-todo-list-tasks.view';
 
 export class SearchTodoListTasksPresenter {

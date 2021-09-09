@@ -1,8 +1,8 @@
 import { GetTodoListRequestDto,
-         TodoListService,              } from '../../../todo-list-api';
+         TodoListService,              } from '../../../api';
 import { GetTodoListTaskRequestDto,
          UpdateTodoListTaskRequestDto,
-         TodoListTaskService,          } from '../../../todo-list-task-api';
+         TodoListTaskService,          } from '../../api';
 import { UpdateTodoListTaskView,       } from './update-todo-list-task.view';
 
 export class UpdateTodoListTaskPresenter {

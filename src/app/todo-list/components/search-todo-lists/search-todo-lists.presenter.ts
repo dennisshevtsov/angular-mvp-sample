@@ -1,5 +1,5 @@
 import { SearchTodoListsRequestDto,
-         TodoListService,           } from '../../../todo-list-api';
+         TodoListService,           } from '../../api';
 import { SearchTodoListsView,       } from './search-todo-lists.view';
 
 export class SearchTodoListsPresenter {

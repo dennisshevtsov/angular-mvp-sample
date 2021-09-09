@@ -3,7 +3,7 @@ import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 import { FormBuilder, FormGroup,           } from '@angular/forms';
 
 import { TodoListService,
-         UpdateTodoListRequestDto, } from '../../../todo-list-api';
+         UpdateTodoListRequestDto, } from '../../api';
 import { UpdateTodoListView,       } from './update-todo-list.view';
 import { UpdateTodoListPresenter,  } from './update-todo-list.presenter';
 import { TODO_LIST_ROUTE_BASE,     } from '../../todo-list-routing.module';
