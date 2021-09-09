@@ -1,0 +1,27 @@
+@import "/node_modules/bootstrap/scss/bootstrap.scss";
+
+.todo-list-task {
+  &s {
+    @extend .list-group;
+  }
+
+  & {
+    @extend .list-group-item;
+    @extend .d-flex;
+    @extend .gap-3;
+  }
+
+  &-check {
+    @extend .form-check-input;
+    @extend .flex-shrink-0;
+  }
+
+  &-detail {
+    @extend .pt-1;
+  }
+
+  &-period {
+    @extend .d-block;
+    @extend .text-muted;
+  }
+}
