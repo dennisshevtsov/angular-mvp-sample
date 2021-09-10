@@ -1,8 +1,8 @@
 import { NgModule,      } from '@angular/core';
 import { BrowserModule, } from '@angular/platform-browser';
 
-import { AppRoutingModule,   } from './app-routing.module';
 import { AppComponent,       } from './app.component';
+import { AppRoutingModule,   } from './todo-list/routing';
 import { TodoModule,         } from './todo-list';
 import { TodoListTaskModule, } from './todo-list/task';
 
@@ -21,5 +21,4 @@ import { TodoListTaskModule, } from './todo-list/task';
     AppComponent,
   ],
 })
-export class AppModule {
-}
+export class AppModule { }
