@@ -4,9 +4,8 @@ import { RouterModule, Routes, } from '@angular/router';
 import { AddTodoListComponent,
          SearchTodoListsComponent,
          UpdateTodoListComponent,  } from '../components';
-
-export const TODO_LIST_PARAMETER_NAME = 'todoListId';
-export const TODO_LIST_ROUTE_BASE = 'todo-list';
+import { TODO_LIST_PARAMETER_NAME, 
+         TODO_LIST_ROUTE_BASE,     } from './routes';
 
 const routes: Routes = [
   {
@@ -31,5 +30,4 @@ const routes: Routes = [
     RouterModule,
   ],
 })
-export class TodoRoutingModule {
-}
+export class TodoRoutingModule { }
