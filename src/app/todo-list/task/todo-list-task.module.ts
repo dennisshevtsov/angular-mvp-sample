@@ -2,11 +2,11 @@ import { NgModule,            } from '@angular/core';
 import { CommonModule,        } from '@angular/common';
 import { ReactiveFormsModule, } from '@angular/forms';
 
-import { TodoListTaskRoutingModule,    } from './todo-list-task-routing.module';
-import { SearchTodoListTasksComponent,
-         UpdateTodoListTaskComponent,  } from './components';
-import { AddTodoListTaskComponent,     } from './components';
 import { TodoListTaskApiModule,        } from './api';
+import { AddTodoListTaskComponent,
+         SearchTodoListTasksComponent,
+         UpdateTodoListTaskComponent,  } from './components';
+import { TodoListTaskRoutingModule,    } from './routing';
 
 @NgModule({
   declarations: [
@@ -15,11 +15,10 @@ import { TodoListTaskApiModule,        } from './api';
     AddTodoListTaskComponent,
   ],
   imports: [
-    TodoListTaskApiModule,
     CommonModule,
     ReactiveFormsModule,
+    TodoListTaskApiModule,
     TodoListTaskRoutingModule,
   ],
 })
-export class TodoListTaskModule {
-}
+export class TodoListTaskModule { }
