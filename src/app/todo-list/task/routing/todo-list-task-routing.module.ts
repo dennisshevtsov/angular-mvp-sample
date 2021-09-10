@@ -2,7 +2,7 @@ import { NgModule,             } from '@angular/core';
 import { RouterModule, Routes, } from '@angular/router';
 
 import { TODO_LIST_PARAMETER_NAME,
-         TODO_LIST_ROUTE_BASE,         } from '../../todo-list-routing.module';
+         TODO_LIST_ROUTE_BASE,         } from '../../routing/todo-list-routing.module';
 import { AddTodoListTaskComponent,
          SearchTodoListTasksComponent,
          UpdateTodoListTaskComponent,  } from '../components';

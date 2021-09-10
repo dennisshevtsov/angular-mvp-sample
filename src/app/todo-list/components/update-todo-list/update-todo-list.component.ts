@@ -6,7 +6,7 @@ import { TodoListService,
          UpdateTodoListRequestDto, } from '../../api';
 import { UpdateTodoListView,       } from './update-todo-list.view';
 import { UpdateTodoListPresenter,  } from './update-todo-list.presenter';
-import { TODO_LIST_ROUTE_BASE,     } from '../../todo-list-routing.module';
+import { TODO_LIST_ROUTE_BASE,     } from '../../routing/todo-list-routing.module';
 
 @Component({
   templateUrl: './update-todo-list.component.html',
