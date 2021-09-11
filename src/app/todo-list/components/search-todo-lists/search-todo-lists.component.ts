@@ -4,7 +4,7 @@ import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 import { SearchTodoListsRecordResponseDto,
          SearchTodoListsRequestDto,
          TodoListService,                  } from '../../api';
-import { TODO_LIST_ROUTE_BASE,             } from '../../routing/todo-list-routing.module';
+import { TODO_LIST_ROUTE_BASE,             } from '../../routing';
 import { SearchTodoListsPresenter,         } from './search-todo-lists.presenter';
 import { SearchTodoListsView,              } from './search-todo-lists.view';
 

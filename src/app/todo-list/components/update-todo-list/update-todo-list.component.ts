@@ -4,9 +4,9 @@ import { FormBuilder, FormGroup,           } from '@angular/forms';
 
 import { TodoListService,
          UpdateTodoListRequestDto, } from '../../api';
+import { TODO_LIST_ROUTE_BASE,     } from '../../routing';
 import { UpdateTodoListView,       } from './update-todo-list.view';
 import { UpdateTodoListPresenter,  } from './update-todo-list.presenter';
-import { TODO_LIST_ROUTE_BASE,     } from '../../routing/todo-list-routing.module';
 
 @Component({
   templateUrl: './update-todo-list.component.html',

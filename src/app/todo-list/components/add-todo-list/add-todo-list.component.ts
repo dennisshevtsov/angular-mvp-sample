@@ -4,7 +4,7 @@ import { Router,                 } from '@angular/router';
 
 import { AddTodoListRequestDto,
          TodoListService,       } from '../../api';
-import { TODO_LIST_ROUTE_BASE,  } from '../../routing/todo-list-routing.module';
+import { TODO_LIST_ROUTE_BASE,  } from '../../routing';
 import { AddTodoListPresenter,  } from './add-todo-list.presenter';
 import { AddTodoListView,       } from './add-todo-list.view';
 
