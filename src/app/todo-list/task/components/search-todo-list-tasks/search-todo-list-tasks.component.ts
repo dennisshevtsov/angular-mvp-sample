@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, } from '@angular/router';
 
 import { GetTodoListResponseDto,
          TodoListService,                      } from '../../../api';
+import { TODO_LIST_ROUTE_BASE,                 } from '../../../routing';
 import { SearchTodoListTasksRecordResponseDto,
          TodoListTaskService,                  } from '../../api';
 import { SearchTodoListTasksPresenter,         } from './search-todo-list-tasks.presenter';
@@ -78,7 +79,7 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
 
   public onNavigateToAddTodoListTask(): void {
     this.router.navigate([
-      'todo-list',
+      TODO_LIST_ROUTE_BASE,
       this.todoList.todoListId,
       'task',
       'new',
@@ -87,13 +88,13 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
 
   public onNavigateToSearchTodoList(): void {
     this.router.navigate([
-      'todo-list',
+      TODO_LIST_ROUTE_BASE,
     ]);
   }
 
   public onNavigateToGetTodoList(): void {
     this.router.navigate([
-      'todo-list',
+      TODO_LIST_ROUTE_BASE,
       this.todoList.todoListId,
     ]);
   }
@@ -102,7 +103,7 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
     todoListTask: SearchTodoListTasksRecordResponseDto)
     : void {
     this.router.navigate([
-      'todo-list',
+      TODO_LIST_ROUTE_BASE,
       this.todoList.todoListId,
       'task',
       todoListTask.todoListTaskId,

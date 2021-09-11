@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup,           } from '@angular/forms';
 
 import { GetTodoListResponseDto,
          TodoListService,              } from '../../../api';
+import { TODO_LIST_ROUTE_BASE,         } from '../../../routing';
 import { UpdateTodoListTaskRequestDto,
          TodoListTaskService,          } from '../../api';
 import { UpdateTodoListTaskPresenter,  } from './update-todo-list-task.presenter';
@@ -94,20 +95,20 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
 
   public onNavigateToSearchTodoLists(): void {
     this.router.navigate([
-      'todo-list',
+      TODO_LIST_ROUTE_BASE,
     ]);
   }
 
   public onNavigateToGetTodoList(): void {
     this.router.navigate([
-      'todo-list',
+      TODO_LIST_ROUTE_BASE,
       this.todoList.todoListId,
     ]);
   }
 
   public onNavigateToSearchTodoListTasks(): void {
     this.router.navigate([
-      'todo-list',
+      TODO_LIST_ROUTE_BASE,
       this.todoList.todoListId,
       'task',
     ]);
