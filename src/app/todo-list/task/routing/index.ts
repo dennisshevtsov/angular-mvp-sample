@@ -1,1 +1,1 @@
-export * from './todo-list-task-routing.module';
+export * from './routes';

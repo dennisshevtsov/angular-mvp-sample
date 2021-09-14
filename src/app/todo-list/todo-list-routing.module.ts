@@ -3,9 +3,9 @@ import { RouterModule, Routes, } from '@angular/router';
 
 import { AddTodoListComponent,
          SearchTodoListsComponent,
-         UpdateTodoListComponent,  } from '../components';
+         UpdateTodoListComponent,  } from './components';
 import { TODO_LIST_PARAMETER_NAME, 
-         TODO_LIST_ROUTE_BASE,     } from './routes';
+         TODO_LIST_ROUTE_BASE,     } from './routing/routes';
 
 const routes: Routes = [
   {

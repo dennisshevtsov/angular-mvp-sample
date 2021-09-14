@@ -6,7 +6,7 @@ import { TodoListApiModule,        } from './api';
 import { AddTodoListComponent,
          UpdateTodoListComponent,
          SearchTodoListsComponent, } from './components';
-import { TodoRoutingModule,        } from './routing';
+import { TodoRoutingModule,        } from './todo-list-routing.module';
 
 @NgModule({
   declarations: [
