@@ -7,7 +7,7 @@ import { AddTodoListTaskComponent,
 import { TODO_LIST_TASK_ROUTE_BASE,
          TODO_LIST_TASK_PARAMETER_NAME, } from './routing/routes';
 
-const routes: Routes = [
+export const TODO_LIST_TASK_ROUTES: Routes = [
   {
     path: TODO_LIST_TASK_ROUTE_BASE,
     component: SearchTodoListTasksComponent,
@@ -24,7 +24,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes),
+    RouterModule.forChild(TODO_LIST_TASK_ROUTES),
   ],
   exports: [
     RouterModule,

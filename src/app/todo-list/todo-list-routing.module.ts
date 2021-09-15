@@ -6,6 +6,7 @@ import { AddTodoListComponent,
          UpdateTodoListComponent,  } from './components';
 import { TODO_LIST_PARAMETER_NAME, 
          TODO_LIST_ROUTE_BASE,     } from './routing/routes';
+import { TODO_LIST_TASK_ROUTES,    } from './task/todo-list-task-routing.module';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
   {
     path: `${TODO_LIST_ROUTE_BASE}/:${TODO_LIST_PARAMETER_NAME}`,
     component: UpdateTodoListComponent,
+    children: TODO_LIST_TASK_ROUTES,
   },
   {
     path: TODO_LIST_ROUTE_BASE,

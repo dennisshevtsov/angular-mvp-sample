@@ -6,7 +6,6 @@ import { TodoListTaskApiModule,        } from './api';
 import { AddTodoListTaskComponent,
          SearchTodoListTasksComponent,
          UpdateTodoListTaskComponent,  } from './components';
-import { TodoListTaskRoutingModule,    } from './todo-list-task-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,6 @@ import { TodoListTaskRoutingModule,    } from './todo-list-task-routing.module';
     CommonModule,
     ReactiveFormsModule,
     TodoListTaskApiModule,
-    TodoListTaskRoutingModule,
   ],
 })
 export class TodoListTaskModule { }
