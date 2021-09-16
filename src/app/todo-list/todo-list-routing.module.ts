@@ -16,6 +16,9 @@ const routes: Routes = [
   {
     path: `${TODO_LIST_ROUTE_BASE}/:${TODO_LIST_PARAMETER_NAME}`,
     component: UpdateTodoListComponent,
+  },
+  {
+    path: `${TODO_LIST_ROUTE_BASE}/:${TODO_LIST_PARAMETER_NAME}`,
     children: TODO_LIST_TASK_ROUTES,
   },
   {
