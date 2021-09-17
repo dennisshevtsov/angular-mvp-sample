@@ -67,10 +67,13 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
   }
 
   public onNavigateToSearchTodoTasks(todoListId: number): void {
-    this.router.navigate([
-      TODO_LIST_ROUTE_BASE,
-      todoListId,
+    const link = [
       'task',
-    ]);
+    ];
+    const extras = {
+      relativeTo: this.route,
+    };
+
+    this.router.navigate(link, extras);
   }
 }
