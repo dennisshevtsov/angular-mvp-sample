@@ -104,11 +104,14 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   }
 
   public onNavigateToSearchTodoListTasks(): void {
-    this.router.navigate([
-      TODO_LIST_ROUTE_BASE,
-      this.todoList.todoListId,
-      'task',
-    ]);
+    const link = [
+      '../task'
+    ];
+    const extras = {
+      relativeTo: this.route,
+    };
+
+    this.router.navigate(link, extras);
   }
 
   private buildForm(): FormGroup {

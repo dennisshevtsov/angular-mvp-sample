@@ -78,12 +78,14 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
   }
 
   public onNavigateToAddTodoListTask(): void {
-    this.router.navigate([
-      TODO_LIST_ROUTE_BASE,
-      this.todoList.todoListId,
-      'task',
-      'new',
-    ]);
+    const link = [
+      '../new'
+    ];
+    const extras = {
+      relativeTo: this.route,
+    };
+
+    this.router.navigate(link, extras);
   }
 
   public onNavigateToSearchTodoList(): void {
