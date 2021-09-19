@@ -86,27 +86,14 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
 
   public onSubmit(): void {
     this.presenter.update();
-    this.onNavigateToSearchTodoListTasks();
+    this.navigateToSearchTodoListTasks();
   }
 
   public onCancel(): void {
-    this.onNavigateToSearchTodoListTasks();
+    this.navigateToSearchTodoListTasks();
   }
 
-  public onNavigateToSearchTodoLists(): void {
-    this.router.navigate([
-      TODO_LIST_ROUTE_BASE,
-    ]);
-  }
-
-  public onNavigateToGetTodoList(): void {
-    this.router.navigate([
-      TODO_LIST_ROUTE_BASE,
-      this.todoList.todoListId,
-    ]);
-  }
-
-  public onNavigateToSearchTodoListTasks(): void {
+  private navigateToSearchTodoListTasks(): void {
     this.router.navigate([
       TODO_LIST_ROUTE_BASE,
       this.todoList.todoListId,
