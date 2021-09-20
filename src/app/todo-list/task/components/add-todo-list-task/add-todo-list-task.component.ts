@@ -92,7 +92,7 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
 
   private navigateToSearchTodoListTasks(): void {
     const link = [
-      '../task'
+      '../',
     ];
     const extras = {
       relativeTo: this.route,
