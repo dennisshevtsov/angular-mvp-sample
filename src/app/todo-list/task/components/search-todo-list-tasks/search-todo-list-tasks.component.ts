@@ -79,7 +79,7 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
 
   public onNavigateToAddTodoListTask(): void {
     const link = [
-      '../new'
+      'new',
     ];
     const extras = {
       relativeTo: this.route,
