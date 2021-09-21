@@ -5,7 +5,8 @@ import { AddTodoListTaskComponent,
          SearchTodoListTasksComponent,
          UpdateTodoListTaskComponent,  } from './components';
 import { TODO_LIST_TASK_ROUTE,
-         TODO_LIST_TASK_PARAMETER,     } from './routing/routes';
+         TODO_LIST_TASK_PARAMETER,
+         TODO_LIST_NEW_TASK_ROUTE,     } from './routing';
 
 export const TODO_LIST_TASK_ROUTES: Routes = [
   {
@@ -13,7 +14,7 @@ export const TODO_LIST_TASK_ROUTES: Routes = [
     component: SearchTodoListTasksComponent,
   },
   {
-    path: `${TODO_LIST_TASK_ROUTE}/new`,
+    path: `${TODO_LIST_TASK_ROUTE}/${TODO_LIST_NEW_TASK_ROUTE}`,
     component: AddTodoListTaskComponent,
   },
   {

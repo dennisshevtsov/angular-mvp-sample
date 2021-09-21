@@ -4,13 +4,14 @@ import { RouterModule, Routes, } from '@angular/router';
 import { AddTodoListComponent,
          SearchTodoListsComponent,
          UpdateTodoListComponent,  } from './components';
-import { TODO_LIST_PARAMETER, 
-         TODO_LIST_ROUTE,          } from './routing/routes';
+import { TODO_LIST_NEW_ROUTE,
+         TODO_LIST_PARAMETER,
+         TODO_LIST_ROUTE,          } from './routing';
 import { TODO_LIST_TASK_ROUTES,    } from './task/todo-list-task-routing.module';
 
 const routes: Routes = [
   {
-    path: `${TODO_LIST_ROUTE}/new`,
+    path: `${TODO_LIST_ROUTE}/${TODO_LIST_NEW_ROUTE}`,
     component: AddTodoListComponent,
   },
   {
