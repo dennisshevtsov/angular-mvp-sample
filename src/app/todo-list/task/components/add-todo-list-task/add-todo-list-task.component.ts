@@ -4,7 +4,6 @@ import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 
 import { GetTodoListResponseDto,
          TodoListService,           } from '../../../api';
-import { TODO_LIST_ROUTE_BASE,      } from '../../../routing';
 import { AddTodoListTaskRequestDto,
          TodoListTaskService,       } from '../../api';
 import { AddTodoListTaskPresenter,  } from './add-todo-list-task.presenter';
