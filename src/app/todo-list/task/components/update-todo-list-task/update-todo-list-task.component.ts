@@ -4,11 +4,13 @@ import { FormBuilder, FormGroup,           } from '@angular/forms';
 
 import { GetTodoListResponseDto,
          TodoListService,              } from '../../../api';
-import { TODO_LIST_ROUTE_BASE,         } from '../../../routing';
+import { TODO_LIST_ROUTE,
+         TODO_LIST_PARAMETER,          } from '../../../routing';
 import { UpdateTodoListTaskRequestDto,
          TodoListTaskService,          } from '../../api';
 import { UpdateTodoListTaskPresenter,  } from './update-todo-list-task.presenter';
 import { UpdateTodoListTaskView,       } from './update-todo-list-task.view';
+import { TODO_LIST_TASK_PARAMETER, TODO_LIST_TASK_ROUTE,     } from '../../routing';
 
 @Component({
   templateUrl: './update-todo-list-task.component.html',
@@ -39,8 +41,8 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
 
   public ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      const todoListId = paramMap.get('todoListId');
-      const todoListTaskId = paramMap.get('todoListTaskId');
+      const todoListId = paramMap.get(TODO_LIST_PARAMETER);
+      const todoListTaskId = paramMap.get(TODO_LIST_TASK_PARAMETER);
 
       if (todoListId && todoListTaskId) {
         this.todoList.todoListId = +todoListId;
@@ -95,9 +97,9 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
 
   private navigateToSearchTodoListTasks(): void {
     this.router.navigate([
-      TODO_LIST_ROUTE_BASE,
+      TODO_LIST_ROUTE,
       this.todoList.todoListId,
-      'task',
+      TODO_LIST_TASK_ROUTE,
     ]);
   }
 

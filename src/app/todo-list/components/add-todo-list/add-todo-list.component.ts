@@ -4,7 +4,7 @@ import { Router,                 } from '@angular/router';
 
 import { AddTodoListRequestDto,
          TodoListService,       } from '../../api';
-import { TODO_LIST_ROUTE_BASE,  } from '../../routing';
+import { TODO_LIST_ROUTE,       } from '../../routing';
 import { AddTodoListPresenter,  } from './add-todo-list.presenter';
 import { AddTodoListView,       } from './add-todo-list.view';
 
@@ -51,7 +51,7 @@ export class AddTodoListComponent implements OnInit, AddTodoListView {
 
   private navigateToSearchTodoList() {
     this.router.navigate([
-      TODO_LIST_ROUTE_BASE,
+      TODO_LIST_ROUTE,
     ]);
   }
 
