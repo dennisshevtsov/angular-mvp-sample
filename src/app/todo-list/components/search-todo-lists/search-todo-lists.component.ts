@@ -1,4 +1,4 @@
-import { Component, OnInit,                } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation,                } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 
 import { SearchTodoListsRecordResponseDto,
@@ -15,6 +15,7 @@ import { SearchTodoListsView,              } from './search-todo-lists.view';
   styleUrls: [
     './search-todo-lists.component.scss',
   ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
   private readonly presenter: SearchTodoListsPresenter;
