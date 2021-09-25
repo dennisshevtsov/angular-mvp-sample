@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation,                } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
+import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router,     } from '@angular/router';
 
 import { SearchTodoListsRecordResponseDto,
          SearchTodoListsRequestDto,
