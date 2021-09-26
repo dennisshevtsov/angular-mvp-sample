@@ -1,9 +1,13 @@
-<div class="row mb-3">
-  <a class="btn btn-link"
-     (click)="onNavigateToAddTodoList()">
-     <span>Add</span>
-  </a>
+<div class="d-flex flex-column flex-shrink-0 p-3">
+  <ul class="nav nav-pills flex-coumn mb-auto">
+    <li class="nav-item">
+      <a class="nav-link active" (click)="onNavigateToAddTodoList()">
+        <span>Add</span>
+      </a>
+    </li>
+  </ul>
 </div>
+
 <div class="row">
   <aside class="col-md-4 col-4">
     <div class="todo-lists">
