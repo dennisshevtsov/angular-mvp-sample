@@ -16,7 +16,11 @@ export class TodoListService {
     todoListId: number,
     title: string,
     description: string,
-  }[] = [];
+  }[] = [
+    { todoListId: 1, title: 'Create mock data.', description: 'You have to create mock data in the DB.', },
+    { todoListId: 2, title: 'Add task list in search todo lists screen.', description: 'You have to change the search todo lists component.', },
+    { todoListId: 3, title: 'Remove old components.', description: 'Remove components that are already unused.', },
+  ];
 
   public constructor() { }
 
