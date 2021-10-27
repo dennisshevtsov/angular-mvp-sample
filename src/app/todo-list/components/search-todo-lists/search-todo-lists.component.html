@@ -1,28 +1,59 @@
-<div class="d-flex flex-column flex-shrink-0 p-3">
-  <ul class="nav nav-pills flex-coumn mb-auto">
-    <li class="nav-item">
-      <a class="nav-link active" (click)="onNavigateToAddTodoList()">
-        <span>Add</span>
-      </a>
-    </li>
-  </ul>
-</div>
-
-<div class="row">
-  <aside class="col-md-4 col-4">
-    <div class="todo-lists">
-      <a class="todo-list"
-         aria-current="true"
-         *ngFor="let todoList of todoLists"
-         (click)="onNavigateToSearchTodoTasks(todoList.todoListId)">
-        <div class="todo-list-title">
-          <strong>{{ todoList.title }}</strong>
-        </div>
-        <div class="todo-list-description">
-          {{ todoList.description }}
-        </div>
-      </a>
+<header class="container-fluid border-bottom p-3">
+  <div class="row">
+      <div class="col-md-3 dropdown">
+        <a id="ddUser" class="d-block link-dark text-decoration-none dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+          <img class="rounded-circle" src="https://github.com/mdo.png" alt="username@example.com" width="32" height="32">
+          <span>username@example.com</span>
+        </a>
+        <ul class="dropdown-menu text-small" aria-labelledby="ddUser" data-popper-placement="bottom-start">
+          <li><a class="dropdown-item" href="#"><span>Manage account</span></a></li>
+          <li><a class="dropdown-item" href="#"><span>Settings</span></a></li>
+          <li><a class="dropdown-item" href="#"><span>Log out</span></a></li>
+        </ul>
+      </div>
     </div>
-  </aside>
-  <div class="col-md-8"></div>
-</div>
+</header>
+<main class="d-flex">
+  <div class="list-group list-group-flush border-bottom w-100">
+    <div class="list-group-item list-group-item-action">
+      <h5><strong class="mb-1">TODO list title</strong></h5>
+      <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
+      <div class="d-flex w-100 align-items-center">
+        <a href="#" class="me-2"><span>remove</span></a>
+        <a href="add-todo-list.html" class="me-2"><span>edit</span></a>
+        <a href="search-todo-list-tasks.html" class="me-2"><span>tasks</span></a>
+      </div>
+    </div>
+    <div class="list-group-item list-group-item-action">
+      <h5><strong class="mb-1">TODO list title</strong></h5>
+      <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
+      <div class="d-flex w-100 align-items-center">
+        <a href="#" class="me-2"><span>remove</span></a>
+        <a href="add-todo-list.html" class="me-2"><span>edit</span></a>
+        <a href="search-todo-list-tasks.html" class="me-2"><span>tasks</span></a>
+      </div>
+    </div>
+    <div class="list-group-item list-group-item-action">
+      <h5><strong class="mb-1">TODO list title</strong></h5>
+      <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
+      <div class="d-flex w-100 align-items-center">
+        <a href="#" class="me-2"><span>remove</span></a>
+        <a href="add-todo-list.html" class="me-2"><span>edit</span></a>
+        <a href="search-todo-list-tasks.html" class="me-2"><span>tasks</span></a>
+      </div>
+    </div>
+    <div class="list-group-item list-group-item-action">
+      <h5><strong class="mb-1">TODO list title</strong></h5>
+      <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
+      <div class="d-flex w-100 align-items-center">
+        <a href="#" class="me-2"><span>remove</span></a>
+        <a href="add-todo-list.html" class="me-2"><span>edit</span></a>
+        <a href="search-todo-list-tasks.html" class="me-2"><span>tasks</span></a>
+      </div>
+    </div>
+    <a href="add-todo-list.html" class="list-group-item list-group-item-action">
+      <i class="bi bi-plus"></i>
+      <span>Add new TODO list</span>
+    </a>
+  </div>
+</main>
