@@ -1,24 +1,73 @@
-<ul class="nav">
-  <li class="nav-item">
-    <a class="nav-link active"
-       (click)="onNavigateToAddTodoListTask()"><span>Add</span></a>
-  </li>
-</ul>
-
-<div class="todo-list-tasks">
-  <label class="todo-list-task"
-         *ngFor="let todoListTask of todoListTasks">
-    <input class="todo-list-task-check"
-           type="checkbox"
-           [checked]="todoListTask.completed"
-           (click)="onComplete(todoListTask)">
-    <span class="todo-list-task-detail"
-          (click)="onNavigateToUpdateTodoListTask(todoListTask)">
-      <strong>{{ todoList.title }}</strong>
-      <small class="todo-list-task-period">
-        {{ todoListTask.startDate }} - {{ todoListTask.deadline }}
-      </small>
-      <p>{{ todoList.description }}</p>
-    </span>
-  </label>
-</div>
+<header class="container-fluid border-bottom p-3">
+  <div class="row">
+    <div class="col-md-3 dropdown">
+      <a id="ddUser" class="d-block link-dark text-decoration-none dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+        <img class="rounded-circle" src="https://github.com/mdo.png" alt="username@example.com" width="32" height="32">
+        <span>username@example.com</span>
+      </a>
+      <ul class="dropdown-menu text-small" aria-labelledby="ddUser" data-popper-placement="bottom-start">
+        <li><a class="dropdown-item" href="#"><span>Manage account</span></a></li>
+        <li><a class="dropdown-item" href="#"><span>Settings</span></a></li>
+        <li><a class="dropdown-item" href="#"><span>Log out</span></a></li>
+      </ul>
+    </div>
+    <div class="col-md-9 d-grid gap-2 d-md-flex justify-content-md-end">
+      <a href="index.html" class="btn btn-light" style="width: 100px">
+        <i class="bi bi-chevron-left"></i>
+        <span>Back</span>
+      </a>
+    </div>
+  </div>
+</header>
+<main class="d-flex">
+  <div class="list-group list-group-flush border-bottom w-100">
+    <div class="list-group-item list-group-item-action d-flex gap-3">
+      <input type="checkbox" class="form-check-input flex-shrink-0">
+      <div>
+        <h5><strong class="mb-1">TODO list task title</strong></h5>
+        <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
+        <div class="d-flex w-100 align-items-center">
+          <a href="#" class="me-2"><span>remove</span></a>
+          <a href="add-todo-list-task.html" class="me-2"><span>edit</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="list-group-item list-group-item-action d-flex gap-3">
+      <input type="checkbox" class="form-check-input flex-shrink-0">
+      <div>
+        <h5><strong class="mb-1">TODO list task title</strong></h5>
+        <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
+        <div class="d-flex w-100 align-items-center">
+          <a href="#" class="me-2"><span>remove</span></a>
+          <a href="add-todo-list-task.html" class="me-2"><span>edit</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="list-group-item list-group-item-action d-flex gap-3">
+      <input type="checkbox" class="form-check-input flex-shrink-0">
+      <div>
+        <h5><strong class="mb-1">TODO list task title</strong></h5>
+        <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
+        <div class="d-flex w-100 align-items-center">
+          <a href="#" class="me-2"><span>remove</span></a>
+          <a href="add-todo-list-task.html" class="me-2"><span>edit</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="list-group-item list-group-item-action d-flex gap-3">
+      <input type="checkbox" class="form-check-input flex-shrink-0">
+      <div>
+        <h5><strong class="mb-1">TODO list task title</strong></h5>
+        <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
+        <div class="d-flex w-100 align-items-center">
+          <a href="#" class="me-2"><span>remove</span></a>
+          <a href="add-todo-list-task.html" class="me-2"><span>edit</span></a>
+        </div>
+      </div>
+    </div>
+    <a href="add-todo-list-task.html" class="list-group-item list-group-item-action">
+      <i class="bi bi-plus"></i>
+      <span>Add new task</span>
+    </a>
+  </div>
+</main>
