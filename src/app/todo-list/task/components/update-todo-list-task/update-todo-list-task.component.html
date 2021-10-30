@@ -1,43 +1,53 @@
-<form [formGroup]="form"
-      (ngSubmit)="onSubmit()">
-  <fieldset>
-    <legend>{{ todoListTask.title }}</legend>
+<header class="container-fluid border-bottom p-3">
+  <div class="row">
+    <div class="col-md-3 dropdown">
+      <a id="ddUser" class="d-block link-dark text-decoration-none dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+        <img class="rounded-circle" src="https://github.com/mdo.png" alt="username@example.com" width="32" height="32">
+        <span>username@example.com</span>
+      </a>
+      <ul class="dropdown-menu text-small" aria-labelledby="ddUser" data-popper-placement="bottom-start">
+        <li><a class="dropdown-item" href="#"><span>Manage account</span></a></li>
+        <li><a class="dropdown-item" href="#"><span>Settings</span></a></li>
+        <li><a class="dropdown-item" href="#"><span>Log out</span></a></li>
+      </ul>
+    </div>
+    <div class="col-md-9 d-grid gap-2 d-md-flex justify-content-md-end">
+      <a href="search-todo-list-tasks.html" class="btn btn-light" style="width: 100px">
+        <i class="bi bi-chevron-left"></i>
+        <span>Back</span>
+      </a>
+      <a href="search-todo-list-tasks.html" class="btn btn-primary" style="width: 100px">
+        <i class="bi bi-check-lg"></i>
+        <span>Ok</span>
+      </a>
+    </div>
+  </div>
+</header>
+<main class="d-flex">
+  <form class="w-100 p-3">
     <div class="mb-3">
-      <label for="title" class="form-label">Title</label>
-      <input type="text"
-             class="form-control"
-             id="title"
-             name="title"
-             formControlName="title">
+      <label for="txtTitle" class="form-label">Title</label>
+      <input id="txtTitle" class="form-control" type="text" placeholder="Title">
     </div>
     <div class="mb-3">
-      <label for="description" class="form-label">Description</label>
-      <textarea class="form-control"
-                rows="3"
-                id="description"
-                formControlName="description"></textarea>
+      <label for="dpDate" class="form-label">Date</label>
+      <input id="dpDate" class="form-control" type="date" placeholder="Date">
+    </div>
+    <div class="form-check mb-3">
+      <input id="chbIsFullDay" type="checkbox" class="form-check-input">
+      <label for="chbIsFullDay" class="form-check-label">Full Day</label>
     </div>
     <div class="mb-3">
-      <label for="startDate" class="form-label">Start Date</label>
-      <input type="text"
-             class="form-control"
-             id="startDate"
-             name="startDate"
-             formControlName="startDate">
+      <label for="dpStartTime" class="form-label">Start Time</label>
+      <input id="dpStartTime" class="form-control" type="time" placeholder="Start time">
     </div>
     <div class="mb-3">
-      <label for="deadline" class="form-label">Deadline</label>
-      <input type="text"
-             class="form-control"
-             id="deadline"
-             name="deadline"
-             formControlName="deadline">
+      <label for="dpEndTime" class="form-label">End Time</label>
+      <input id="dpEndTime" class="form-control" type="time" placeholder="End time">
     </div>
-    <button type="submit" class="btn btn-primary">
-      <span>Ok</span>
-    </button>
-    <button type="button" class="btn btn-link" (click)="onCancel()">
-      <span>Cancel</span>
-    </button>
-  </fieldset>
-</form>
+    <div>
+      <label for="txtDescription" class="form-label">Description</label>
+      <textarea id="txtDescription" class="form-control" type="text" placeholder="Description"></textarea>
+    </div>
+  </form>
+</main>
