@@ -1,5 +1,4 @@
-import { SearchTodoListsRequestDto,
-         TodoListService,           } from '../../api';
+import { TodoListService,           } from '../../api';
 import { SearchTodoListsView,       } from './search-todo-lists.view';
 
 export class SearchTodoListsPresenter {
@@ -9,10 +8,6 @@ export class SearchTodoListsPresenter {
   ) { }
 
   public search(): void {
-    const searchTodoListRequestDto = new SearchTodoListsRequestDto(
-      this.view.query.term,
-    );
-
-    this.view.todoLists = this.service.searchTodoList(searchTodoListRequestDto);
+    this.view.todoLists = this.service.searchTodoList(this.view.query);
   }
 }
