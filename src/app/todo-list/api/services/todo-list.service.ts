@@ -1,12 +1,11 @@
 import { Injectable, } from '@angular/core';
 
-import {
-  AddTodoListRequestDto,
-  GetTodoListRequestDto,
-  GetTodoListResponseDto,
-  UpdateTodoListRequestDto,
-  SearchTodoListsRecordResponseDto,
-  SearchTodoListsRequestDto,        } from '../dtos';
+import { AddTodoListRequestDto,
+         GetTodoListRequestDto,
+         GetTodoListResponseDto,
+         UpdateTodoListRequestDto,
+         SearchTodoListsRecordResponseDto,
+         SearchTodoListsRequestDto,        } from '../dtos';
 
 @Injectable({
   providedIn: 'root',
