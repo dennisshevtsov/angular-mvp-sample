@@ -4,5 +4,5 @@ import { SearchTodoListsRecordResponseDto,
 export interface SearchTodoListsView {
   query: SearchTodoListsRequestDto;
 
-  todoLists: SearchTodoListsRecordResponseDto[];
+  datasource: SearchTodoListsRecordResponseDto[];
 }

@@ -47,11 +47,11 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
     this.queryValue = query;
   }
 
-  public get todoLists(): SearchTodoListsRecordResponseDto[] {
+  public get datasource(): SearchTodoListsRecordResponseDto[] {
     return this.todoListsValue ?? (this.todoListsValue = []);
   }
 
-  public set todoLists(datasource: SearchTodoListsRecordResponseDto[]) {
+  public set datasource(datasource: SearchTodoListsRecordResponseDto[]) {
     this.todoListsValue = datasource;
   }
 

@@ -1,50 +1,24 @@
 <header class="container-fluid border-bottom p-3">
   <div class="row">
-      <div class="col-md-3 dropdown">
-        <a id="ddUser" class="d-block link-dark text-decoration-none dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-          <img class="rounded-circle" src="https://github.com/mdo.png" alt="username@example.com" width="32" height="32">
-          <span>username@example.com</span>
-        </a>
-        <ul class="dropdown-menu text-small" aria-labelledby="ddUser" data-popper-placement="bottom-start">
-          <li><a class="dropdown-item" href="#"><span>Manage account</span></a></li>
-          <li><a class="dropdown-item" href="#"><span>Settings</span></a></li>
-          <li><a class="dropdown-item" href="#"><span>Log out</span></a></li>
-        </ul>
-      </div>
+    <div class="col-md-3 dropdown">
+      <a id="ddUser" class="d-block link-dark text-decoration-none dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+        <img class="rounded-circle" src="https://github.com/mdo.png" alt="username@example.com" width="32" height="32">
+        <span>username@example.com</span>
+      </a>
+      <ul class="dropdown-menu text-small" aria-labelledby="ddUser" data-popper-placement="bottom-start">
+        <li><a class="dropdown-item" href="#"><span>Manage account</span></a></li>
+        <li><a class="dropdown-item" href="#"><span>Settings</span></a></li>
+        <li><a class="dropdown-item" href="#"><span>Log out</span></a></li>
+      </ul>
     </div>
+  </div>
 </header>
 <main class="d-flex">
-  <div class="list-group list-group-flush border-bottom w-100">
+  <div class="list-group list-group-flush border-bottom w-100"
+       *ngFor="let record in datasource">
     <div class="list-group-item list-group-item-action">
-      <h5><strong class="mb-1">TODO list title</strong></h5>
-      <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
-      <div class="d-flex w-100 align-items-center">
-        <a href="#" class="me-2"><span>remove</span></a>
-        <a href="add-todo-list.html" class="me-2"><span>edit</span></a>
-        <a href="search-todo-list-tasks.html" class="me-2"><span>tasks</span></a>
-      </div>
-    </div>
-    <div class="list-group-item list-group-item-action">
-      <h5><strong class="mb-1">TODO list title</strong></h5>
-      <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
-      <div class="d-flex w-100 align-items-center">
-        <a href="#" class="me-2"><span>remove</span></a>
-        <a href="add-todo-list.html" class="me-2"><span>edit</span></a>
-        <a href="search-todo-list-tasks.html" class="me-2"><span>tasks</span></a>
-      </div>
-    </div>
-    <div class="list-group-item list-group-item-action">
-      <h5><strong class="mb-1">TODO list title</strong></h5>
-      <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
-      <div class="d-flex w-100 align-items-center">
-        <a href="#" class="me-2"><span>remove</span></a>
-        <a href="add-todo-list.html" class="me-2"><span>edit</span></a>
-        <a href="search-todo-list-tasks.html" class="me-2"><span>tasks</span></a>
-      </div>
-    </div>
-    <div class="list-group-item list-group-item-action">
-      <h5><strong class="mb-1">TODO list title</strong></h5>
-      <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
+      <h5><strong class="mb-1">{{ record.title }}</strong></h5>
+      <p><small>{{ record.description }}</small></p>
       <div class="d-flex w-100 align-items-center">
         <a href="#" class="me-2"><span>remove</span></a>
         <a href="add-todo-list.html" class="me-2"><span>edit</span></a>

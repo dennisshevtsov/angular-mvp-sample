@@ -8,6 +8,6 @@ export class SearchTodoListsPresenter {
   ) { }
 
   public search(): void {
-    this.view.todoLists = this.service.searchTodoList(this.view.query);
+    this.view.datasource = this.service.searchTodoList(this.view.query);
   }
 }
