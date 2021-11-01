@@ -25,7 +25,9 @@
         <a href="search-todo-list-tasks.html" class="me-2"><span>tasks</span></a>
       </div>
     </div>
-    <a href="add-todo-list.html" class="list-group-item list-group-item-action">
+    <a class="list-group-item list-group-item-action"
+       (click)="onNavigateToAddTodoList()"
+       style="cursor: pointer;">
       <i class="bi bi-plus"></i>
       <span>Add new TODO list</span>
     </a>
