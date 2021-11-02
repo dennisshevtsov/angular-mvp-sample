@@ -3,13 +3,21 @@
     <div class="col-md-3 dropdown">
       <a id="ddUser" class="d-block link-dark text-decoration-none dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
         <img class="rounded-circle" src="https://github.com/mdo.png" alt="username@example.com" width="32" height="32">
-        <span>username@example.com</span>
+        <span class="mx-2">username@example.com</span>
       </a>
       <ul class="dropdown-menu text-small" aria-labelledby="ddUser" data-popper-placement="bottom-start">
         <li><a class="dropdown-item" href="#"><span>Manage account</span></a></li>
         <li><a class="dropdown-item" href="#"><span>Settings</span></a></li>
         <li><a class="dropdown-item" href="#"><span>Log out</span></a></li>
       </ul>
+    </div>
+    <div class="col-md-9 d-grid gap-2 d-md-flex justify-content-md-end">
+      <a class="btn btn-light"
+         style="width: 100px"
+         (click)="onNavigateToAddTodoList()">
+        <i class="bi bi-plus"></i>
+        <span>Add</span>
+      </a>
     </div>
   </div>
 </header>
