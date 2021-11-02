@@ -22,12 +22,14 @@
       <div class="d-flex w-100 align-items-center">
         <a href="#" class="me-2"><span>remove</span></a>
         <a href="add-todo-list.html" class="me-2"><span>edit</span></a>
-        <a href="search-todo-list-tasks.html" class="me-2"><span>tasks</span></a>
+        <a class="me-2"
+           style="cursor: pointer;"
+           (click)="onNavigateToSearchTodoTasks(record.todoListId)"><span>tasks</span></a>
       </div>
     </div>
     <a class="list-group-item list-group-item-action"
-       (click)="onNavigateToAddTodoList()"
-       style="cursor: pointer;">
+       style="cursor: pointer;"
+       (click)="onNavigateToAddTodoList()">
       <i class="bi bi-plus"></i>
       <span>Add new TODO list</span>
     </a>
