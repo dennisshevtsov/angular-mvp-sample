@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router,     } from '@angular/router';
 
-import { SearchTodoListsRecordResponseDto,
+import { DeleteTodoListRequestDto,
+         SearchTodoListsRecordResponseDto,
          SearchTodoListsRequestDto,
          TodoListService,                  } from '../../api';
 import { TODO_LIST_NEW_ROUTE,
@@ -20,6 +21,7 @@ import { SearchTodoListsView,              } from './search-todo-lists.view';
 export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
   private readonly presenter: SearchTodoListsPresenter;
 
+  private selectedValue: DeleteTodoListRequestDto | undefined;
   private queryValue: SearchTodoListsRequestDto | undefined;
   private todoListsValue: SearchTodoListsRecordResponseDto[] | undefined;
 
@@ -37,6 +39,14 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
       this.query.term = paramMap.get('term') ?? '';
       this.presenter.search();
     });
+  }
+
+  public get selected(): DeleteTodoListRequestDto {
+    return this.selectedValue ?? (this.selectedValue = new DeleteTodoListRequestDto());
+  }
+
+  public set selected(selected: DeleteTodoListRequestDto) {
+    this.selectedValue = selected;
   }
 
   public get query(): SearchTodoListsRequestDto {
@@ -79,5 +89,10 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
     };
 
     this.router.navigate(link, extras);
+  }
+
+  public onDeleteTodoList(todoList: SearchTodoListsRecordResponseDto): void {
+    this.selected = { ...todoList, };
+    this.presenter.delete();
   }
 }

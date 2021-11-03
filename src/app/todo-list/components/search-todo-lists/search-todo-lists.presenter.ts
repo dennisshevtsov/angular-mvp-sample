@@ -10,4 +10,8 @@ export class SearchTodoListsPresenter {
   public search(): void {
     this.view.datasource = this.service.searchTodoList(this.view.query);
   }
+
+  public delete(): void {
+    this.service.deleteTodoList(this.view.selected);
+  }
 }

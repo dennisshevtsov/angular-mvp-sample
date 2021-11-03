@@ -1,6 +1,7 @@
 import { Injectable, } from '@angular/core';
 
 import { AddTodoListRequestDto,
+         DeleteTodoListRequestDto,
          GetTodoListRequestDto,
          GetTodoListResponseDto,
          UpdateTodoListRequestDto,
@@ -58,5 +59,13 @@ export class TodoListService {
 
     todoList.title = updateTodoListRequestDto.title;
     todoList.description = updateTodoListRequestDto.description;
+  }
+
+  public deleteTodoList(deleteTodoListRequestDto: DeleteTodoListRequestDto): void {
+    const index = this.todoLists.findIndex(todoList => todoList.todoListId === deleteTodoListRequestDto.todoListId);
+
+    if (index >= 0) {
+      this.todoLists.splice(index, 1);
+    }
   }
 }
