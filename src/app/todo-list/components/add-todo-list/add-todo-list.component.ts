@@ -49,6 +49,10 @@ export class AddTodoListComponent implements OnInit, AddTodoListView {
     this.navigateToSearchTodoList();
   }
 
+  public onBack(): void {
+    this.navigateToSearchTodoList();
+  }
+
   private navigateToSearchTodoList() {
     this.router.navigate([
       TODO_LIST_ROUTE,
