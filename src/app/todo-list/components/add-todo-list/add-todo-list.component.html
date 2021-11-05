@@ -28,14 +28,23 @@
   </div>
 </header>
 <main class="d-flex">
-  <form class="w-100 p-3">
+  <form class="w-100 p-3"
+        *ngForm="form">
     <div class="mb-3">
       <label for="txtTitle" class="form-label">Title</label>
-      <input id="txtTitle" class="form-control" type="text" placeholder="Title">
+      <input id="txtTitle"
+             class="form-control"
+             type="text"
+             placeholder="Title"
+             [formControl]="title">
     </div>
     <div class="mb-3">
       <label for="txtDescription" class="form-label">Description</label>
-      <textarea id="txtDescription" class="form-control" type="text" placeholder="Description"></textarea>
+      <textarea id="txtDescription"
+                class="form-control"
+                type="text"
+                placeholder="Description"
+                [formControl]="description"></textarea>
     </div>
   </form>
 </main>
