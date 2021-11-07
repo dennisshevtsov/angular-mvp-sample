@@ -79,6 +79,17 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
     record.completed = !record.completed;
   }
 
+  public onBack(): void {
+    const link = [
+      '../../',
+    ];
+    const extras = {
+      relativeTo: this.route,
+    };
+
+    this.router.navigate(link, extras);
+  }
+
   public onNavigateToAddTodoListTask(): void {
     const link = [
       TODO_LIST_NEW_TASK_ROUTE,
