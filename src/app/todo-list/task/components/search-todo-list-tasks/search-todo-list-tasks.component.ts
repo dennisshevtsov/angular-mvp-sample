@@ -90,7 +90,7 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
     this.router.navigate(link, extras);
   }
 
-  public onNavigateToAddTodoListTask(): void {
+  public onAdd(): void {
     const link = [
       TODO_LIST_NEW_TASK_ROUTE,
     ];
@@ -101,7 +101,7 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
     this.router.navigate(link, extras);
   }
 
-  public onNavigateToUpdateTodoListTask(
+  public onUpdate(
     todoListTask: SearchTodoListTasksRecordResponseDto)
     : void {
     this.router.navigate([
