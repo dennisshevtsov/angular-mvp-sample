@@ -1,10 +1,10 @@
-import { GetTodoListResponseDto,               } from '../../../api';
-import { SearchTodoListTasksRecordResponseDto, } from '../../api';
+import { SearchTodoListTasksRecordResponseDto,
+         SearchTodoListTasksRequestDto,        } from '../../api';
 
 export interface SearchTodoListTasksView {
-  todoList: GetTodoListResponseDto;
+  query: SearchTodoListTasksRequestDto;
 
-  todoListTasks: SearchTodoListTasksRecordResponseDto[];
+  datasource: SearchTodoListTasksRecordResponseDto[];
 
-  selectedTodoListTask: SearchTodoListTasksRecordResponseDto;
+  selected: SearchTodoListTasksRecordResponseDto;
 }

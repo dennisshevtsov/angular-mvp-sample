@@ -29,51 +29,21 @@
 </header>
 <main class="d-flex">
   <div class="list-group list-group-flush border-bottom w-100">
-    <div class="list-group-item list-group-item-action d-flex gap-3">
+    <div class="list-group-item list-group-item-action d-flex gap-3"
+         *ngFor="let record of datasource">
       <input type="checkbox" class="form-check-input flex-shrink-0">
       <div>
         <h5><strong class="mb-1">TODO list task title</strong></h5>
         <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
         <div class="d-flex w-100 align-items-center">
           <a href="#" class="me-2"><span>remove</span></a>
-          <a href="add-todo-list-task.html" class="me-2"><span>edit</span></a>
-        </div>
-      </div>
-    </div>
-    <div class="list-group-item list-group-item-action d-flex gap-3">
-      <input type="checkbox" class="form-check-input flex-shrink-0">
-      <div>
-        <h5><strong class="mb-1">TODO list task title</strong></h5>
-        <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
-        <div class="d-flex w-100 align-items-center">
-          <a href="#" class="me-2"><span>remove</span></a>
-          <a href="add-todo-list-task.html" class="me-2"><span>edit</span></a>
-        </div>
-      </div>
-    </div>
-    <div class="list-group-item list-group-item-action d-flex gap-3">
-      <input type="checkbox" class="form-check-input flex-shrink-0">
-      <div>
-        <h5><strong class="mb-1">TODO list task title</strong></h5>
-        <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
-        <div class="d-flex w-100 align-items-center">
-          <a href="#" class="me-2"><span>remove</span></a>
-          <a href="add-todo-list-task.html" class="me-2"><span>edit</span></a>
-        </div>
-      </div>
-    </div>
-    <div class="list-group-item list-group-item-action d-flex gap-3">
-      <input type="checkbox" class="form-check-input flex-shrink-0">
-      <div>
-        <h5><strong class="mb-1">TODO list task title</strong></h5>
-        <p><small>Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament. Lorem ipsum dolor sit ament.</small></p>
-        <div class="d-flex w-100 align-items-center">
-          <a href="#" class="me-2"><span>remove</span></a>
-          <a href="add-todo-list-task.html" class="me-2"><span>edit</span></a>
+          <a class="me-2"
+             (click)="onUpdate(record)"><span>edit</span></a>
         </div>
       </div>
     </div>
     <a class="list-group-item list-group-item-action"
+       style="cursor: pointer;"
        (click)="onAdd()">
       <i class="bi bi-plus"></i>
       <span>Add new task</span>
