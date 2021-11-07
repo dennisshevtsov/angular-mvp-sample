@@ -69,6 +69,10 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
     this.navigateToSearchTodoLists();
   }
 
+  public onBack() {
+    this.navigateToSearchTodoLists();
+  }
+
   private navigateToSearchTodoLists(): void {
     this.router.navigate([
       TODO_LIST_ROUTE,
