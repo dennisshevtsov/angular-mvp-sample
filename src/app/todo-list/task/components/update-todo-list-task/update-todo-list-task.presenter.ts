@@ -32,9 +32,11 @@ export class UpdateTodoListTaskPresenter {
         0,
         0,
         getTodoListTaskResponseDto.title,
+        getTodoListTaskResponseDto.date,
+        getTodoListTaskResponseDto.fullDay,
+        getTodoListTaskResponseDto.startTime,
+        getTodoListTaskResponseDto.endTime,
         getTodoListTaskResponseDto.description,
-        getTodoListTaskResponseDto.startDate,
-        getTodoListTaskResponseDto.deadline,
       );
     }
   }

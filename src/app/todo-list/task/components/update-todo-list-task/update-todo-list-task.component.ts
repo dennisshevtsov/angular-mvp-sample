@@ -76,9 +76,11 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   public set todoListTask(todoListTask: UpdateTodoListTaskRequestDto) {
     this.form.setValue({
       'title': todoListTask.title,
+      'date': todoListTask.date,
+      'fullDay': todoListTask.fullDay,
+      'startTime': todoListTask.startTime,
+      'endTime': todoListTask.endTime,
       'description': todoListTask.description,
-      'startDate': todoListTask.startDate,
-      'deadline': todoListTask.deadline,
     });
   }
 
