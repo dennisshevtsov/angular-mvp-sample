@@ -1,8 +1,6 @@
-import { GetTodoListRequestDto,
-         TodoListService,            } from '../../../api';
-import { TodoListTaskService,
-         AddTodoListTaskResponseDto, } from '../../api';
-import { AddTodoListTaskView,        } from './add-todo-list-task.view';
+import { TodoListService,     } from '../../../api';
+import { TodoListTaskService, } from '../../api';
+import { AddTodoListTaskView, } from './add-todo-list-task.view';
 
 export class AddTodoListTaskPresenter {
   public constructor(
@@ -12,20 +10,6 @@ export class AddTodoListTaskPresenter {
   ) { }
 
   public add(): void {
-    const responseDto: AddTodoListTaskResponseDto =
-      this.todoListTaskService.addTodoListTask(this.view.todoListTask);
-
-    this.view.todoListTaskId = responseDto.todoListTaskId;
-  }
-
-  public load(): void {
-    const getTodoListRequestDto = new GetTodoListRequestDto(
-      this.view.todoList.todoListId);
-    const getTodoListResponseDto =
-      this.todoListService.getTodoList(getTodoListRequestDto);
-
-    if (getTodoListResponseDto) {
-      this.view.todoList = getTodoListResponseDto;
-    }
+    this.todoListTaskService.addTodoListTask(this.view.datasource);
   }
 }

@@ -2,8 +2,7 @@ import { Component, OnInit,                } from '@angular/core';
 import { FormBuilder, FormGroup,           } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 
-import { GetTodoListResponseDto,
-         TodoListService,           } from '../../../api';
+import { TodoListService,           } from '../../../api';
 import { AddTodoListTaskRequestDto,
          TodoListTaskService,       } from '../../api';
 import { AddTodoListTaskPresenter,  } from './add-todo-list-task.presenter';
@@ -19,9 +18,7 @@ import { AddTodoListTaskView,       } from './add-todo-list-task.view';
 export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   private readonly presenter: AddTodoListTaskPresenter;
 
-  private todoListValue: GetTodoListResponseDto | undefined;
-  private todoListTaskIdValue: number | undefined;
-
+  private todoListIdValue: number | undefined;
   private formValue: FormGroup | undefined;
 
   public constructor(
@@ -42,38 +39,21 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
       const todoListId = paramMap.get('todoListId');
 
       if (todoListId) {
-        this.todoList.todoListId = +todoListId;
-        this.todoListTask.todoListId = +todoListId;
-
-        this.presenter.load();
+        this.todoListIdValue = +todoListId;
       }
     });
   }
 
-  public get todoList(): GetTodoListResponseDto {
-    return this.todoListValue ?? (this.todoListValue = new GetTodoListResponseDto(0, '', ''));
-  }
-
-  public set todoList(todoList: GetTodoListResponseDto) {
-    this.todoListValue = todoList;
-  }
-
-  public get todoListTask(): AddTodoListTaskRequestDto {
+  public get datasource(): AddTodoListTaskRequestDto {
     return new AddTodoListTaskRequestDto(
-      this.todoList.todoListId,
+      this.todoListIdValue!,
       this.form.value.title,
+      this.form.value.date,
+      this.form.value.fullDay,
+      this.form.value.startTime,
+      this.form.value.endTime,
       this.form.value.description,
-      this.form.value.startDate,
-      this.form.value.deadline,
     );
-  }
-
-  public get todoListTaskId(): number {
-    return this.todoListTaskIdValue ?? (this.todoListTaskIdValue = 0);
-  }
-
-  public set todoListTaskId(todoListTaskId: number) {
-    this.todoListTaskIdValue = todoListTaskId;
   }
 
   public get form(): FormGroup {
@@ -85,7 +65,7 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     this.navigateToSearchTodoListTasks();
   }
 
-  public onCancel(): void {
+  public onBack(): void {
     this.navigateToSearchTodoListTasks();
   }
 
@@ -103,9 +83,11 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   private buildForm(): FormGroup {
     return this.builder.group({
       'title': '',
+      'date': '',
+      'fullDay': false,
+      'startTime': '',
+      'endTime': '',
       'description': '',
-      'startDate': '',
-      'deadline': '',
     });
   }
 }

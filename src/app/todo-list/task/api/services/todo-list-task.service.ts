@@ -16,11 +16,13 @@ import { AddTodoListTaskRequestDto,
 export class TodoListTaskService {
   private readonly todoListTasksMap : Map<number, {
     todoListTaskId: number,
-    title: string,
-    description: string,
-    startDate: string,
-    deadline: string,
-    completed: boolean,
+    title         : string,
+    date          : string,
+    fullDay       : boolean,
+    startTime     : string,
+    endTime       : string,
+    description   : string,
+    completed     : boolean,
   }[]> = new Map();
 
   public constructor() { }
@@ -53,9 +55,11 @@ export class TodoListTaskService {
       return todoListTasks.map(todoListTask => new SearchTodoListTasksRecordResponseDto(
         todoListTask.todoListTaskId,
         todoListTask.title,
+        todoListTask.date,
+        todoListTask.fullDay,
+        todoListTask.startTime,
+        todoListTask.endTime,
         todoListTask.description,
-        todoListTask.startDate,
-        todoListTask.deadline,
         todoListTask.completed,
       ));
     }
@@ -76,9 +80,11 @@ export class TodoListTaskService {
     todoListTasks.push({
       todoListTaskId: todoListTaskId,
       title: addTodoListTaskRequestDto.title,
+      date: addTodoListTaskRequestDto.date,
+      fullDay: addTodoListTaskRequestDto.fullDay,
+      startTime: addTodoListTaskRequestDto.startTime,
+      endTime: addTodoListTaskRequestDto.endTime,
       description: addTodoListTaskRequestDto.description,
-      startDate: addTodoListTaskRequestDto.startDate,
-      deadline: addTodoListTaskRequestDto.deadline,
       completed: false,
     });
 
@@ -96,8 +102,10 @@ export class TodoListTaskService {
 
       todoListTask.title = updateTodoListTaskRequestDto.title;
       todoListTask.description = updateTodoListTaskRequestDto.description;
-      todoListTask.startDate = updateTodoListTaskRequestDto.startDate;
-      todoListTask.deadline = updateTodoListTaskRequestDto.deadline;
+      todoListTask.date = updateTodoListTaskRequestDto.date;
+      todoListTask.fullDay = updateTodoListTaskRequestDto.fullDay;
+      todoListTask.startTime = updateTodoListTaskRequestDto.startTime;
+      todoListTask.endTime = updateTodoListTaskRequestDto.endTime;
     }
   }
 
