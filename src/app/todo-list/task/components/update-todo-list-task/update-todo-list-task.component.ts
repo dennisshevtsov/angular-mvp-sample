@@ -93,7 +93,7 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
     this.navigateToSearchTodoListTasks();
   }
 
-  public onCancel(): void {
+  public onBack(): void {
     this.navigateToSearchTodoListTasks();
   }
 
@@ -108,9 +108,11 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   private buildForm(): FormGroup {
     return this.formBuilder.group({
       'title': '',
+      'date': '',
+      'fullDay': false,
+      'startTime': '',
+      'endTime': '',
       'description': '',
-      'startDate': '',
-      'deadline': '',
     });
   }
 }
