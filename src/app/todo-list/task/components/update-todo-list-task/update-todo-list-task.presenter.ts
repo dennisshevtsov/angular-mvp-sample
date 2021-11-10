@@ -1,5 +1,3 @@
-import { GetTodoListRequestDto,
-         TodoListService,              } from '../../../api';
 import { GetTodoListTaskRequestDto,
          UpdateTodoListTaskRequestDto,
          TodoListTaskService,          } from '../../api';
@@ -9,26 +7,18 @@ export class UpdateTodoListTaskPresenter {
   public constructor(
     private readonly view: UpdateTodoListTaskView,
 
-    private readonly todoListService: TodoListService,
     private readonly todoListTaskService: TodoListTaskService,
   ) { }
 
   public load(): void {
-    const getTodoListRequestDto = new GetTodoListRequestDto(this.view.todoList.todoListId);
-    const getTodoListResponseDto = this.todoListService.getTodoList(getTodoListRequestDto);
-
-    if (getTodoListResponseDto) {
-      this.view.todoList = getTodoListResponseDto;
-    }
-
     const getTodoListTaskRequestDto = new GetTodoListTaskRequestDto(
-      this.view.todoListTask.todoListId,
-      this.view.todoListTask.todoListTaskId,
+      this.view.datasource.todoListId,
+      this.view.datasource.todoListTaskId,
     );
     const getTodoListTaskResponseDto = this.todoListTaskService.getTodoListTask(getTodoListTaskRequestDto);
 
     if (getTodoListTaskResponseDto) {
-      this.view.todoListTask = new UpdateTodoListTaskRequestDto(
+      this.view.datasource = new UpdateTodoListTaskRequestDto(
         0,
         0,
         getTodoListTaskResponseDto.title,
@@ -42,6 +32,6 @@ export class UpdateTodoListTaskPresenter {
   }
 
   public update(): void {
-    this.todoListTaskService.updateTodoListTask(this.view.todoListTask);
+    this.todoListTaskService.updateTodoListTask(this.view.datasource);
   }
 }

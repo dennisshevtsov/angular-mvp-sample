@@ -2,8 +2,7 @@ import { Component, OnInit,                } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 import { FormBuilder, FormGroup,           } from '@angular/forms';
 
-import { GetTodoListResponseDto,
-         TodoListService,              } from '../../../api';
+import { GetTodoListResponseDto,       } from '../../../api';
 import { TODO_LIST_ROUTE,
          TODO_LIST_PARAMETER,          } from '../../../routing';
 import { UpdateTodoListTaskRequestDto,
@@ -30,12 +29,10 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
     private readonly route: ActivatedRoute,
     private readonly formBuilder: FormBuilder,
 
-    todoListService: TodoListService,
     todoListTaskService: TodoListTaskService,
   ) {
     this.presenter = new UpdateTodoListTaskPresenter(
       this,
-      todoListService,
       todoListTaskService);
   }
 
@@ -62,18 +59,20 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
     this.todoList.description = todoList.description;
   }
 
-  public get todoListTask(): UpdateTodoListTaskRequestDto {
+  public get datasource(): UpdateTodoListTaskRequestDto {
     return new UpdateTodoListTaskRequestDto(
       this.todoList.todoListId,
       this.todoListTaskIdValue,
       this.form.value.title,
-      this.form.value.description,
+      this.form.value.date,
+      this.form.value.fullDay,
       this.form.value.startDate,
-      this.form.value.deadline,
+      this.form.value.endDate,
+      this.form.value.description,
     );
   }
 
-  public set todoListTask(todoListTask: UpdateTodoListTaskRequestDto) {
+  public set datasource(todoListTask: UpdateTodoListTaskRequestDto) {
     this.form.setValue({
       'title': todoListTask.title,
       'date': todoListTask.date,
