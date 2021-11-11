@@ -11,10 +11,9 @@ export class UpdateTodoListTaskPresenter {
   ) { }
 
   public load(): void {
+    const datasource = this.view.datasource;
     const getTodoListTaskRequestDto = new GetTodoListTaskRequestDto(
-      this.view.datasource.todoListId,
-      this.view.datasource.todoListTaskId,
-    );
+      datasource.todoListId, datasource.todoListTaskId);
     const getTodoListTaskResponseDto = this.todoListTaskService.getTodoListTask(getTodoListTaskRequestDto);
 
     if (getTodoListTaskResponseDto) {

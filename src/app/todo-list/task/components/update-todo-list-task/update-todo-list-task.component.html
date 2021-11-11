@@ -28,30 +28,53 @@
   </div>
 </header>
 <main class="d-flex">
-  <form class="w-100 p-3">
+  <form class="w-100 p-3"
+        [formGroup]="form">
     <div class="mb-3">
       <label for="txtTitle" class="form-label">Title</label>
-      <input id="txtTitle" class="form-control" type="text" placeholder="Title">
+      <input id="txtTitle"
+             class="form-control"
+             type="text"
+             placeholder="Title"
+             formControlName="title">
     </div>
     <div class="mb-3">
       <label for="dpDate" class="form-label">Date</label>
-      <input id="dpDate" class="form-control" type="date" placeholder="Date">
+      <input id="dpDate"
+             class="form-control"
+             type="date"
+             placeholder="Date"
+             formControlName="date">
     </div>
     <div class="form-check mb-3">
       <input id="chbIsFullDay" type="checkbox" class="form-check-input">
-      <label for="chbIsFullDay" class="form-check-label">Full Day</label>
+      <label for="chbIsFullDay"
+             class="form-check-label"
+             formControlName="fullDay">Full Day</label>
     </div>
     <div class="mb-3">
       <label for="dpStartTime" class="form-label">Start Time</label>
-      <input id="dpStartTime" class="form-control" type="time" placeholder="Start time">
+      <input id="dpStartTime"
+             class="form-control"
+             type="time"
+             placeholder="Start time"
+             formControlName="startTime">
     </div>
     <div class="mb-3">
       <label for="dpEndTime" class="form-label">End Time</label>
-      <input id="dpEndTime" class="form-control" type="time" placeholder="End time">
+      <input id="dpEndTime"
+             class="form-control"
+             type="time"
+             placeholder="End time"
+             formControlName="endTime">
     </div>
     <div>
       <label for="txtDescription" class="form-label">Description</label>
-      <textarea id="txtDescription" class="form-control" type="text" placeholder="Description"></textarea>
+      <textarea id="txtDescription"
+                class="form-control"
+                type="text"
+                placeholder="Description"
+                formControlName="description"></textarea>
     </div>
   </form>
 </main>

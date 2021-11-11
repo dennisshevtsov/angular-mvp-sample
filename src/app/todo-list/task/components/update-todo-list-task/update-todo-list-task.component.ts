@@ -7,9 +7,10 @@ import { TODO_LIST_ROUTE,
          TODO_LIST_PARAMETER,          } from '../../../routing';
 import { UpdateTodoListTaskRequestDto,
          TodoListTaskService,          } from '../../api';
+import { TODO_LIST_TASK_PARAMETER,
+         TODO_LIST_TASK_ROUTE,         } from '../../routing';
 import { UpdateTodoListTaskPresenter,  } from './update-todo-list-task.presenter';
 import { UpdateTodoListTaskView,       } from './update-todo-list-task.view';
-import { TODO_LIST_TASK_PARAMETER, TODO_LIST_TASK_ROUTE,     } from '../../routing';
 
 @Component({
   templateUrl: './update-todo-list-task.component.html',
