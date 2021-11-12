@@ -53,7 +53,7 @@
              formControlName="fullDay">
       <label for="chbIsFullDay" class="form-check-label">Full Day</label>
     </div>
-    <div class="mb-3">
+    <div class="mb-3" *ngIf="!form.value.fullDay">
       <label for="dpStartTime" class="form-label">Start Time</label>
       <input id="dpStartTime"
              class="form-control"
@@ -61,7 +61,7 @@
              placeholder="Start time"
              formControlName="startTime">
     </div>
-    <div class="mb-3">
+    <div class="mb-3" *ngIf="!form.value.fullDay">
       <label for="dpEndTime" class="form-label">End Time</label>
       <input id="dpEndTime"
              class="form-control"
