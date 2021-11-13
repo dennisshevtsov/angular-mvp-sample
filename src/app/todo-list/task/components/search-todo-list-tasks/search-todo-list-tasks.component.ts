@@ -114,5 +114,6 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
   public onDelete(record: SearchTodoListTasksRecordResponseDto): void {
     this.selected = record;
     this.presenter.delete();
+    this.presenter.search();
   }
 }
