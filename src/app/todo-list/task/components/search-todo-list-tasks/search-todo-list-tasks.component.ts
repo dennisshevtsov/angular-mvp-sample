@@ -100,16 +100,19 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
     this.router.navigate(link, extras);
   }
 
-  public onUpdate(
-    todoListTask: SearchTodoListTasksRecordResponseDto)
-    : void {
+  public onUpdate(record: SearchTodoListTasksRecordResponseDto): void {
     const link = [
-      todoListTask.todoListTaskId,
+      record.todoListTaskId,
     ];
     const extras = {
       relativeTo: this.route,
     };
 
     this.router.navigate(link, extras);
+  }
+
+  public onDelete(record: SearchTodoListTasksRecordResponseDto): void {
+    this.selected = record;
+    this.presenter.delete();
   }
 }
