@@ -3,6 +3,7 @@ import { Injectable, } from '@angular/core';
 import { AddTodoListTaskRequestDto,
          AddTodoListTaskResponseDto,
          CompleteTodoListTaskRequestDto,
+         DeleteTodoListTaskRequestDto,
          GetTodoListTaskRequestDto,
          GetTodoListTaskResponseDto,
          SearchTodoListTasksRecordResponseDto,
@@ -143,5 +144,21 @@ export class TodoListTaskService {
         todoListTask.completed = false;
       }
     }
+  }
+
+  public deleteTodoListTask(
+    deleteTodoListTaskRequestDto: DeleteTodoListTaskRequestDto)
+    : void {
+      const todoListTasks = this.todoListTasksMap.get(
+        deleteTodoListTaskRequestDto.todoListId)!;
+
+      if (todoListTasks) {
+        const todoListTaskIndex = todoListTasks.findIndex(
+          todoListTask => todoListTask.todoListTaskId === deleteTodoListTaskRequestDto.todoListTaskId);
+
+        if (todoListTaskIndex > -1) {
+          todoListTasks.splice(todoListTaskIndex, 1);
+        }
+      }
   }
 }
