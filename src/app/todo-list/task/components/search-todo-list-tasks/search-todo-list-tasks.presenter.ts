@@ -1,5 +1,6 @@
 import { TodoListService,                  } from '../../../api';
 import { CompleteTodoListTaskRequestDto,
+         DeleteTodoListTaskRequestDto,
          UncompleteTodoListTaskRequestDto,
          TodoListTaskService,              } from '../../api';
 import { SearchTodoListTasksView,          } from './search-todo-list-tasks.view';
@@ -29,5 +30,13 @@ export class SearchTodoListTasksPresenter {
       this.view.selected.todoListTaskId);
 
     this.todoListTaskService.uncompleteTodoListTask(requestDto);
+  }
+
+  public delete(): void {
+    const requestDto = new DeleteTodoListTaskRequestDto(
+      this.view.query.todoListId,
+      this.view.selected.todoListTaskId);
+
+    this.todoListTaskService.deleteTodoListTask(requestDto);
   }
 }
