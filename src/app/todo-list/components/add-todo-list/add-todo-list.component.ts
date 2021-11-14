@@ -1,5 +1,5 @@
 import { Component, OnInit,      } from '@angular/core';
-import { FormBuilder, FormGroup, } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { Router,                 } from '@angular/router';
 
 import { AddTodoListRequestDto,
@@ -61,7 +61,11 @@ export class AddTodoListComponent implements OnInit, AddTodoListView {
 
   private buildForm(): FormGroup {
     return this.formBuilder.group({
-      title: '',
+      title: this.formBuilder.control(
+        '',
+        {
+          validators: [ Validators.required ],
+        }),
       description: '',
     });
   }
