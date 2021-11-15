@@ -12,19 +12,19 @@
       </ul>
     </div>
     <div class="col-md-9 d-grid gap-2 d-md-flex justify-content-md-end">
-      <a class="btn btn-light"
-         style="width: 100px; cursor: pointer;"
-         (click)="onBack()">
+      <button class="btn btn-light"
+              style="width: 100px;"
+              (click)="onBack()">
         <i class="bi bi-chevron-left"></i>
         <span>Back</span>
-      </a>
-      <a class="btn btn-primary"
-         style="width: 100px; cursor: pointer;"
-         [disabled]="!form.valid"
-         (click)="onSubmit()">
+      </button>
+      <button class="btn btn-primary"
+              style="width: 100px;"
+              [disabled]="!form.valid"
+              (click)="onSubmit()">
         <i class="bi bi-check-lg"></i>
         <span>Ok</span>
-      </a>
+      </button>
     </div>
   </div>
 </header>
