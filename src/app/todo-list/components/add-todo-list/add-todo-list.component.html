@@ -39,7 +39,7 @@
              type="text"
              placeholder="Title"
              formControlName="title">
-      <span class="help-block"
+      <span class="invalid-feedback"
             *ngIf="hasErrors('title')">
           <span *ngIf="hasError('title', 'required')">Please enter a title.</span>
       </span>
