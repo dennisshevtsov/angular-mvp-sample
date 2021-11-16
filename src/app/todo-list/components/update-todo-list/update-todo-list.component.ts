@@ -60,6 +60,24 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
     });
   }
 
+  public isValid(controlName: string): boolean {
+    const control = this.form.get(controlName);
+
+    return control == null || !(control.touched || control.dirty) || control.valid;
+  }
+
+  public hasErrors(controlName: string): boolean {
+    const control = this.form.get(controlName);
+
+    return control != null && (control.touched || control.dirty) && control.errors != null;
+  }
+
+  public hasError(controlName: string, errorCode: string): boolean {
+    const control = this.form.get(controlName);
+
+    return control != null && control.hasError(errorCode);
+  }
+
   public onSubmit(): void {
     this.presenter.update();
     this.navigateToSearchTodoLists();
