@@ -80,12 +80,12 @@ export class AddTodoListComponent implements OnInit, AddTodoListView {
 
   private buildForm(): FormGroup {
     return this.formBuilder.group({
-      title: this.formBuilder.control(
+      'title': this.formBuilder.control(
         '',
         {
           validators: [ Validators.required ],
         }),
-      description: '',
+      'description': '',
     });
   }
 }

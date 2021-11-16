@@ -1,6 +1,6 @@
-import { Component, OnInit,                } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
-import { FormBuilder, FormGroup,           } from '@angular/forms';
+import { Component, OnInit,                  } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router,   } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 
 import { TodoListService,
          UpdateTodoListRequestDto, } from '../../api';
@@ -81,7 +81,11 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
 
   private buildForm() : FormGroup {
     return this.formBuilder.group({
-      'title': '',
+      'title': this.formBuilder.control(
+        '',
+        {
+          validators: [ Validators.required ],
+        }),
       'description': '',
     });
   }
