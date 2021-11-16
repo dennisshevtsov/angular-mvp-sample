@@ -1,6 +1,6 @@
-import { Component, OnInit,                  } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
-import { Router,                             } from '@angular/router';
+import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
+import { FormBuilder, FormGroup, Validators,   } from '@angular/forms';
+import { Router,                               } from '@angular/router';
 
 import { AddTodoListRequestDto,
          TodoListService,       } from '../../api';
@@ -13,6 +13,7 @@ import { AddTodoListView,       } from './add-todo-list.view';
   styleUrls: [
     './add-todo-list.component.scss',
   ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AddTodoListComponent implements OnInit, AddTodoListView {
   private readonly presenter: AddTodoListPresenter;
