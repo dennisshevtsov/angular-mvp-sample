@@ -1,19 +1,19 @@
 <header class="container-fluid border-bottom p-3">
   <div class="row">
     <div class="col-md-3">
-      <a style="cursor: pointer; font-size: 1.5em;"
+      <a class="text-dark text-decoration-none fs-4"
          routerLink="/todo">
         <i class="bi bi-card-checklist me-2"></i>
         <span>TODO list</span>
       </a>
     </div>
     <div class="col-md-9 d-grid gap-2 d-md-flex justify-content-md-end">
-      <a class="btn btn-light"
+      <button class="btn btn-light"
          style="width: 100px"
          (click)="onNavigateToAddTodoList()">
         <i class="bi bi-plus"></i>
         <span>Add</span>
-      </a>
+      </button>
     </div>
   </div>
 </header>
