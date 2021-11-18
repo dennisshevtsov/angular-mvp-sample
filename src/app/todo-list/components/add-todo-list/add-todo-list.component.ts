@@ -22,7 +22,7 @@ export class AddTodoListComponent implements OnInit, AddTodoListView {
 
   public constructor(
     private readonly router: Router,
-    private readonly formBuilder: FormBuilder,
+    private readonly builder: FormBuilder,
 
     service: TodoListService,
   ) {
@@ -79,12 +79,8 @@ export class AddTodoListComponent implements OnInit, AddTodoListView {
   }
 
   private buildForm(): FormGroup {
-    return this.formBuilder.group({
-      'title': this.formBuilder.control(
-        '',
-        {
-          validators: [ Validators.required ],
-        }),
+    return this.builder.group({
+      'title': this.builder.control('', Validators.required),
       'description': '',
     });
   }

@@ -1,6 +1,6 @@
-import { Component, OnInit,                } from '@angular/core';
-import { FormBuilder, FormGroup,           } from '@angular/forms';
-import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
+import { Component, OnInit,                  } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Router,   } from '@angular/router';
 
 import { TodoListService,           } from '../../../api';
 import { AddTodoListTaskRequestDto,
@@ -82,7 +82,7 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
 
   private buildForm(): FormGroup {
     return this.builder.group({
-      'title': '',
+      'title': this.builder.control('', Validators.required),
       'date': '',
       'fullDay': false,
       'startTime': '',

@@ -1,6 +1,6 @@
-import { Component, OnInit,                } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
-import { FormBuilder, FormGroup,           } from '@angular/forms';
+import { Component, OnInit,                  } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router,   } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 
 import { GetTodoListResponseDto,       } from '../../../api';
 import { TODO_LIST_ROUTE,
@@ -28,13 +28,12 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   public constructor(
     private readonly router: Router,
     private readonly route: ActivatedRoute,
-    private readonly formBuilder: FormBuilder,
+    private readonly builder: FormBuilder,
 
     todoListTaskService: TodoListTaskService,
   ) {
     this.presenter = new UpdateTodoListTaskPresenter(
-      this,
-      todoListTaskService);
+      this, todoListTaskService);
   }
 
   public ngOnInit(): void {
@@ -106,8 +105,8 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   }
 
   private buildForm(): FormGroup {
-    return this.formBuilder.group({
-      'title': '',
+    return this.builder.group({
+      'title': this.builder.control('', Validators.required),
       'date': '',
       'fullDay': false,
       'startTime': '',

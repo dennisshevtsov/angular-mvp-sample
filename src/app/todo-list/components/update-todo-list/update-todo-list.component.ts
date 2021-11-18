@@ -23,7 +23,7 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
   public constructor(
     private readonly router: Router,
     private readonly route: ActivatedRoute,
-    private readonly formBuilder: FormBuilder,
+    private readonly builder: FormBuilder,
 
     service: TodoListService,
   ) {
@@ -98,12 +98,8 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
   }
 
   private buildForm() : FormGroup {
-    return this.formBuilder.group({
-      'title': this.formBuilder.control(
-        '',
-        {
-          validators: [ Validators.required ],
-        }),
+    return this.builder.group({
+      'title': this.builder.control('', Validators.required),
       'description': '',
     });
   }
