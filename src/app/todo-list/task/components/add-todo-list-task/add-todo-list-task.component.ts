@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router,   } from '@angular/router';
 
 import { TodoListService,           } from '../../../api';
+import { TODO_LIST_PARAMETER,       } from '../../../routing';
 import { AddTodoListTaskRequestDto,
          TodoListTaskService,       } from '../../api';
 import { AddTodoListTaskPresenter,  } from './add-todo-list-task.presenter';
@@ -36,7 +37,7 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
 
   public ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      const todoListId = paramMap.get('todoListId');
+      const todoListId = paramMap.get(TODO_LIST_PARAMETER);
 
       if (todoListId) {
         this.todoListIdValue = +todoListId;
