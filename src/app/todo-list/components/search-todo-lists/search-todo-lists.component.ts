@@ -65,30 +65,20 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
     this.todoListsValue = datasource;
   }
 
-  public onNavigateToUpdateTodoList(todoListId: number): void {
-    this.router.navigate([
-      TODO_LIST_ROUTE,
-      todoListId,
-    ]);
+  public get searchTodoListsLink(): Array<any> {
+    return [ '/', TODO_LIST_ROUTE, ];
   }
 
-  public onNavigateToAddTodoList(): void {
-    this.router.navigate([
-      TODO_LIST_ROUTE,
-      TODO_LIST_NEW_ROUTE,
-    ]);
+  public updateTodoListLink(todoListId: number): Array<any> {
+    return [ '/', TODO_LIST_ROUTE, todoListId, ];
   }
 
-  public onNavigateToSearchTodoTasks(todoListId: number): void {
-    const link = [
-      todoListId,
-      TODO_LIST_TASK_ROUTE,
-    ];
-    const extras = {
-      relativeTo: this.route,
-    };
+  public get addTodoListLink(): Array<any> {
+    return [ '/', TODO_LIST_ROUTE, TODO_LIST_NEW_ROUTE, ];
+  }
 
-    this.router.navigate(link, extras);
+  public searchTodoListTasks(todoListId: number): Array<any> {
+    return [ '/', TODO_LIST_ROUTE, todoListId, TODO_LIST_TASK_ROUTE, ]
   }
 
   public onDeleteTodoList(todoList: SearchTodoListsRecordResponseDto): void {
