@@ -1,12 +1,13 @@
 import { Component, OnInit,      } from '@angular/core';
-import { ActivatedRoute, Router, } from '@angular/router';
+import { ActivatedRoute,         } from '@angular/router';
 
 import { TodoListService,                      } from '../../../api';
-import { TODO_LIST_PARAMETER,                  } from '../../../routing';
+import { TODO_LIST_PARAMETER, TODO_LIST_ROUTE, } from '../../../routing';
 import { SearchTodoListTasksRecordResponseDto,
          SearchTodoListTasksRequestDto,
          TodoListTaskService,                  } from '../../api';
-import { TODO_LIST_NEW_TASK_ROUTE,             } from '../../routing';
+import { TODO_LIST_NEW_TASK_ROUTE,
+         TODO_LIST_TASK_ROUTE,                 } from '../../routing';
 import { SearchTodoListTasksPresenter,         } from './search-todo-list-tasks.presenter';
 import { SearchTodoListTasksView,              } from './search-todo-list-tasks.view';
 
@@ -25,7 +26,6 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
 
   public constructor(
     private readonly route: ActivatedRoute,
-    private readonly router: Router,
 
     todoListService: TodoListService,
     todoListTaskService: TodoListTaskService,
@@ -65,6 +65,30 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
     this.selectedValue = selectedTodoListTask;
   }
 
+  public get searchTodoListsLink(): Array<any> {
+    return [ '/', TODO_LIST_ROUTE, ];
+  }
+
+  public get addTodoListTaskLink(): Array<any> {
+    return [
+      '/',
+      TODO_LIST_ROUTE,
+      this.query.todoListId,
+      TODO_LIST_TASK_ROUTE,
+      TODO_LIST_NEW_TASK_ROUTE,
+    ];
+  }
+
+  public updateTodoListLink(record: SearchTodoListTasksRecordResponseDto): Array<any> {
+    return [
+      '/',
+      TODO_LIST_ROUTE,
+      this.query.todoListId,
+      TODO_LIST_TASK_ROUTE,
+      record.todoListTaskId,
+    ];
+  }
+
   public onComplete(record: SearchTodoListTasksRecordResponseDto): void {
     this.selected = record;
 
@@ -75,39 +99,6 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
     }
 
     record.completed = !record.completed;
-  }
-
-  public onBack(): void {
-    const link = [
-      '../../',
-    ];
-    const extras = {
-      relativeTo: this.route,
-    };
-
-    this.router.navigate(link, extras);
-  }
-
-  public onAdd(): void {
-    const link = [
-      TODO_LIST_NEW_TASK_ROUTE,
-    ];
-    const extras = {
-      relativeTo: this.route,
-    };
-
-    this.router.navigate(link, extras);
-  }
-
-  public onUpdate(record: SearchTodoListTasksRecordResponseDto): void {
-    const link = [
-      record.todoListTaskId,
-    ];
-    const extras = {
-      relativeTo: this.route,
-    };
-
-    this.router.navigate(link, extras);
   }
 
   public onDelete(record: SearchTodoListTasksRecordResponseDto): void {
