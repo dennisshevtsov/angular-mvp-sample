@@ -59,13 +59,13 @@ export class AddTodoListComponent implements OnInit, AddTodoListView {
     return control != null && control.hasError(errorCode);
   }
 
+  public get searchTodoListsLink(): Array<any> {
+    return [ '/', TODO_LIST_ROUTE, ];
+  }
+
   public onSubmit(): void {
     this.presenter.add();
     this.router.navigate([ TODO_LIST_ROUTE, ]);
-  }
-
-  public get searchTodoListsLink(): Array<any> {
-    return [ '/', TODO_LIST_ROUTE, ];
   }
 
   private buildForm(): FormGroup {

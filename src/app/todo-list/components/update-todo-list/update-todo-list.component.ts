@@ -78,23 +78,13 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
     return control != null && control.hasError(errorCode);
   }
 
+  public get searchTodoListsLink(): Array<any> {
+    return [ '/', TODO_LIST_ROUTE, ];
+  }
+
   public onSubmit(): void {
     this.presenter.update();
-    this.navigateToSearchTodoLists();
-  }
-
-  public onCancel(): void {
-    this.navigateToSearchTodoLists();
-  }
-
-  public onBack() {
-    this.navigateToSearchTodoLists();
-  }
-
-  private navigateToSearchTodoLists(): void {
-    this.router.navigate([
-      TODO_LIST_ROUTE,
-    ]);
+    this.router.navigate([ TODO_LIST_ROUTE, ]);
   }
 
   private buildForm() : FormGroup {
