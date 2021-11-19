@@ -61,21 +61,11 @@ export class AddTodoListComponent implements OnInit, AddTodoListView {
 
   public onSubmit(): void {
     this.presenter.add();
-    this.navigateToSearchTodoList();
+    this.router.navigate([ TODO_LIST_ROUTE, ]);
   }
 
-  public onCancel(): void {
-    this.navigateToSearchTodoList();
-  }
-
-  public onBack(): void {
-    this.navigateToSearchTodoList();
-  }
-
-  private navigateToSearchTodoList() {
-    this.router.navigate([
-      TODO_LIST_ROUTE,
-    ]);
+  public get searchTodoListsLink(): Array<any> {
+    return [ '/', TODO_LIST_ROUTE, ];
   }
 
   private buildForm(): FormGroup {
