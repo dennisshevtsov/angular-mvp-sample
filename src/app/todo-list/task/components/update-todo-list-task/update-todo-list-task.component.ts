@@ -87,16 +87,21 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
     return this.formValue ?? (this.formValue = this.buildForm());
   }
 
+  public get searchTodoListsLink(): Array<any> {
+    return [ '/', TODO_LIST_ROUTE, ];
+  }
+
+  public get searchTodoListTasksLink(): Array<any> {
+    return [
+      '/',
+      TODO_LIST_ROUTE,
+      this.todoList.todoListId,
+      TODO_LIST_TASK_ROUTE,
+    ];
+  }
+
   public onSubmit(): void {
     this.presenter.update();
-    this.navigateToSearchTodoListTasks();
-  }
-
-  public onBack(): void {
-    this.navigateToSearchTodoListTasks();
-  }
-
-  private navigateToSearchTodoListTasks(): void {
     this.router.navigate([
       TODO_LIST_ROUTE,
       this.todoList.todoListId,
