@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router,   } from '@angular/router';
 
 import { TodoListService,           } from '../../../api';
-import { TODO_LIST_PARAMETER,       } from '../../../routing';
+import { TODO_LIST_PARAMETER,
+         TODO_LIST_ROUTE,           } from '../../../routing';
 import { AddTodoListTaskRequestDto,
          TodoListTaskService,       } from '../../api';
 import { AddTodoListTaskPresenter,  } from './add-todo-list-task.presenter';
@@ -61,24 +62,13 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     return this.formValue ?? (this.formValue = this.buildForm());
   }
 
+  public get searchTodoListsLink(): Array<any> {
+    return [ '/', TODO_LIST_ROUTE, ];
+  }
+
   public onSubmit(): void {
     this.presenter.add();
-    this.navigateToSearchTodoListTasks();
-  }
-
-  public onBack(): void {
-    this.navigateToSearchTodoListTasks();
-  }
-
-  private navigateToSearchTodoListTasks(): void {
-    const link = [
-      '../',
-    ];
-    const extras = {
-      relativeTo: this.route,
-    };
-
-    this.router.navigate(link, extras);
+    this.router.navigate([ TODO_LIST_ROUTE, ]);
   }
 
   private buildForm(): FormGroup {
