@@ -7,6 +7,7 @@ import { TODO_LIST_PARAMETER,
          TODO_LIST_ROUTE,           } from '../../../routing';
 import { AddTodoListTaskRequestDto,
          TodoListTaskService,       } from '../../api';
+import { TODO_LIST_TASK_ROUTE,      } from '../../routing';
 import { AddTodoListTaskPresenter,  } from './add-todo-list-task.presenter';
 import { AddTodoListTaskView,       } from './add-todo-list-task.view';
 
@@ -68,7 +69,11 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
 
   public onSubmit(): void {
     this.presenter.add();
-    this.router.navigate([ TODO_LIST_ROUTE, ]);
+    this.router.navigate([
+      TODO_LIST_ROUTE,
+      this.todoListIdValue!,
+      TODO_LIST_TASK_ROUTE,
+    ]);
   }
 
   private buildForm(): FormGroup {
