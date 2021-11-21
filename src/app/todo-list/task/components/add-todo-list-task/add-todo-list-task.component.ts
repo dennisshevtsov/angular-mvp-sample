@@ -63,6 +63,24 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     return this.formValue ?? (this.formValue = this.buildForm());
   }
 
+  public isValid(controlName: string): boolean {
+    const control = this.form.get(controlName);
+
+    return control == null || !(control.touched || control.dirty) || control.valid;
+  }
+
+  public hasErrors(controlName: string): boolean {
+    const control = this.form.get(controlName);
+
+    return control != null && (control.touched || control.dirty) && control.errors != null;
+  }
+
+  public hasError(controlName: string, errorCode: string): boolean {
+    const control = this.form.get(controlName);
+
+    return control != null && control.hasError(errorCode);
+  }
+
   public get searchTodoListsLink(): Array<any> {
     return [ '/', TODO_LIST_ROUTE, ];
   }
@@ -79,7 +97,7 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   private buildForm(): FormGroup {
     return this.builder.group({
       'title': this.builder.control('', Validators.required),
-      'date': '',
+      'date': this.builder.control('', Validators.required),
       'fullDay': false,
       'startTime': '',
       'endTime': '',
