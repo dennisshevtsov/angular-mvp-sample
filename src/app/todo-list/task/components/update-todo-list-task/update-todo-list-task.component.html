@@ -26,7 +26,8 @@
 <main class="d-flex">
   <form class="w-100 p-3"
         [formGroup]="form">
-    <div class="mb-3">
+    <div class="form-group mb-3"
+         [ngClass]="{ 'has-error': !isValid('title')}">
       <label for="txtTitle" class="form-label">Title</label>
       <input id="txtTitle"
              class="form-control"
@@ -34,7 +35,8 @@
              placeholder="Title"
              formControlName="title">
     </div>
-    <div class="mb-3">
+    <div class="form-group mb-3"
+         [ngClass]="{ 'has-error': !isValid('title')}">
       <label for="dpDate" class="form-label">Date</label>
       <input id="dpDate"
              class="form-control"
@@ -42,14 +44,14 @@
              placeholder="Date"
              formControlName="date">
     </div>
-    <div class="form-check mb-3">
+    <div class="form-group form-check mb-3">
       <input id="chbIsFullDay"
              type="checkbox"
              class="form-check-input"
              formControlName="fullDay">
       <label for="chbIsFullDay" class="form-check-label">Full Day</label>
     </div>
-    <div class="mb-3" *ngIf="!form.value.fullDay">
+    <div class="form-group mb-3" *ngIf="!form.value.fullDay">
       <label for="dpStartTime" class="form-label">Start Time</label>
       <input id="dpStartTime"
              class="form-control"
@@ -57,7 +59,7 @@
              placeholder="Start time"
              formControlName="startTime">
     </div>
-    <div class="mb-3" *ngIf="!form.value.fullDay">
+    <div class="form-group mb-3" *ngIf="!form.value.fullDay">
       <label for="dpEndTime" class="form-label">End Time</label>
       <input id="dpEndTime"
              class="form-control"
@@ -65,7 +67,7 @@
              placeholder="End time"
              formControlName="endTime">
     </div>
-    <div>
+    <di class="form-group">
       <label for="txtDescription" class="form-label">Description</label>
       <textarea id="txtDescription"
                 class="form-control"

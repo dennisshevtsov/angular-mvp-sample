@@ -1,0 +1,5 @@
+@import "/node_modules/bootstrap//scss/bootstrap";
+
+.ng-touched.ng-invalid, .ng-dirty.ng-invalid {
+  @extend .is-invalid;
+}
