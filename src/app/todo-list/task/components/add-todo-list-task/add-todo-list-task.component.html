@@ -41,13 +41,17 @@
       </span>
     </div>
     <div class="form-group mb-3"
-         [ngClass]="{ 'has-error': !isValid('title')}">
+         [ngClass]="{ 'has-error': !isValid('date')}">
       <label for="dpDate" class="form-label">Date</label>
       <input id="dpDate"
              class="form-control"
              type="date"
              placeholder="Date"
              formControlName="date">
+      <span class="invalid-feedback"
+            *ngIf="hasErrors('date')">
+        <span *ngIf="hasError('date', 'required')">Please enter a date.</span>
+      </span>
     </div>
     <div class="form-group form-check mb-3">
       <input id="chbIsFullDay"
