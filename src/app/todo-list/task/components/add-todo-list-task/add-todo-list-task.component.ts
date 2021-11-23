@@ -101,8 +101,11 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
       'date': this.builder.control('', Validators.required),
       'timePeriod': this.builder.group({
         'fullDay': false,
-        'startTime': this.builder.control(''),
-        'endTime': this.builder.control('', TimeValidators.endAfterStart),
+        'startTime': this.builder.control('', TimeValidators.requiredIfNotFullDay),
+        'endTime': this.builder.control('', [
+          TimeValidators.endAfterStart,
+          TimeValidators.requiredIfNotFullDay,
+        ]),
       }),
       'description': '',
     });
