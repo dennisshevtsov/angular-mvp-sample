@@ -8,7 +8,7 @@ import { TODO_LIST_PARAMETER,
 import { AddTodoListTaskRequestDto,
          TodoListTaskService,       } from '../../api';
 import { TODO_LIST_TASK_ROUTE,      } from '../../routing';
-import { TimeValidators } from '../../validators';
+import { TimeValidators,            } from '../../validators';
 import { AddTodoListTaskPresenter,  } from './add-todo-list-task.presenter';
 import { AddTodoListTaskView,       } from './add-todo-list-task.view';
 
