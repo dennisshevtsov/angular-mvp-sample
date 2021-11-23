@@ -8,6 +8,7 @@ import { TODO_LIST_PARAMETER,
 import { AddTodoListTaskRequestDto,
          TodoListTaskService,       } from '../../api';
 import { TODO_LIST_TASK_ROUTE,      } from '../../routing';
+import { TimeValidators } from '../../validators';
 import { AddTodoListTaskPresenter,  } from './add-todo-list-task.presenter';
 import { AddTodoListTaskView,       } from './add-todo-list-task.view';
 
@@ -98,9 +99,11 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     return this.builder.group({
       'title': this.builder.control('', Validators.required),
       'date': this.builder.control('', Validators.required),
-      'fullDay': false,
-      'startTime': '',
-      'endTime': '',
+      'timePeriod': this.builder.group({
+        'fullDay': false,
+        'startTime': this.builder.control(''),
+        'endTime': this.builder.control('', TimeValidators.endAfterStart),
+      }),
       'description': '',
     });
   }
