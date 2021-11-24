@@ -1,6 +1,7 @@
-import { Component, OnInit,                  } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
-import { ActivatedRoute, ParamMap, Router,   } from '@angular/router';
+import { Component, OnInit,                   } from '@angular/core';
+import { AbstractControlOptions, FormBuilder,
+         FormGroup, Validators,               } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Router,    } from '@angular/router';
 
 import { TodoListService,           } from '../../../api';
 import { TODO_LIST_PARAMETER,
@@ -8,7 +9,7 @@ import { TODO_LIST_PARAMETER,
 import { AddTodoListTaskRequestDto,
          TodoListTaskService,       } from '../../api';
 import { TODO_LIST_TASK_ROUTE,      } from '../../routing';
-import { TimeValidators,            } from '../../validators';
+import { timePeriodValidator,       } from '../../validators';
 import { AddTodoListTaskPresenter,  } from './add-todo-list-task.presenter';
 import { AddTodoListTaskView,       } from './add-todo-list-task.view';
 
@@ -99,15 +100,23 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     return this.builder.group({
       'title': this.builder.control('', Validators.required),
       'date': this.builder.control('', Validators.required),
-      'timePeriod': this.builder.group({
-        'fullDay': false,
-        'startTime': this.builder.control('', TimeValidators.requiredIfNotFullDay),
-        'endTime': this.builder.control('', [
-          TimeValidators.endAfterStart,
-          TimeValidators.requiredIfNotFullDay,
-        ]),
-      }),
+      'timePeriod': this.buildTimePeriodGroup(),
       'description': '',
     });
+  }
+
+  private buildTimePeriodGroup(): FormGroup {
+    const controlConfig = {
+      'fullDay': false,
+      'startTime': '',
+      'endTime': '',
+    };
+    const options: AbstractControlOptions = {
+      validators: [
+        timePeriodValidator,
+      ],
+    };
+
+    return this.builder.group(controlConfig, options);
   }
 }
