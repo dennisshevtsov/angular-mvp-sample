@@ -6,27 +6,26 @@ export function timePeriodValidator(timePeriodControl: AbstractControl)
 
   if (fullDayControl && !fullDayControl.value) {
     const startControl = timePeriodControl.get('start');
-    const endControl = timePeriodControl.get('end');
-
     let start;
 
     if (startControl && !startControl.pristine) {
       start = startControl.value;
     }
 
+    const endControl = timePeriodControl.get('end');
     let end;
 
     if (endControl && !endControl.pristine) {
       end = endControl.value;
     }
 
-    if (start == null) {
+    if (start == null || start === '') {
       return {
         startRequired: true,
       };
     }
 
-    if (end == null) {
+    if (end == null || end === '') {
       return {
         endRequired: true,
       };
