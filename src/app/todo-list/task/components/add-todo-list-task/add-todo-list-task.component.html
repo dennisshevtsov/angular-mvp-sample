@@ -68,6 +68,11 @@
                type="time"
                placeholder="Start time"
                formControlName="start">
+        <span class="invalid-feedback"
+            *ngIf="hasErrors('time')">
+          <span *ngIf="hasError('time', 'startRequired')">Please enter a start.</span>
+          <span *ngIf="hasError('time', 'endBeforeStart')">Please enter a start before an end.</span>
+        </span>
       </div>
       <div class="form-group mb-3" *ngIf="!form.value.time.fullDay">
         <label for="dpEndTime" class="form-label">End Time</label>
@@ -76,6 +81,11 @@
                type="time"
                placeholder="End time"
                formControlName="end">
+        <span class="invalid-feedback"
+            *ngIf="hasErrors('time')">
+          <span *ngIf="hasError('time', 'endRequired')">Please enter an end.</span>
+          <span *ngIf="hasError('time', 'endBeforeStart')">Please enter an end after a start.</span>
+        </span>
       </div>
     </div>
     <div class="form-group">
