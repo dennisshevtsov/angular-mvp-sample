@@ -12,6 +12,12 @@ export function timePeriodValidator(timePeriodControl: AbstractControl)
       start = startControl.value;
     }
 
+    if (start === '') {
+      return {
+        startRequired: true,
+      };
+    }
+
     const endControl = timePeriodControl.get('end');
     let end;
 
@@ -19,27 +25,23 @@ export function timePeriodValidator(timePeriodControl: AbstractControl)
       end = endControl.value;
     }
 
-    if (start == null || start === '') {
-      return {
-        startRequired: true,
-      };
-    }
-
-    if (end == null || end === '') {
+    if (end === '') {
       return {
         endRequired: true,
       };
     }
 
-    const startParts = start.split(':');
-    const endParts = end.split(':');
+    if (start && end) {
+      const startParts = start.split(':');
+      const endParts = end.split(':');
 
-    if (startParts[0] > endParts[0] ||
-        (startParts[0] == endParts[0] &&
-          startParts[1] > endParts[1])) {
-      return {
-        endBeforeStart: true,
-      };
+      if (startParts[0] > endParts[0] ||
+          (startParts[0] == endParts[0] &&
+            startParts[1] > endParts[1])) {
+        return {
+          endBeforeStart: true,
+        };
+      }
     }
   }
 
