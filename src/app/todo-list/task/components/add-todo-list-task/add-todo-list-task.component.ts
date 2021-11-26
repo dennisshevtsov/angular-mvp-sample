@@ -54,9 +54,9 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
       this.todoListIdValue!,
       this.form.value.title,
       this.form.value.date,
-      this.form.value.fullDay,
-      this.form.value.startTime,
-      this.form.value.endTime,
+      this.form.value.time.fullDay,
+      this.form.value.time.start,
+      this.form.value.time.end,
       this.form.value.description,
     );
   }
@@ -100,7 +100,7 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     return this.builder.group({
       'title': this.builder.control('', Validators.required),
       'date': this.builder.control('', Validators.required),
-      'timePeriod': this.buildTimePeriodGroup(),
+      'time': this.buildTimePeriodGroup(),
       'description': '',
     });
   }
@@ -108,8 +108,8 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   private buildTimePeriodGroup(): FormGroup {
     const controlConfig = {
       'fullDay': false,
-      'startTime': '',
-      'endTime': '',
+      'start': '',
+      'end': '',
     };
     const options: AbstractControlOptions = {
       validators: [
