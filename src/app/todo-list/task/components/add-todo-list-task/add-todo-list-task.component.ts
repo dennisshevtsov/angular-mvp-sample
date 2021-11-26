@@ -1,7 +1,7 @@
-import { Component, OnInit,                   } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
 import { AbstractControlOptions, FormBuilder,
-         FormGroup, Validators,               } from '@angular/forms';
-import { ActivatedRoute, ParamMap, Router,    } from '@angular/router';
+         FormGroup, Validators,                } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Router,     } from '@angular/router';
 
 import { TodoListService,           } from '../../../api';
 import { TODO_LIST_PARAMETER,
@@ -19,6 +19,7 @@ import { AddTodoListTaskView,       } from './add-todo-list-task.view';
   styleUrls: [
     './add-todo-list-task.component.scss',
   ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   private readonly presenter: AddTodoListTaskPresenter;
@@ -66,19 +67,19 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   }
 
   public isValid(controlName: string): boolean {
-    const control = this.form.get(controlName);
+    const control = controlName ? this.form.get(controlName) : this.form;
 
     return control == null || !(control.touched || control.dirty) || control.valid;
   }
 
   public hasErrors(controlName: string): boolean {
-    const control = this.form.get(controlName);
+    const control = controlName ? this.form.get(controlName) : this.form;
 
     return control != null && (control.touched || control.dirty) && control.errors != null;
   }
 
   public hasError(controlName: string, errorCode: string): boolean {
-    const control = this.form.get(controlName);
+    const control = controlName ? this.form.get(controlName) : this.form;
 
     return control != null && control.hasError(errorCode);
   }
