@@ -13,6 +13,10 @@ export function timePeriodValidator(timePeriodControl: AbstractControl)
     }
 
     if (start === '') {
+      startControl!.setErrors({
+        required: true,
+      });
+
       return {
         startRequired: true,
       };
@@ -22,6 +26,10 @@ export function timePeriodValidator(timePeriodControl: AbstractControl)
     let end;
 
     if (endControl && !endControl.pristine) {
+      endControl!.setErrors({
+        required: true,
+      });
+
       end = endControl.value;
     }
 
