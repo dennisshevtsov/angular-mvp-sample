@@ -17,26 +17,22 @@ export function timePeriodValidator(timePeriodControl: AbstractControl)
         required: true,
       });
 
-      return {
-        startRequired: true,
-      };
+      return null;
     }
 
     const endControl = timePeriodControl.get('end');
     let end;
 
     if (endControl && !endControl.pristine) {
-      endControl!.setErrors({
-        required: true,
-      });
-
       end = endControl.value;
     }
 
     if (end === '') {
-      return {
-        endRequired: true,
-      };
+      endControl!.setErrors({
+        required: true,
+      });
+
+      return null;
     }
 
     if (start && end) {
@@ -46,9 +42,12 @@ export function timePeriodValidator(timePeriodControl: AbstractControl)
       if (startParts[0] > endParts[0] ||
           (startParts[0] == endParts[0] &&
             startParts[1] > endParts[1])) {
-        return {
-          endBeforeStart: true,
-        };
+        startControl!.setErrors({
+          startBeforeEnd: true,
+        });
+        endControl!.setErrors({
+          startBeforeEnd: true,
+        });
       }
     }
   }
