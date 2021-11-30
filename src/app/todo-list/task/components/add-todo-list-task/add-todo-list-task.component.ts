@@ -67,19 +67,19 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   }
 
   public isValid(controlName: string): boolean {
-    const control = controlName ? this.form.get(controlName) : this.form;
+    const control = this.form.get(controlName);
 
     return control == null || !(control.touched || control.dirty) || control.valid;
   }
 
   public hasErrors(controlName: string): boolean {
-    const control = controlName ? this.form.get(controlName) : this.form;
+    const control = this.form.get(controlName);
 
     return control != null && (control.touched || control.dirty) && control.errors != null;
   }
 
   public hasError(controlName: string, errorCode: string): boolean {
-    const control = controlName ? this.form.get(controlName) : this.form;
+    const control = this.form.get(controlName);
 
     return control != null && control.hasError(errorCode);
   }
