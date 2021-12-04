@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
 import { AbstractControlOptions, FormBuilder,
          FormGroup, Validators,                } from '@angular/forms';
@@ -98,19 +99,21 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   }
 
   private buildForm(): FormGroup {
+    const now = Date.now();
+
     return this.builder.group({
       'title': this.builder.control('', Validators.required),
-      'date': this.builder.control('', Validators.required),
-      'time': this.buildTimePeriodGroup(),
+      'date': this.builder.control(formatDate(now, 'yyyy-MM-dd', 'en-US'), Validators.required),
+      'time': this.buildTimePeriodGroup(now),
       'description': '',
     });
   }
 
-  private buildTimePeriodGroup(): FormGroup {
+  private buildTimePeriodGroup(now: number): FormGroup {
     const controlConfig = {
       'fullDay': false,
-      'start': '',
-      'end': '',
+      'start': formatDate(now, 'hh:mm', 'en-US'),
+      'end': formatDate(now + 1 * 60 * 60 * 1000, 'hh:mm', 'en-US'),
     };
     const options: AbstractControlOptions = {
       validators: [
