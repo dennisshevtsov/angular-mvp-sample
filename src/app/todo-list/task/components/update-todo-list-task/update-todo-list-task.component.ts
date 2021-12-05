@@ -1,6 +1,8 @@
-import { Component, OnInit,                  } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router,   } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
+import { formatDate,                          } from '@angular/common';
+import { Component, OnInit,                   } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router,    } from '@angular/router';
+import { AbstractControlOptions, FormBuilder,
+         FormGroup, Validators,               } from '@angular/forms';
 
 import { GetTodoListResponseDto,       } from '../../../api';
 import { TODO_LIST_ROUTE,
@@ -9,6 +11,7 @@ import { UpdateTodoListTaskRequestDto,
          TodoListTaskService,          } from '../../api';
 import { TODO_LIST_TASK_PARAMETER,
          TODO_LIST_TASK_ROUTE,         } from '../../routing';
+import { timePeriodValidator,          } from '../../validators';
 import { UpdateTodoListTaskPresenter,  } from './update-todo-list-task.presenter';
 import { UpdateTodoListTaskView,       } from './update-todo-list-task.view';
 
@@ -128,13 +131,28 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   }
 
   private buildForm(): FormGroup {
+    const now = Date.now();
+
     return this.builder.group({
       'title': this.builder.control('', Validators.required),
-      'date': '',
-      'fullDay': false,
-      'startTime': '',
-      'endTime': '',
+      'date': this.builder.control(formatDate(now, 'yyyy-MM-dd', 'en-US'), Validators.required),
+      'time': this.buildTimePeriodGroup(now),
       'description': '',
     });
+  }
+
+  private buildTimePeriodGroup(now: number): FormGroup {
+    const controlConfig = {
+      'fullDay': false,
+      'start': formatDate(now, 'hh:mm', 'en-US'),
+      'end': formatDate(now + 1 * 60 * 60 * 1000, 'hh:mm', 'en-US'),
+    };
+    const options: AbstractControlOptions = {
+      validators: [
+        timePeriodValidator,
+      ],
+    };
+
+    return this.builder.group(controlConfig, options);
   }
 }
