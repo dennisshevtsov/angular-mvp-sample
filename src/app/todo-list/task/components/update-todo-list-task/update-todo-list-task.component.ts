@@ -68,9 +68,9 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
       this.todoListTaskIdValue,
       this.form.value.title,
       this.form.value.date,
-      this.form.value.fullDay,
-      this.form.value.startDate,
-      this.form.value.endDate,
+      this.form.value.time.fullDay,
+      this.form.value.time.startDate,
+      this.form.value.time.endDate,
       this.form.value.description,
     );
   }
@@ -79,9 +79,11 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
     this.form.setValue({
       'title': todoListTask.title,
       'date': todoListTask.date,
-      'fullDay': todoListTask.fullDay,
-      'startTime': todoListTask.startTime,
-      'endTime': todoListTask.endTime,
+      'time': {
+        'fullDay': todoListTask.fullDay,
+        'startTime': todoListTask.startTime,
+        'endTime': todoListTask.endTime,
+      },
       'description': todoListTask.description,
     });
   }
@@ -135,7 +137,7 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
 
     return this.builder.group({
       'title': this.builder.control('', Validators.required),
-      'date': this.builder.control(formatDate(now, 'yyyy-MM-dd', 'en-US'), Validators.required),
+      'date': this.builder.control('', Validators.required),
       'time': this.buildTimePeriodGroup(now),
       'description': '',
     });
@@ -144,8 +146,8 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   private buildTimePeriodGroup(now: number): FormGroup {
     const controlConfig = {
       'fullDay': false,
-      'start': formatDate(now, 'hh:mm', 'en-US'),
-      'end': formatDate(now + 1 * 60 * 60 * 1000, 'hh:mm', 'en-US'),
+      'start': '',
+      'end': '',
     };
     const options: AbstractControlOptions = {
       validators: [
