@@ -1,12 +1,12 @@
+import { TodoListTaskTimeDto, } from './todo-list-task-time-dto';
+
 export class SearchTodoListTasksRecordResponseDto {
   public constructor(
     public todoListTaskId: number  = 0,
-    public title         : string  = '',
-    public date          : string  = '',
-    public fullDay       : boolean = false,
-    public startTime     : string  = '',
-    public endTime       : string  = '',
-    public description   : string  = '',
     public completed     : boolean = false,
+    public title         : string  = '',
+    public description   : string  = '',
+    public date          : string  = '',
+    public time          : TodoListTaskTimeDto,
   ) { }
 }
