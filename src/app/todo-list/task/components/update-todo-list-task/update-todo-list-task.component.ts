@@ -8,7 +8,8 @@ import { GetTodoListResponseDto,       } from '../../../api';
 import { TODO_LIST_ROUTE,
          TODO_LIST_PARAMETER,          } from '../../../routing';
 import { UpdateTodoListTaskRequestDto,
-         TodoListTaskService,          } from '../../api';
+         TodoListTaskService,
+         TodoListTaskTimeDto,          } from '../../api';
 import { TODO_LIST_TASK_PARAMETER,
          TODO_LIST_TASK_ROUTE,         } from '../../routing';
 import { timePeriodValidator,          } from '../../validators';
@@ -67,11 +68,13 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
       this.todoList.todoListId,
       this.todoListTaskIdValue,
       this.form.value.title,
-      this.form.value.date,
-      this.form.value.time.fullDay,
-      this.form.value.time.startDate,
-      this.form.value.time.endDate,
       this.form.value.description,
+      this.form.value.date,
+      new TodoListTaskTimeDto(
+        this.form.value.time.fullDay,
+        this.form.value.time.start,
+        this.form.value.time.end,
+      ),
     );
   }
 
@@ -80,9 +83,9 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
       'title': todoListTask.title,
       'date': todoListTask.date,
       'time': {
-        'fullDay': todoListTask.fullDay,
-        'startTime': todoListTask.startTime,
-        'endTime': todoListTask.endTime,
+        'fullDay': todoListTask.time.fullDay,
+        'start': todoListTask.time.start,
+        'end': todoListTask.time.end,
       },
       'description': todoListTask.description,
     });
