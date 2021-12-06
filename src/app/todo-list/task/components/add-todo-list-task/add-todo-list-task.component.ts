@@ -8,7 +8,8 @@ import { TodoListService,           } from '../../../api';
 import { TODO_LIST_PARAMETER,
          TODO_LIST_ROUTE,           } from '../../../routing';
 import { AddTodoListTaskRequestDto,
-         TodoListTaskService,       } from '../../api';
+         TodoListTaskService,
+         TodoListTaskTimeDto,       } from '../../api';
 import { TODO_LIST_TASK_ROUTE,      } from '../../routing';
 import { timePeriodValidator,       } from '../../validators';
 import { AddTodoListTaskPresenter,  } from './add-todo-list-task.presenter';
@@ -55,11 +56,13 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     return new AddTodoListTaskRequestDto(
       this.todoListIdValue!,
       this.form.value.title,
-      this.form.value.date,
-      this.form.value.time.fullDay,
-      this.form.value.time.start,
-      this.form.value.time.end,
       this.form.value.description,
+      this.form.value.date,
+      new TodoListTaskTimeDto(
+        this.form.value.time.fullDay,
+        this.form.value.time.start,
+        this.form.value.time.end,
+      ),
     );
   }
 
