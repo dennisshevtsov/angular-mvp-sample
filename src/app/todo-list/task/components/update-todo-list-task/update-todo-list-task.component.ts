@@ -1,8 +1,7 @@
-import { formatDate,                          } from '@angular/common';
-import { Component, OnInit,                   } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router,    } from '@angular/router';
+import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router,     } from '@angular/router';
 import { AbstractControlOptions, FormBuilder,
-         FormGroup, Validators,               } from '@angular/forms';
+         FormGroup, Validators,                } from '@angular/forms';
 
 import { GetTodoListResponseDto,       } from '../../../api';
 import { TODO_LIST_ROUTE,
@@ -21,6 +20,7 @@ import { UpdateTodoListTaskView,       } from './update-todo-list-task.view';
   styleUrls: [
     './update-todo-list-task.component.scss',
   ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskView {
   private readonly presenter: UpdateTodoListTaskPresenter;
