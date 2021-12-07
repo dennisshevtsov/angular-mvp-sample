@@ -8,6 +8,7 @@ import { AddTodoListTaskRequestDto,
          GetTodoListTaskResponseDto,
          SearchTodoListTasksRecordResponseDto,
          SearchTodoListTasksRequestDto,
+         TodoListTaskTimeDto,
          UncompleteTodoListTaskRequestDto,
          UpdateTodoListTaskRequestDto,         } from '../dtos';
 
@@ -17,13 +18,15 @@ import { AddTodoListTaskRequestDto,
 export class TodoListTaskService {
   private readonly todoListTasksMap : Map<number, {
     todoListTaskId: number,
-    title         : string,
-    date          : string,
-    fullDay       : boolean,
-    startTime     : string,
-    endTime       : string,
-    description   : string,
     completed     : boolean,
+    title         : string,
+    description   : string,
+    date          : string,
+    time: {
+      fullDay : boolean,
+      start   : string,
+      end     : string,
+    },
   }[]> = new Map();
 
   public constructor() { }
@@ -55,13 +58,15 @@ export class TodoListTaskService {
     if (todoListTasks) {
       return todoListTasks.map(todoListTask => new SearchTodoListTasksRecordResponseDto(
         todoListTask.todoListTaskId,
-        todoListTask.title,
-        todoListTask.date,
-        todoListTask.fullDay,
-        todoListTask.startTime,
-        todoListTask.endTime,
-        todoListTask.description,
         todoListTask.completed,
+        todoListTask.title,
+        todoListTask.description,
+        todoListTask.date,
+        new TodoListTaskTimeDto(
+          todoListTask.time.fullDay,
+          todoListTask.time.start,
+          todoListTask.time.end,
+        ),
       ));
     }
 
@@ -80,13 +85,15 @@ export class TodoListTaskService {
 
     todoListTasks.push({
       todoListTaskId: todoListTaskId,
-      title: addTodoListTaskRequestDto.title,
-      date: addTodoListTaskRequestDto.date,
-      fullDay: addTodoListTaskRequestDto.fullDay,
-      startTime: addTodoListTaskRequestDto.startTime,
-      endTime: addTodoListTaskRequestDto.endTime,
-      description: addTodoListTaskRequestDto.description,
       completed: false,
+      title: addTodoListTaskRequestDto.title,
+      description: addTodoListTaskRequestDto.description,
+      date: addTodoListTaskRequestDto.date,
+      time: {
+        fullDay: addTodoListTaskRequestDto.time.fullDay,
+        start: addTodoListTaskRequestDto.time.start,
+        end: addTodoListTaskRequestDto.time.end,
+      },
     });
 
     return new AddTodoListTaskResponseDto(todoListTaskId)
@@ -104,9 +111,9 @@ export class TodoListTaskService {
       todoListTask.title = updateTodoListTaskRequestDto.title;
       todoListTask.description = updateTodoListTaskRequestDto.description;
       todoListTask.date = updateTodoListTaskRequestDto.date;
-      todoListTask.fullDay = updateTodoListTaskRequestDto.fullDay;
-      todoListTask.startTime = updateTodoListTaskRequestDto.startTime;
-      todoListTask.endTime = updateTodoListTaskRequestDto.endTime;
+      todoListTask.time.fullDay = updateTodoListTaskRequestDto.time.fullDay;
+      todoListTask.time.start = updateTodoListTaskRequestDto.time.start;
+      todoListTask.time.end = updateTodoListTaskRequestDto.time.end;
     }
   }
 

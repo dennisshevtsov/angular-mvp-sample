@@ -1,6 +1,7 @@
 import { GetTodoListTaskRequestDto,
          UpdateTodoListTaskRequestDto,
-         TodoListTaskService,          } from '../../api';
+         TodoListTaskService,
+         TodoListTaskTimeDto,          } from '../../api';
 import { UpdateTodoListTaskView,       } from './update-todo-list-task.view';
 
 export class UpdateTodoListTaskPresenter {
@@ -21,11 +22,13 @@ export class UpdateTodoListTaskPresenter {
         0,
         0,
         getTodoListTaskResponseDto.title,
-        getTodoListTaskResponseDto.date,
-        getTodoListTaskResponseDto.fullDay,
-        getTodoListTaskResponseDto.startTime,
-        getTodoListTaskResponseDto.endTime,
         getTodoListTaskResponseDto.description,
+        getTodoListTaskResponseDto.date,
+        new TodoListTaskTimeDto(
+          getTodoListTaskResponseDto.time.fullDay,
+          getTodoListTaskResponseDto.time.start,
+          getTodoListTaskResponseDto.time.end,
+        ),
       );
     }
   }
