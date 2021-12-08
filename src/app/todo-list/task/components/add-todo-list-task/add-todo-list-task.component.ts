@@ -1,6 +1,7 @@
 import { formatDate,                           } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
 import { AbstractControlOptions, FormBuilder,
+         FormControl,
          FormGroup, Validators,                } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router,     } from '@angular/router';
 
@@ -93,12 +94,16 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   }
 
   public onSubmit(): void {
-    this.presenter.add();
-    this.router.navigate([
-      TODO_LIST_ROUTE,
-      this.todoListIdValue!,
-      TODO_LIST_TASK_ROUTE,
-    ]);
+    this.validateForm();
+
+    if (this.form.valid) {
+      this.presenter.add();
+      this.router.navigate([
+        TODO_LIST_ROUTE,
+        this.todoListIdValue!,
+        TODO_LIST_TASK_ROUTE,
+      ]);
+    }
   }
 
   private buildForm(): FormGroup {
@@ -125,5 +130,24 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     };
 
     return this.builder.group(controlConfig, options);
+  }
+
+  private validateForm(): void {
+    this.validateFormGroup(this.form);
+  }
+
+  private validateFormGroup(formGroup: FormGroup): void {
+    Object.keys(formGroup.controls)
+          .forEach(controlName => {
+            const control = formGroup.get(controlName);
+
+            if (control instanceof FormControl) {
+              control.markAsTouched({
+                onlySelf: true,
+              });
+            } else if (control instanceof FormGroup) {
+              this.validateFormGroup(control);
+            }
+          })
   }
 }
