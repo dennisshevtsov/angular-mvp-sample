@@ -9,6 +9,6 @@ export class TodoListTaskTimePipe implements PipeTransform {
       return value.date;
     }
 
-    return `${value.date} ${value.time.start} - ${value.time.end}`;
+    return `${value.date} ${value.time.start}-${value.time.end}`;
   }
 }
