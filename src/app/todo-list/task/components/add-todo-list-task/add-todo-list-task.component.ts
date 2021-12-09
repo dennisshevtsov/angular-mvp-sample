@@ -139,13 +139,14 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   private validateFormGroup(formGroup: FormGroup): void {
     Object.keys(formGroup.controls)
           .forEach(controlName => {
-            const control = formGroup.get(controlName);
+            const control = formGroup.get(controlName)!;
 
-            if (control instanceof FormControl) {
-              control.markAsTouched({
-                onlySelf: true,
-              });
-            } else if (control instanceof FormGroup) {
+            control.markAsTouched({
+              onlySelf: true,
+            });
+            control.updateValueAndValidity();
+
+            if (control instanceof FormGroup) {
               this.validateFormGroup(control);
             }
           })
