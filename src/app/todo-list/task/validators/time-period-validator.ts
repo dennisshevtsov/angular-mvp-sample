@@ -27,7 +27,7 @@ export function timePeriodValidator(timePeriodControl: AbstractControl)
 
     endControl.setErrors(null);
 
-    if (!endControl.pristine) {
+    if (!endControl.pristine || endControl.touched || endControl.dirty) {
       end = endControl.value;
     }
 
@@ -45,7 +45,7 @@ export function timePeriodValidator(timePeriodControl: AbstractControl)
 
       if (startParts[0] > endParts[0] ||
           (startParts[0] == endParts[0] &&
-            startParts[1] > endParts[1])) {
+           startParts[1] > endParts[1])) {
         startControl.setErrors({
           startBeforeEnd: true,
         });
