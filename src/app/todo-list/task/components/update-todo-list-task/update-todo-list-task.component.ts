@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router,     } from '@angular/router';
 import { AbstractControlOptions, FormBuilder,
-         FormGroup, Validators,                } from '@angular/forms';
+         FormControl, FormGroup, Validators,   } from '@angular/forms';
 
 import { GetTodoListResponseDto,       } from '../../../api';
 import { TODO_LIST_ROUTE,
@@ -127,12 +127,16 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
   }
 
   public onSubmit(): void {
-    this.presenter.update();
-    this.router.navigate([
-      TODO_LIST_ROUTE,
-      this.todoList.todoListId,
-      TODO_LIST_TASK_ROUTE,
-    ]);
+    this.validateForm();
+
+    if (this.form.valid) {
+      this.presenter.update();
+      this.router.navigate([
+        TODO_LIST_ROUTE,
+        this.todoList.todoListId,
+        TODO_LIST_TASK_ROUTE,
+      ]);
+    }
   }
 
   private buildForm(): FormGroup {
@@ -159,5 +163,24 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
     };
 
     return this.builder.group(controlConfig, options);
+  }
+
+  private validateForm(): void {
+    this.validateFormGroup(this.form);
+  }
+
+  private validateFormGroup(formGroup: FormGroup): void {
+    Object.keys(formGroup.controls)
+          .forEach(controlName => {
+            const control = formGroup.get(controlName);
+
+            if (control instanceof FormControl) {
+              control.markAsTouched({
+                onlySelf: true,
+              });
+            } else if (control instanceof FormGroup) {
+              this.validateFormGroup(control);
+            }
+          })
   }
 }
