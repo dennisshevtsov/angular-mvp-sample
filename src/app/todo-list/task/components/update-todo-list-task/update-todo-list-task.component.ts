@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router,     } from '@angular/router';
 import { AbstractControlOptions, FormBuilder,
-         FormControl, FormGroup, Validators,   } from '@angular/forms';
+         FormGroup, Validators,                } from '@angular/forms';
 
 import { GetTodoListResponseDto,       } from '../../../api';
 import { TODO_LIST_ROUTE,
