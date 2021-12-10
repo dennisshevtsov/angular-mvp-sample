@@ -1,7 +1,6 @@
 import { formatDate,                           } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
 import { AbstractControlOptions, FormBuilder,
-         FormControl,
          FormGroup, Validators,                } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router,     } from '@angular/router';
 
