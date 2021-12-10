@@ -27,7 +27,10 @@
   <div class="list-group list-group-flush border-bottom w-100">
     <div class="list-group-item list-group-item-action d-flex gap-3"
          *ngFor="let record of datasource">
-      <input type="checkbox" class="form-check-input flex-shrink-0">
+      <input type="checkbox"
+             class="form-check-input flex-shrink-0"
+             [checked]="record.completed"
+             (change)="onComplete(record)">
       <div>
         <h5><strong class="mb-1">{{ record.title }}</strong></h5>
         <div><small><i class="bi bi-calendar me-2"></i>{{ record | todoListTaskTime }}</small></div>
