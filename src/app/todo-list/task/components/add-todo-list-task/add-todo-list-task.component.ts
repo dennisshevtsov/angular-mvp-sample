@@ -21,7 +21,6 @@ import { AddTodoListTaskView,       } from './add-todo-list-task.view';
   styleUrls: [
     './add-todo-list-task.component.scss',
   ],
-  encapsulation: ViewEncapsulation.None,
 })
 export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
   private readonly presenter: AddTodoListTaskPresenter;

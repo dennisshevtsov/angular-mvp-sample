@@ -20,7 +20,6 @@ import { UpdateTodoListTaskView,       } from './update-todo-list-task.view';
   styleUrls: [
     './update-todo-list-task.component.scss',
   ],
-  encapsulation: ViewEncapsulation.None,
 })
 export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskView {
   private readonly presenter: UpdateTodoListTaskPresenter;

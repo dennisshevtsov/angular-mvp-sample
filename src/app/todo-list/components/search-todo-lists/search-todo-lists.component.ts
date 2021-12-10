@@ -16,7 +16,6 @@ import { SearchTodoListsView,              } from './search-todo-lists.view';
   styleUrls: [
     './search-todo-lists.component.scss',
   ],
-  encapsulation: ViewEncapsulation.None,
 })
 export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
   private readonly presenter: SearchTodoListsPresenter;
