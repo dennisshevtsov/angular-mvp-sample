@@ -6,42 +6,20 @@ export function timePeriodValidator(timePeriodControl: AbstractControl)
 
   if (fullDayControl && !fullDayControl.value) {
     const startControl = timePeriodControl.get('start')!;
-    let start;
+    const startControlValue = getControlValue(startControl);
+    const startControlError = getControlError(startControlValue);
 
-    startControl.setErrors(null);
-
-    if (!startControl.pristine || startControl.touched || startControl.dirty) {
-      start = startControl.value;
-    }
-
-    if (start === '') {
-      startControl.setErrors({
-        required: true,
-      });
-
-      return null;
-    }
+    startControl.setErrors(startControlError);
 
     const endControl = timePeriodControl.get('end')!;
-    let end;
+    const endControlValue = getControlValue(endControl);
+    const endControlError = getControlError(startControlValue);
 
-    endControl.setErrors(null);
+    endControl.setErrors(endControlError);
 
-    if (!endControl.pristine || endControl.touched || endControl.dirty) {
-      end = endControl.value;
-    }
-
-    if (end === '') {
-      endControl.setErrors({
-        required: true,
-      });
-
-      return null;
-    }
-
-    if (start && end) {
-      const startParts = start.split(':');
-      const endParts = end.split(':');
+    if (startControlValue && endControlValue) {
+      const startParts = startControlValue.split(':');
+      const endParts = endControlValue.split(':');
 
       if (startParts[0] > endParts[0] ||
           (startParts[0] == endParts[0] &&
@@ -57,4 +35,27 @@ export function timePeriodValidator(timePeriodControl: AbstractControl)
   }
 
   return null;
+}
+
+function getControlValue(control: AbstractControl) {
+  let controlValue;
+
+  if (!control.pristine || control.touched || control.dirty) {
+    controlValue = control.value;
+  }
+
+  return controlValue;
+}
+
+function getControlError(controlValue: string)
+  : ValidationErrors | null {
+  let controlError: ValidationErrors | null = null;
+
+  if (controlValue === '') {
+    controlError =  {
+      required: true,
+    };
+  }
+
+  return controlError;
 }
