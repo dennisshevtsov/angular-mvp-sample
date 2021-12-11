@@ -23,7 +23,7 @@ export function timePeriodValidator(timePeriodControl: AbstractControl)
 
       if (startParts[0] > endParts[0] ||
           (startParts[0] == endParts[0] &&
-           startParts[1] > endParts[1])) {
+           startParts[1] >= endParts[1])) {
         startControl.setErrors({
           startBeforeEnd: true,
         });
