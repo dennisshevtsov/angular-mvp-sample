@@ -7,6 +7,7 @@ import { AddTodoListComponent,
          UpdateTodoListComponent,
          SearchTodoListsComponent, } from './components';
 import { TodoRoutingModule,        } from './todo-list-routing.module';
+import { CoreModule,               } from '../core';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { TodoRoutingModule,        } from './todo-list-routing.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    CoreModule,
     TodoListApiModule,
     TodoRoutingModule,
   ],
