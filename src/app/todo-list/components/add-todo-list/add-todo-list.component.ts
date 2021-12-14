@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
+import { Component,                            } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,   } from '@angular/forms';
 import { Router,                               } from '@angular/router';
 
+import { FormComponentBase,    } from '../../../core';
 import { AddTodoListRequestDto,
          TodoListService,       } from '../../api';
 import { TODO_LIST_ROUTE,       } from '../../routing';
@@ -14,10 +15,10 @@ import { AddTodoListView,       } from './add-todo-list.view';
     './add-todo-list.component.scss',
   ],
 })
-export class AddTodoListComponent implements OnInit, AddTodoListView {
+export class AddTodoListComponent
+  extends FormComponentBase
+  implements AddTodoListView {
   private readonly presenter: AddTodoListPresenter;
-
-  private formValue: FormGroup | undefined;
 
   public constructor(
     private readonly router: Router,
@@ -25,37 +26,12 @@ export class AddTodoListComponent implements OnInit, AddTodoListView {
 
     service: TodoListService,
   ) {
+    super();
     this.presenter = new AddTodoListPresenter(this, service);
-  }
-
-  public ngOnInit(): void {
-    this.formValue = this.buildForm();
-  }
-
-  public get form(): FormGroup {
-    return this.formValue ?? (this.formValue = this.buildForm());
   }
 
   public get todoList(): AddTodoListRequestDto {
     return this.form.value;
-  }
-
-  public isValid(controlName: string): boolean {
-    const control = this.form.get(controlName);
-
-    return control == null || !(control.touched || control.dirty) || control.valid;
-  }
-
-  public hasErrors(controlName: string): boolean {
-    const control = this.form.get(controlName);
-
-    return control != null && (control.touched || control.dirty) && control.errors != null;
-  }
-
-  public hasError(controlName: string, errorCode: string): boolean {
-    const control = this.form.get(controlName);
-
-    return control != null && control.hasError(errorCode);
   }
 
   public get searchTodoListsLink(): Array<any> {
@@ -67,7 +43,7 @@ export class AddTodoListComponent implements OnInit, AddTodoListView {
     this.router.navigate([ TODO_LIST_ROUTE, ]);
   }
 
-  private buildForm(): FormGroup {
+  protected buildForm(): FormGroup {
     return this.builder.group({
       'title': this.builder.control('', Validators.required),
       'description': '',
