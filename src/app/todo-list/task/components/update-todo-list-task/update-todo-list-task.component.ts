@@ -120,15 +120,6 @@ export class UpdateTodoListTaskComponent
     }
   }
 
-  protected buildForm(): FormGroup {
-    return this.builder.group({
-      'title': this.builder.control('', Validators.required),
-      'date': this.builder.control('', Validators.required),
-      'time': this.buildTimePeriodGroup(),
-      'description': '',
-    });
-  }
-
   private buildTimePeriodGroup(): FormGroup {
     const controlConfig = {
       'fullDay': false,
@@ -144,23 +135,12 @@ export class UpdateTodoListTaskComponent
     return this.builder.group(controlConfig, options);
   }
 
-  private validateForm(): void {
-    this.validateFormGroup(this.form);
-  }
-
-  private validateFormGroup(formGroup: FormGroup): void {
-    Object.keys(formGroup.controls)
-          .forEach(controlName => {
-            const control = formGroup.get(controlName)!;
-
-            control.markAsTouched({
-              onlySelf: true,
-            });
-            control.updateValueAndValidity();
-
-            if (control instanceof FormGroup) {
-              this.validateFormGroup(control);
-            }
-          })
+  protected buildForm(): FormGroup {
+    return this.builder.group({
+      'title': this.builder.control('', Validators.required),
+      'date': this.builder.control('', Validators.required),
+      'time': this.buildTimePeriodGroup(),
+      'description': '',
+    });
   }
 }
