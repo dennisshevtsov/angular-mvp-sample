@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
+import { Component, OnInit,                    } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router,     } from '@angular/router';
 import { AbstractControlOptions, FormBuilder,
          FormGroup, Validators,                } from '@angular/forms';
 
+import { FormComponentBase,            } from '../../../../core';
 import { GetTodoListResponseDto,       } from '../../../api';
 import { TODO_LIST_ROUTE,
          TODO_LIST_PARAMETER,          } from '../../../routing';
@@ -21,12 +22,13 @@ import { UpdateTodoListTaskView,       } from './update-todo-list-task.view';
     './update-todo-list-task.component.scss',
   ],
 })
-export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskView {
+export class UpdateTodoListTaskComponent
+  extends FormComponentBase
+  implements OnInit, UpdateTodoListTaskView {
   private readonly presenter: UpdateTodoListTaskPresenter;
 
   private todoListValue: GetTodoListResponseDto | undefined;
   private todoListTaskIdValue: number | undefined;
-  private formValue: FormGroup | undefined;
 
   public constructor(
     private readonly router: Router,
@@ -35,6 +37,8 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
 
     todoListTaskService: TodoListTaskService,
   ) {
+    super();
+
     this.presenter = new UpdateTodoListTaskPresenter(
       this, todoListTaskService);
   }
@@ -90,28 +94,6 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
     });
   }
 
-  public get form(): FormGroup {
-    return this.formValue ?? (this.formValue = this.buildForm());
-  }
-
-  public isValid(controlName: string): boolean {
-    const control = this.form.get(controlName);
-
-    return control == null || !(control.touched || control.dirty) || control.valid;
-  }
-
-  public hasErrors(controlName: string): boolean {
-    const control = this.form.get(controlName);
-
-    return control != null && (control.touched || control.dirty) && control.errors != null;
-  }
-
-  public hasError(controlName: string, errorCode: string): boolean {
-    const control = this.form.get(controlName);
-
-    return control != null && control.hasError(errorCode);
-  }
-
   public get searchTodoListsLink(): Array<any> {
     return [ '/', TODO_LIST_ROUTE, ];
   }
@@ -138,18 +120,16 @@ export class UpdateTodoListTaskComponent implements OnInit, UpdateTodoListTaskVi
     }
   }
 
-  private buildForm(): FormGroup {
-    const now = Date.now();
-
+  protected buildForm(): FormGroup {
     return this.builder.group({
       'title': this.builder.control('', Validators.required),
       'date': this.builder.control('', Validators.required),
-      'time': this.buildTimePeriodGroup(now),
+      'time': this.buildTimePeriodGroup(),
       'description': '',
     });
   }
 
-  private buildTimePeriodGroup(now: number): FormGroup {
+  private buildTimePeriodGroup(): FormGroup {
     const controlConfig = {
       'fullDay': false,
       'start': '',
