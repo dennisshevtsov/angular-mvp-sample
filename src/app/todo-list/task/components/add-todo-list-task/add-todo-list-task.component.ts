@@ -1,9 +1,10 @@
-import { formatDate,                           } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
-import { AbstractControlOptions, FormBuilder,
-         FormGroup, Validators,                } from '@angular/forms';
-import { ActivatedRoute, ParamMap, Router,     } from '@angular/router';
+import { formatDate,                         } from '@angular/common';
+import { Component, OnInit,                  } from '@angular/core';
+import { AbstractControlOptions,
+         FormBuilder, FormGroup, Validators, } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Router,   } from '@angular/router';
 
+import { FormComponentBase,         } from '../../../../core';
 import { TodoListService,           } from '../../../api';
 import { TODO_LIST_PARAMETER,
          TODO_LIST_ROUTE,           } from '../../../routing';
@@ -22,11 +23,12 @@ import { AddTodoListTaskView,       } from './add-todo-list-task.view';
     './add-todo-list-task.component.scss',
   ],
 })
-export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
+export class AddTodoListTaskComponent
+  extends FormComponentBase
+  implements OnInit, AddTodoListTaskView {
   private readonly presenter: AddTodoListTaskPresenter;
 
   private todoListIdValue: number | undefined;
-  private formValue: FormGroup | undefined;
 
   public constructor(
     private readonly router: Router,
@@ -37,6 +39,8 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     todoListService: TodoListService,
     todoListTaskService: TodoListTaskService,
   ) {
+    super();
+
     this.presenter = new AddTodoListTaskPresenter(
       this, todoListService, todoListTaskService);
   }
@@ -65,28 +69,6 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     );
   }
 
-  public get form(): FormGroup {
-    return this.formValue ?? (this.formValue = this.buildForm());
-  }
-
-  public isValid(controlName: string): boolean {
-    const control = this.form.get(controlName);
-
-    return control == null || !(control.touched || control.dirty) || control.valid;
-  }
-
-  public hasErrors(controlName: string): boolean {
-    const control = this.form.get(controlName);
-
-    return control != null && (control.touched || control.dirty) && control.errors != null;
-  }
-
-  public hasError(controlName: string, errorCode: string): boolean {
-    const control = this.form.get(controlName);
-
-    return control != null && control.hasError(errorCode);
-  }
-
   public get searchTodoListsLink(): Array<any> {
     return [ '/', TODO_LIST_ROUTE, ];
   }
@@ -104,7 +86,7 @@ export class AddTodoListTaskComponent implements OnInit, AddTodoListTaskView {
     }
   }
 
-  private buildForm(): FormGroup {
+  protected buildForm(): FormGroup {
     const now = Date.now();
 
     return this.builder.group({
