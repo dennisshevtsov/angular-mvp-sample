@@ -5,7 +5,8 @@ import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { FormComponentBase,        } from '../../../core';
 import { TodoListService,
          UpdateTodoListRequestDto, } from '../../api';
-import { TODO_LIST_ROUTE,          } from '../../routing';
+import { TODO_LIST_PARAMETER,
+         TODO_LIST_ROUTE,          } from '../../routing';
 import { UpdateTodoListView,       } from './update-todo-list.view';
 import { UpdateTodoListPresenter,  } from './update-todo-list.presenter';
 
@@ -36,7 +37,7 @@ export class UpdateTodoListComponent
 
   public ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      const todoListId = paramMap.get('todoListId');
+      const todoListId = paramMap.get(TODO_LIST_PARAMETER);
 
       if (todoListId) {
         this.todoListIdValue = +todoListId;
@@ -65,8 +66,12 @@ export class UpdateTodoListComponent
   }
 
   public onSubmit(): void {
-    this.presenter.update();
-    this.router.navigate([ TODO_LIST_ROUTE, ]);
+    this.validateForm();
+
+    if (this.form.valid) {
+      this.presenter.update();
+      this.router.navigate([ TODO_LIST_ROUTE, ]);
+    }
   }
 
   protected buildForm() : FormGroup {
