@@ -39,8 +39,12 @@ export class AddTodoListComponent
   }
 
   public onSubmit(): void {
-    this.presenter.add();
-    this.router.navigate([ TODO_LIST_ROUTE, ]);
+    this.validateForm();
+
+    if (this.form.valid) {
+      this.presenter.add();
+      this.router.navigate([ TODO_LIST_ROUTE, ]);
+    }
   }
 
   protected buildForm(): FormGroup {
