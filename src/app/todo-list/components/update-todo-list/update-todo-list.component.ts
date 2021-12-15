@@ -2,6 +2,7 @@ import { Component, OnInit,                  } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router,   } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 
+import { FormComponentBase,        } from '../../../core';
 import { TodoListService,
          UpdateTodoListRequestDto, } from '../../api';
 import { TODO_LIST_ROUTE,          } from '../../routing';
@@ -14,10 +15,11 @@ import { UpdateTodoListPresenter,  } from './update-todo-list.presenter';
     './update-todo-list.component.scss',
   ],
 })
-export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
+export class UpdateTodoListComponent
+  extends FormComponentBase
+  implements OnInit, UpdateTodoListView {
   private readonly presenter: UpdateTodoListPresenter;
 
-  private formValue: FormGroup | undefined;
   private todoListIdValue: number | undefined;
 
   public constructor(
@@ -27,6 +29,8 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
 
     service: TodoListService,
   ) {
+    super();
+
     this.presenter = new UpdateTodoListPresenter(this, service);
   }
 
@@ -39,10 +43,6 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
         this.presenter.load();
       }
     });
-  }
-
-  public get form(): FormGroup {
-    return this.formValue ?? (this.formValue = this.buildForm());
   }
 
   public get todoList(): UpdateTodoListRequestDto {
@@ -60,24 +60,6 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
     });
   }
 
-  public isValid(controlName: string): boolean {
-    const control = this.form.get(controlName);
-
-    return control == null || !(control.touched || control.dirty) || control.valid;
-  }
-
-  public hasErrors(controlName: string): boolean {
-    const control = this.form.get(controlName);
-
-    return control != null && (control.touched || control.dirty) && control.errors != null;
-  }
-
-  public hasError(controlName: string, errorCode: string): boolean {
-    const control = this.form.get(controlName);
-
-    return control != null && control.hasError(errorCode);
-  }
-
   public get searchTodoListsLink(): Array<any> {
     return [ '/', TODO_LIST_ROUTE, ];
   }
@@ -87,7 +69,7 @@ export class UpdateTodoListComponent implements OnInit, UpdateTodoListView {
     this.router.navigate([ TODO_LIST_ROUTE, ]);
   }
 
-  private buildForm() : FormGroup {
+  protected buildForm() : FormGroup {
     return this.builder.group({
       'title': this.builder.control('', Validators.required),
       'description': '',
