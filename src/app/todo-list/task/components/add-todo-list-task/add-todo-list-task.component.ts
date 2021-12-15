@@ -33,7 +33,6 @@ export class AddTodoListTaskComponent
   public constructor(
     private readonly router: Router,
     private readonly route: ActivatedRoute,
-
     private readonly builder: FormBuilder,
 
     todoListService: TodoListService,
@@ -86,17 +85,6 @@ export class AddTodoListTaskComponent
     }
   }
 
-  protected buildForm(): FormGroup {
-    const now = Date.now();
-
-    return this.builder.group({
-      'title': this.builder.control('', Validators.required),
-      'date': this.builder.control(formatDate(now, 'yyyy-MM-dd', 'en-US'), Validators.required),
-      'time': this.buildTimePeriodGroup(now),
-      'description': '',
-    });
-  }
-
   private buildTimePeriodGroup(now: number): FormGroup {
     const controlConfig = {
       'fullDay': false,
@@ -112,23 +100,14 @@ export class AddTodoListTaskComponent
     return this.builder.group(controlConfig, options);
   }
 
-  private validateForm(): void {
-    this.validateFormGroup(this.form);
-  }
+  protected buildForm(): FormGroup {
+    const now = Date.now();
 
-  private validateFormGroup(formGroup: FormGroup): void {
-    Object.keys(formGroup.controls)
-          .forEach(controlName => {
-            const control = formGroup.get(controlName)!;
-
-            control.markAsTouched({
-              onlySelf: true,
-            });
-            control.updateValueAndValidity();
-
-            if (control instanceof FormGroup) {
-              this.validateFormGroup(control);
-            }
-          })
+    return this.builder.group({
+      'title': this.builder.control('', Validators.required),
+      'date': this.builder.control(formatDate(now, 'yyyy-MM-dd', 'en-US'), Validators.required),
+      'time': this.buildTimePeriodGroup(now),
+      'description': '',
+    });
   }
 }
