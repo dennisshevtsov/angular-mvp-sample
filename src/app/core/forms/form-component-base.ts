@@ -9,6 +9,26 @@ export abstract class FormComponentBase {
 
   protected abstract buildForm(): FormGroup;
 
+  protected validateForm(): void {
+    this.validateFormGroup(this.form);
+  }
+
+  protected validateFormGroup(formGroup: FormGroup): void {
+    Object.keys(formGroup.controls)
+          .forEach(controlName => {
+            const control = formGroup.get(controlName)!;
+
+            control.markAsTouched({
+              onlySelf: true,
+            });
+            control.updateValueAndValidity();
+
+            if (control instanceof FormGroup) {
+              this.validateFormGroup(control);
+            }
+          })
+  }
+
   public isValid(controlName: string): boolean {
     const control = this.form.get(controlName);
 
