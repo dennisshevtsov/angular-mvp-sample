@@ -2,7 +2,7 @@ import { Component,                            } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,   } from '@angular/forms';
 import { Router,                               } from '@angular/router';
 
-import { FormComponentBase,    } from '../../../core';
+import { FormComponentBase,     } from '../../../core';
 import { AddTodoListRequestDto,
          TodoListService,       } from '../../api';
 import { TODO_LIST_ROUTE,       } from '../../routing';
