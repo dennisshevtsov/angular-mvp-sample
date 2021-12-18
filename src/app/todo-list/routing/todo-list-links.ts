@@ -1,16 +1,27 @@
+import { Injectable, } from '@angular/core';
+
 import { TODO_LIST_NEW_ROUTE,
          TODO_LIST_ROUTE,     } from './todo-list-routes-defaults';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class TodoListLinks {
-  public static addTodoListLink() {
-    return `${TODO_LIST_ROUTE}/${TODO_LIST_NEW_ROUTE}`;
+  public addTodoListLink(): Array<any> {
+    return [
+      TODO_LIST_ROUTE,
+      TODO_LIST_NEW_ROUTE,
+    ];
   }
 
-  public static updateTodoListLink(todoListId: number | string) {
-    return `${TODO_LIST_ROUTE}/${todoListId}`;
+  public updateTodoListLink(todoListId: number | string): Array<any> {
+    return [
+      TODO_LIST_ROUTE,
+      todoListId,
+    ];
   }
 
-  public static searchTodoLists() {
-    return TODO_LIST_ROUTE;
+  public searchTodoListsLink(): Array<any> {
+    return [ TODO_LIST_ROUTE ];
   }
 }
