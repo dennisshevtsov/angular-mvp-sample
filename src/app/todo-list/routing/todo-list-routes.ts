@@ -24,6 +24,6 @@ export class TodoListRoutes {
   }
 
   private convertToRoute(link: Array<any>): string {
-    return link.join('/');
+    return link.slice(1).join('/');
   }
 }
