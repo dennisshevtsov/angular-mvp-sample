@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { FormComponentBase,        } from '../../../core';
 import { TodoListService,
          UpdateTodoListRequestDto, } from '../../api';
-import { TODO_LIST_PARAMETER,
+import { TodoListLinks, TODO_LIST_PARAMETER,
          TODO_LIST_ROUTE,          } from '../../routing';
 import { UpdateTodoListView,       } from './update-todo-list.view';
 import { UpdateTodoListPresenter,  } from './update-todo-list.presenter';
@@ -27,6 +27,8 @@ export class UpdateTodoListComponent
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly builder: FormBuilder,
+
+    public readonly links: TodoListLinks,
 
     service: TodoListService,
   ) {
@@ -61,16 +63,12 @@ export class UpdateTodoListComponent
     });
   }
 
-  public get searchTodoListsLink(): Array<any> {
-    return [ '/', TODO_LIST_ROUTE, ];
-  }
-
   public onSubmit(): void {
     this.validateForm();
 
     if (this.form.valid) {
       this.presenter.update();
-      this.router.navigate([ TODO_LIST_ROUTE, ]);
+      this.router.navigate(this.links.searchTodoListsLink());
     }
   }
 
