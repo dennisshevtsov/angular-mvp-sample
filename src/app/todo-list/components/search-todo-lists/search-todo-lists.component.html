@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-3">
       <a class="text-dark text-decoration-none fs-4"
-         [routerLink]="searchTodoListsLink">
+         [routerLink]="links.searchTodoListsLink()">
         <i class="bi bi-card-checklist me-2"></i>
         <span>TODO list</span>
       </a>
@@ -10,7 +10,7 @@
     <div class="col-md-9 d-grid gap-2 d-md-flex justify-content-md-end">
       <a class="btn btn-light"
          style="width: 100px;"
-         [routerLink]="addTodoListLink">
+         [routerLink]="links.addTodoListLink()">
         <i class="bi bi-plus"></i>
         <span>Add</span>
       </a>
@@ -28,7 +28,7 @@
            style="cursor: pointer;"
            (click)="onDeleteTodoList(record)"><span>remove</span></a>
         <a class="me-2"
-           [routerLink]="updateTodoListLink(record.todoListId)">
+           [routerLink]="links.updateTodoListLink(record.todoListId)">
            <span>edit</span>
         </a>
         <a class="me-2"
@@ -38,7 +38,7 @@
       </div>
     </div>
     <a class="list-group-item list-group-item-action"
-       [routerLink]="addTodoListLink">
+       [routerLink]="links.addTodoListLink()">
       <i class="bi bi-plus"></i>
       <span>Add new TODO list</span>
     </a>

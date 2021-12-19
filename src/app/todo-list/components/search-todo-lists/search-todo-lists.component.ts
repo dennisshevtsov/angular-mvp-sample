@@ -1,12 +1,11 @@
-import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router,     } from '@angular/router';
+import { Component, OnInit,        } from '@angular/core';
+import { ActivatedRoute, ParamMap, } from '@angular/router';
 
 import { DeleteTodoListRequestDto,
          SearchTodoListsRecordResponseDto,
          SearchTodoListsRequestDto,
          TodoListService,                  } from '../../api';
-import { TODO_LIST_NEW_ROUTE,
-         TODO_LIST_ROUTE,                  } from '../../routing';
+import { TodoListLinks, TODO_LIST_ROUTE,   } from '../../routing';
 import { TODO_LIST_TASK_ROUTE,             } from '../../task/routing';
 import { SearchTodoListsPresenter,         } from './search-todo-lists.presenter';
 import { SearchTodoListsView,              } from './search-todo-lists.view';
@@ -25,8 +24,9 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
   private todoListsValue: SearchTodoListsRecordResponseDto[] | undefined;
 
   public constructor(
-    private readonly router: Router,
     private readonly route: ActivatedRoute,
+
+    public readonly links: TodoListLinks,
 
     service: TodoListService,
   ) {
@@ -35,7 +35,6 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
 
   public ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      this.query.term = paramMap.get('term') ?? '';
       this.presenter.search();
     });
   }
@@ -62,18 +61,6 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
 
   public set datasource(datasource: SearchTodoListsRecordResponseDto[]) {
     this.todoListsValue = datasource;
-  }
-
-  public get searchTodoListsLink(): Array<any> {
-    return [ '/', TODO_LIST_ROUTE, ];
-  }
-
-  public updateTodoListLink(todoListId: number): Array<any> {
-    return [ '/', TODO_LIST_ROUTE, todoListId, ];
-  }
-
-  public get addTodoListLink(): Array<any> {
-    return [ '/', TODO_LIST_ROUTE, TODO_LIST_NEW_ROUTE, ];
   }
 
   public searchTodoListTasks(todoListId: number): Array<any> {
