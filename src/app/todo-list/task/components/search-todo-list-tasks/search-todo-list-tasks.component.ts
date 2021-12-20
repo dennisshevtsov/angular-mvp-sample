@@ -1,8 +1,9 @@
-import { Component, OnInit,      } from '@angular/core';
-import { ActivatedRoute,         } from '@angular/router';
+import { Component, OnInit, } from '@angular/core';
+import { ActivatedRoute,    } from '@angular/router';
 
 import { TodoListService,                      } from '../../../api';
-import { TODO_LIST_PARAMETER, TODO_LIST_ROUTE, } from '../../../routing';
+import { TodoListLinks, TODO_LIST_PARAMETER,
+         TODO_LIST_ROUTE,                      } from '../../../routing';
 import { SearchTodoListTasksRecordResponseDto,
          SearchTodoListTasksRequestDto,
          TodoListTaskService,                  } from '../../api';
@@ -26,6 +27,8 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
 
   public constructor(
     private readonly route: ActivatedRoute,
+
+    public readonly links: TodoListLinks,
 
     todoListService: TodoListService,
     todoListTaskService: TodoListTaskService,
@@ -63,10 +66,6 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
 
   public set selected(selectedTodoListTask: SearchTodoListTasksRecordResponseDto) {
     this.selectedValue = selectedTodoListTask;
-  }
-
-  public get searchTodoListsLink(): Array<any> {
-    return [ '/', TODO_LIST_ROUTE, ];
   }
 
   public get addTodoListTaskLink(): Array<any> {
