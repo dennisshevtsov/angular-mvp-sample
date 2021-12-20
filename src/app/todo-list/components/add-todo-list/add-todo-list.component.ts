@@ -1,11 +1,11 @@
-import { Component,                            } from '@angular/core';
-import { FormBuilder, FormGroup, Validators,   } from '@angular/forms';
-import { Router,                               } from '@angular/router';
+import { Component,                          } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 
 import { FormComponentBase,     } from '../../../core';
 import { AddTodoListRequestDto,
          TodoListService,       } from '../../api';
-import { TodoListLinks,         } from '../../routing';
+import { TodoListLinks,
+         TodoListNavigator,     } from '../../routing';
 import { AddTodoListPresenter,  } from './add-todo-list.presenter';
 import { AddTodoListView,       } from './add-todo-list.view';
 
@@ -21,14 +21,15 @@ export class AddTodoListComponent
   private readonly presenter: AddTodoListPresenter;
 
   public constructor(
-    private readonly router: Router,
     private readonly builder: FormBuilder,
+    private readonly navigator: TodoListNavigator,
 
     public readonly links: TodoListLinks,
 
     service: TodoListService,
   ) {
     super();
+
     this.presenter = new AddTodoListPresenter(this, service);
   }
 
@@ -41,7 +42,7 @@ export class AddTodoListComponent
 
     if (this.form.valid) {
       this.presenter.add();
-      this.router.navigate(this.links.searchTodoListsLink());
+      this.navigator.navigateToSearchTodoLists();
     }
   }
 
