@@ -6,7 +6,8 @@ import { ActivatedRoute, ParamMap, Router,   } from '@angular/router';
 
 import { FormComponentBase,         } from '../../../../core';
 import { TodoListService,           } from '../../../api';
-import { TODO_LIST_PARAMETER,
+import { TodoListLinks,
+         TODO_LIST_PARAMETER,
          TODO_LIST_ROUTE,           } from '../../../routing';
 import { AddTodoListTaskRequestDto,
          TodoListTaskService,
@@ -34,6 +35,8 @@ export class AddTodoListTaskComponent
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly builder: FormBuilder,
+
+    public readonly links: TodoListLinks,
 
     todoListService: TodoListService,
     todoListTaskService: TodoListTaskService,
@@ -68,8 +71,8 @@ export class AddTodoListTaskComponent
     );
   }
 
-  public get searchTodoListsLink(): Array<any> {
-    return [ '/', TODO_LIST_ROUTE, ];
+  public get searchTodoListTasksLink(): Array<any> {
+    return [ '/', TODO_LIST_ROUTE, TODO_LIST_TASK_ROUTE, ];
   }
 
   public onSubmit(): void {
