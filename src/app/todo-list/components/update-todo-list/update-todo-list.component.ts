@@ -5,7 +5,8 @@ import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { FormComponentBase,        } from '../../../core';
 import { TodoListService,
          UpdateTodoListRequestDto, } from '../../api';
-import { TodoListLinks, TodoListNavigator,
+import { TodoListLinks,
+         TodoListNavigator,
          TODO_LIST_PARAMETER,      } from '../../routing';
 import { UpdateTodoListView,       } from './update-todo-list.view';
 import { UpdateTodoListPresenter,  } from './update-todo-list.presenter';
