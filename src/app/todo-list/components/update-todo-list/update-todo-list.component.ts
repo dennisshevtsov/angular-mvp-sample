@@ -1,12 +1,12 @@
 import { Component, OnInit,                  } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router,   } from '@angular/router';
+import { ActivatedRoute, ParamMap,           } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 
 import { FormComponentBase,        } from '../../../core';
 import { TodoListService,
          UpdateTodoListRequestDto, } from '../../api';
-import { TodoListLinks, TODO_LIST_PARAMETER,
-         TODO_LIST_ROUTE,          } from '../../routing';
+import { TodoListLinks, TodoListNavigator,
+         TODO_LIST_PARAMETER,      } from '../../routing';
 import { UpdateTodoListView,       } from './update-todo-list.view';
 import { UpdateTodoListPresenter,  } from './update-todo-list.presenter';
 
@@ -24,9 +24,9 @@ export class UpdateTodoListComponent
   private todoListIdValue: number | undefined;
 
   public constructor(
-    private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly builder: FormBuilder,
+    private readonly navigator: TodoListNavigator,
 
     public readonly links: TodoListLinks,
 
@@ -68,7 +68,7 @@ export class UpdateTodoListComponent
 
     if (this.form.valid) {
       this.presenter.update();
-      this.router.navigate(this.links.searchTodoListsLink());
+      this.navigator.navigateToSearchTodoLists();
     }
   }
 
