@@ -6,7 +6,8 @@ import { AbstractControlOptions, FormBuilder,
 import { FormComponentBase,            } from '../../../../core';
 import { GetTodoListResponseDto,       } from '../../../api';
 import { TODO_LIST_ROUTE,
-         TODO_LIST_PARAMETER,          } from '../../../routing';
+         TODO_LIST_PARAMETER,
+         TodoListLinks,                } from '../../../routing';
 import { UpdateTodoListTaskRequestDto,
          TodoListTaskService,
          TodoListTaskTimeDto,          } from '../../api';
@@ -34,6 +35,8 @@ export class UpdateTodoListTaskComponent
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly builder: FormBuilder,
+
+    public readonly links: TodoListLinks,
 
     todoListTaskService: TodoListTaskService,
   ) {
@@ -92,10 +95,6 @@ export class UpdateTodoListTaskComponent
       },
       'description': todoListTask.description,
     });
-  }
-
-  public get searchTodoListsLink(): Array<any> {
-    return [ '/', TODO_LIST_ROUTE, ];
   }
 
   public get searchTodoListTasksLink(): Array<any> {
