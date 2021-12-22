@@ -1,7 +1,6 @@
 import { Injectable, } from '@angular/core';
 
-import { TODO_LIST_ID_PARAMETER,      } from '../../routing';
-import { TodoListTaskLinks,           } from './todo-list-task-links';
+import { TodoListTaskRouteFactor,     } from './todo-list-task-route-factory';
 import { TODO_LIST_TASK_ID_PARAMETER, } from './todo-list-task-routes-values';
 
 @Injectable({
@@ -9,27 +8,26 @@ import { TODO_LIST_TASK_ID_PARAMETER, } from './todo-list-task-routes-values';
 })
 export class TodoListTaskRoutes {
   public constructor(
-    private readonly links: TodoListTaskLinks,
+    private readonly todoListTaskRouteFactory: TodoListTaskRouteFactor,
   ) {}
 
   public addTodoListRoute(): string {
     return this.convertToRoute(
-      this.links.addTodoListTaskLink(`:${TODO_LIST_ID_PARAMETER}`));
+      this.todoListTaskRouteFactory.addTodoListTaskRoute());
   }
 
   public updateTodoListRoute(): string {
     return this.convertToRoute(
-      this.links.updateTodoListTaskLink(
-        `:${TODO_LIST_ID_PARAMETER}`,
+      this.todoListTaskRouteFactory.updateTodoListTaskRoute(
         `:${TODO_LIST_TASK_ID_PARAMETER}`));
   }
 
   public searchTodoListsRoute(): string {
     return this.convertToRoute(
-      this.links.searchTodoListTasksLink(`:${TODO_LIST_ID_PARAMETER}`));
+      this.todoListTaskRouteFactory.searchTodoListTasksRoute());
   }
 
   private convertToRoute(link: Array<any>): string {
-    return link.slice(1).join('/');
+    return link.join('/');
   }
 }
