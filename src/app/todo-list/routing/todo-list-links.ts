@@ -1,7 +1,7 @@
 import { Injectable, } from '@angular/core';
 
 import { TODO_LIST_NEW_ROUTE,
-         TODO_LIST_ROUTE,     } from './todo-list-routes-defaults';
+         TODO_LIST_ROUTE,     } from './todo-list-routes-values';
 
 @Injectable({
   providedIn: 'root',

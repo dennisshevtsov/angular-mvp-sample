@@ -1,7 +1,7 @@
 import { Injectable, } from '@angular/core';
 
 import { TodoListLinks,       } from './todo-list-links';
-import { TODO_LIST_PARAMETER, } from './todo-list-routes-defaults';
+import { TODO_LIST_ID_PARAMETER, } from './todo-list-routes-values';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class TodoListRoutes {
   }
 
   public updateTodoListRoute(): string {
-    return this.convertToRoute(this.links.updateTodoListLink(`:${TODO_LIST_PARAMETER}`));
+    return this.convertToRoute(this.links.updateTodoListLink(`:${TODO_LIST_ID_PARAMETER}`));
   }
 
   public searchTodoListsRoute(): string {
