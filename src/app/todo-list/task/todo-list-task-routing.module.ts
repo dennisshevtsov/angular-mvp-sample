@@ -1,24 +1,39 @@
-import { NgModule,             } from '@angular/core';
+import { Injector, NgModule,   } from '@angular/core';
 import { RouterModule, Routes, } from '@angular/router';
 
 import { AddTodoListTaskComponent,
          SearchTodoListTasksComponent,
          UpdateTodoListTaskComponent,  } from './components';
-import { TODO_LIST_TASK_ROUTE,
-         TODO_LIST_TASK_PARAMETER,
-         TODO_LIST_NEW_TASK_ROUTE,     } from './routing';
+import { TodoListTaskLinks,
+         TodoListTaskRoutes,           } from './routing';
+
+const options = {
+  providers: [
+    {
+      provide: TodoListTaskRoutes,
+      deps: [ TodoListTaskLinks ],
+    },
+    {
+      provide: TodoListTaskLinks,
+      deps: [],
+    },
+  ],
+}
+const factory = Injector.create(options);
+
+const routeProvider = factory.get(TodoListTaskRoutes);
 
 export const TODO_LIST_TASK_ROUTES: Routes = [
   {
-    path: TODO_LIST_TASK_ROUTE,
+    path: routeProvider.searchTodoListsRoute(),
     component: SearchTodoListTasksComponent,
   },
   {
-    path: `${TODO_LIST_TASK_ROUTE}/${TODO_LIST_NEW_TASK_ROUTE}`,
+    path: routeProvider.addTodoListRoute(),
     component: AddTodoListTaskComponent,
   },
   {
-    path: `${TODO_LIST_TASK_ROUTE}/:${TODO_LIST_TASK_PARAMETER}`,
+    path: routeProvider.updateTodoListRoute(),
     component: UpdateTodoListTaskComponent,
   },
 ];
