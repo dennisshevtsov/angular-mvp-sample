@@ -7,7 +7,7 @@ import { ActivatedRoute, ParamMap, Router,   } from '@angular/router';
 import { FormComponentBase,         } from '../../../../core';
 import { TodoListService,           } from '../../../api';
 import { TodoListLinks,
-         TODO_LIST_PARAMETER,
+         TODO_LIST_ID_PARAMETER,
          TODO_LIST_ROUTE,           } from '../../../routing';
 import { AddTodoListTaskRequestDto,
          TodoListTaskService,
@@ -49,7 +49,7 @@ export class AddTodoListTaskComponent
 
   public ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      const todoListId = paramMap.get(TODO_LIST_PARAMETER);
+      const todoListId = paramMap.get(TODO_LIST_ID_PARAMETER);
 
       if (todoListId) {
         this.todoListIdValue = +todoListId;

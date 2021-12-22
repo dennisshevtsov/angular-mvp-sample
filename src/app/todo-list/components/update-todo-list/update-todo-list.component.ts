@@ -7,7 +7,7 @@ import { TodoListService,
          UpdateTodoListRequestDto, } from '../../api';
 import { TodoListLinks,
          TodoListNavigator,
-         TODO_LIST_PARAMETER,      } from '../../routing';
+         TODO_LIST_ID_PARAMETER,      } from '../../routing';
 import { UpdateTodoListView,       } from './update-todo-list.view';
 import { UpdateTodoListPresenter,  } from './update-todo-list.presenter';
 
@@ -40,7 +40,7 @@ export class UpdateTodoListComponent
 
   public ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      const todoListId = paramMap.get(TODO_LIST_PARAMETER);
+      const todoListId = paramMap.get(TODO_LIST_ID_PARAMETER);
 
       if (todoListId) {
         this.todoListIdValue = +todoListId;

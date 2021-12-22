@@ -6,12 +6,12 @@ import { AbstractControlOptions, FormBuilder,
 import { FormComponentBase,            } from '../../../../core';
 import { GetTodoListResponseDto,       } from '../../../api';
 import { TODO_LIST_ROUTE,
-         TODO_LIST_PARAMETER,
+         TODO_LIST_ID_PARAMETER,
          TodoListLinks,                } from '../../../routing';
 import { UpdateTodoListTaskRequestDto,
          TodoListTaskService,
          TodoListTaskTimeDto,          } from '../../api';
-import { TODO_LIST_TASK_PARAMETER,
+import { TODO_LIST_TASK_ID_PARAMETER,
          TODO_LIST_TASK_ROUTE,         } from '../../routing';
 import { timePeriodValidator,          } from '../../validators';
 import { UpdateTodoListTaskPresenter,  } from './update-todo-list-task.presenter';
@@ -48,8 +48,8 @@ export class UpdateTodoListTaskComponent
 
   public ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      const todoListId = paramMap.get(TODO_LIST_PARAMETER);
-      const todoListTaskId = paramMap.get(TODO_LIST_TASK_PARAMETER);
+      const todoListId = paramMap.get(TODO_LIST_ID_PARAMETER);
+      const todoListTaskId = paramMap.get(TODO_LIST_TASK_ID_PARAMETER);
 
       if (todoListId && todoListTaskId) {
         this.todoList.todoListId = +todoListId;

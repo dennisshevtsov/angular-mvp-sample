@@ -2,7 +2,7 @@ import { Component, OnInit, } from '@angular/core';
 import { ActivatedRoute,    } from '@angular/router';
 
 import { TodoListService,                      } from '../../../api';
-import { TodoListLinks, TODO_LIST_PARAMETER,
+import { TodoListLinks, TODO_LIST_ID_PARAMETER,
          TODO_LIST_ROUTE,                      } from '../../../routing';
 import { SearchTodoListTasksRecordResponseDto,
          SearchTodoListTasksRequestDto,
@@ -39,7 +39,7 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
 
   public ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap) => {
-      const todoListId = paramMap.get(TODO_LIST_PARAMETER);
+      const todoListId = paramMap.get(TODO_LIST_ID_PARAMETER);
 
       if (todoListId) {
         this.query.todoListId = +todoListId;
