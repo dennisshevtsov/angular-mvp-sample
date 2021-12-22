@@ -1,16 +1,14 @@
 import { Component, OnInit, } from '@angular/core';
 import { ActivatedRoute,    } from '@angular/router';
 
-import { TodoListService,                      } from '../../../api';
-import { TodoListLinks, TODO_LIST_ID_PARAMETER,
-         TODO_LIST_ROUTE,                      } from '../../../routing';
+import { TodoListService,                       } from '../../../api';
+import { TodoListLinks, TODO_LIST_ID_PARAMETER, } from '../../../routing';
 import { SearchTodoListTasksRecordResponseDto,
          SearchTodoListTasksRequestDto,
-         TodoListTaskService,                  } from '../../api';
-import { TODO_LIST_NEW_TASK_ROUTE,
-         TODO_LIST_TASK_ROUTE,                 } from '../../routing';
-import { SearchTodoListTasksPresenter,         } from './search-todo-list-tasks.presenter';
-import { SearchTodoListTasksView,              } from './search-todo-list-tasks.view';
+         TodoListTaskService,                   } from '../../api';
+import { TodoListTaskLinks,                     } from '../../routing';
+import { SearchTodoListTasksPresenter,          } from './search-todo-list-tasks.presenter';
+import { SearchTodoListTasksView,               } from './search-todo-list-tasks.view';
 
 @Component({
   templateUrl: './search-todo-list-tasks.component.html',
@@ -28,7 +26,8 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
   public constructor(
     private readonly route: ActivatedRoute,
 
-    public readonly links: TodoListLinks,
+    public readonly todoListLinks: TodoListLinks,
+    public readonly todoListTaskLinks: TodoListTaskLinks,
 
     todoListService: TodoListService,
     todoListTaskService: TodoListTaskService,
@@ -66,26 +65,6 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
 
   public set selected(selectedTodoListTask: SearchTodoListTasksRecordResponseDto) {
     this.selectedValue = selectedTodoListTask;
-  }
-
-  public get addTodoListTaskLink(): Array<any> {
-    return [
-      '/',
-      TODO_LIST_ROUTE,
-      this.query.todoListId,
-      TODO_LIST_TASK_ROUTE,
-      TODO_LIST_NEW_TASK_ROUTE,
-    ];
-  }
-
-  public updateTodoListLink(record: SearchTodoListTasksRecordResponseDto): Array<any> {
-    return [
-      '/',
-      TODO_LIST_ROUTE,
-      this.query.todoListId,
-      TODO_LIST_TASK_ROUTE,
-      record.todoListTaskId,
-    ];
   }
 
   public onComplete(record: SearchTodoListTasksRecordResponseDto): void {
