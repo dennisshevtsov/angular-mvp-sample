@@ -12,7 +12,7 @@ import { TodoListLinks,
 import { AddTodoListTaskRequestDto,
          TodoListTaskService,
          TodoListTaskTimeDto,       } from '../../api';
-import { TODO_LIST_TASK_ROUTE,      } from '../../routing';
+import { TodoListTaskLinks, TODO_LIST_TASK_ROUTE,      } from '../../routing';
 import { timePeriodValidator,       } from '../../validators';
 import { AddTodoListTaskPresenter,  } from './add-todo-list-task.presenter';
 import { AddTodoListTaskView,       } from './add-todo-list-task.view';
@@ -36,7 +36,8 @@ export class AddTodoListTaskComponent
     private readonly route: ActivatedRoute,
     private readonly builder: FormBuilder,
 
-    public readonly links: TodoListLinks,
+    public readonly todoListLinks: TodoListLinks,
+    public readonly todoListTaskLinks: TodoListTaskLinks,
 
     todoListService: TodoListService,
     todoListTaskService: TodoListTaskService,
