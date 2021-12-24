@@ -104,7 +104,7 @@ export class UpdateTodoListTaskComponent
   }
 
   public get backLink(): Array<any> {
-    return this.todoListTaskLinks.searchTodoListTasksLink(this.todoListTaskIdValue!);
+    return this.todoListTaskLinks.searchTodoListTasksLink(this.todoList.todoListId);
   }
 
   public onSubmit(): void {
