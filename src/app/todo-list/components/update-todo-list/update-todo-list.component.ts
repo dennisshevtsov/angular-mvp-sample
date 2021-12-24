@@ -28,8 +28,7 @@ export class UpdateTodoListComponent
     private readonly route: ActivatedRoute,
     private readonly builder: FormBuilder,
     private readonly navigator: TodoListNavigator,
-
-    public readonly links: TodoListLinks,
+    private readonly links: TodoListLinks,
 
     service: TodoListService,
   ) {
@@ -62,6 +61,14 @@ export class UpdateTodoListComponent
       'title': todoList.title,
       'description': todoList.description,
     });
+  }
+
+  public get homeLink(): Array<any> {
+    return this.links.searchTodoListsLink();
+  }
+
+  public get backLink(): Array<any> {
+    return this.links.searchTodoListsLink();
   }
 
   public onSubmit(): void {
