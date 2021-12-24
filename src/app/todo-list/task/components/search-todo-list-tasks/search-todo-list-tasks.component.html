@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-3">
       <a class="text-dark text-decoration-none fs-4"
-         [routerLink]="todoListLinks.searchTodoListsLink()">
+         [routerLink]="homeLink">
         <i class="bi bi-card-checklist me-2"></i>
         <span>TODO list</span>
       </a>
@@ -10,13 +10,13 @@
     <div class="col-md-9 d-grid gap-2 d-md-flex justify-content-md-end">
       <a class="btn btn-light"
          style="width: 100px"
-         [routerLink]="todoListLinks.searchTodoListsLink()">
+         [routerLink]="backLink">
         <i class="bi bi-chevron-left"></i>
         <span>Back</span>
       </a>
       <a class="btn btn-light"
          style="width: 100px"
-         [routerLink]="todoListTaskLinks.addTodoListTaskLink()">
+         [routerLink]="addTodoListTaskLink">
         <i class="bi bi-plus"></i>
         <span>Add</span>
       </a>
@@ -41,13 +41,13 @@
              (click)="onDelete(record)"><span>remove</span></a>
           <a class="me-2"
              style="cursor: pointer;"
-             [routerLink]="todoListTaskLinks.updateTodoListLink(record)"><span>edit</span></a>
+             [routerLink]="updateTodoListTaskLink(record.todoListTaskId)"><span>edit</span></a>
         </div>
       </div>
     </div>
     <a class="list-group-item list-group-item-action"
        style="cursor: pointer;"
-       [routerLink]="todoListTaskLinks.addTodoListTaskLink()">
+       [routerLink]="addTodoListTaskLink">
       <i class="bi bi-plus"></i>
       <span>Add new task</span>
     </a>

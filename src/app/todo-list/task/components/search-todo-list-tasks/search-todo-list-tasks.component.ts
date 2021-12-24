@@ -26,8 +26,8 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
   public constructor(
     private readonly route: ActivatedRoute,
 
-    public readonly todoListLinks: TodoListLinks,
-    public readonly todoListTaskLinks: TodoListTaskLinks,
+    private readonly todoListLinks: TodoListLinks,
+    private readonly todoListTaskLinks: TodoListTaskLinks,
 
     todoListService: TodoListService,
     todoListTaskService: TodoListTaskService,
@@ -65,6 +65,22 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
 
   public set selected(selectedTodoListTask: SearchTodoListTasksRecordResponseDto) {
     this.selectedValue = selectedTodoListTask;
+  }
+
+  public get homeLink(): Array<any> {
+    return this.todoListLinks.searchTodoListsLink();
+  }
+
+  public get backLink(): Array<any> {
+    return this.todoListLinks.searchTodoListsLink();
+  }
+
+  public get addTodoListTaskLink(): Array<any> {
+    return this.todoListTaskLinks.addTodoListTaskLink(this.query.todoListId);
+  }
+
+  public updateTodoListTaskLink(todoListTaskId: string | number): Array<any> {
+    return this.todoListTaskLinks.updateTodoListTaskLink(this.query.todoListId, todoListTaskId);
   }
 
   public onComplete(record: SearchTodoListTasksRecordResponseDto): void {
