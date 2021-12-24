@@ -11,7 +11,8 @@ import { TODO_LIST_ROUTE,
 import { UpdateTodoListTaskRequestDto,
          TodoListTaskService,
          TodoListTaskTimeDto,          } from '../../api';
-import { TODO_LIST_TASK_ID_PARAMETER,
+import { TodoListTaskLinks,
+         TODO_LIST_TASK_ID_PARAMETER,
          TODO_LIST_TASK_ROUTE,         } from '../../routing';
 import { timePeriodValidator,          } from '../../validators';
 import { UpdateTodoListTaskPresenter,  } from './update-todo-list-task.presenter';
@@ -36,7 +37,8 @@ export class UpdateTodoListTaskComponent
     private readonly route: ActivatedRoute,
     private readonly builder: FormBuilder,
 
-    public readonly links: TodoListLinks,
+    private readonly todoListLinks: TodoListLinks,
+    private readonly todoListTaskLinks: TodoListTaskLinks,
 
     todoListTaskService: TodoListTaskService,
   ) {
@@ -97,13 +99,12 @@ export class UpdateTodoListTaskComponent
     });
   }
 
-  public get searchTodoListTasksLink(): Array<any> {
-    return [
-      '/',
-      TODO_LIST_ROUTE,
-      this.todoList.todoListId,
-      TODO_LIST_TASK_ROUTE,
-    ];
+  public get homeLink(): Array<any> {
+    return this.todoListLinks.searchTodoListsLink();
+  }
+
+  public get backLink(): Array<any> {
+    return this.todoListTaskLinks.searchTodoListTasksLink(this.todoListTaskIdValue!);
   }
 
   public onSubmit(): void {
