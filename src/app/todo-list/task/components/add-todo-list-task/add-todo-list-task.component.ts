@@ -36,8 +36,8 @@ export class AddTodoListTaskComponent
     private readonly route: ActivatedRoute,
     private readonly builder: FormBuilder,
 
-    public readonly todoListLinks: TodoListLinks,
-    public readonly todoListTaskLinks: TodoListTaskLinks,
+    private readonly todoListLinks: TodoListLinks,
+    private readonly todoListTaskLinks: TodoListTaskLinks,
 
     todoListService: TodoListService,
     todoListTaskService: TodoListTaskService,
@@ -72,8 +72,12 @@ export class AddTodoListTaskComponent
     );
   }
 
-  public get searchTodoListTasksLink(): Array<any> {
-    return [ '/', TODO_LIST_ROUTE, TODO_LIST_TASK_ROUTE, ];
+  public get homeLink(): Array<any> {
+    return this.todoListLinks.searchTodoListsLink();
+  }
+
+  public get backLink(): Array<any> {
+    return this.todoListTaskLinks.searchTodoListTasksLink(this.todoListIdValue!);
   }
 
   public onSubmit(): void {
