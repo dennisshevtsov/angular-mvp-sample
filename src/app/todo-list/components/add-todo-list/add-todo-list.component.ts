@@ -24,7 +24,7 @@ export class AddTodoListComponent
     private readonly builder: FormBuilder,
     private readonly navigator: TodoListNavigator,
 
-    public readonly links: TodoListLinks,
+    private readonly links: TodoListLinks,
 
     service: TodoListService,
   ) {
@@ -35,6 +35,14 @@ export class AddTodoListComponent
 
   public get todoList(): AddTodoListRequestDto {
     return this.form.value;
+  }
+
+  public get backLink(): Array<any> {
+    return this.links.searchTodoListsLink();
+  }
+
+  public get homeLink(): Array<any> {
+    return this.links.searchTodoListsLink();
   }
 
   public onSubmit(): void {
