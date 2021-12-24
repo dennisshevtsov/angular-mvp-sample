@@ -1,19 +1,18 @@
-import { Component, OnInit,                    } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router,     } from '@angular/router';
+import { Component, OnInit,                   } from '@angular/core';
+import { ActivatedRoute, ParamMap,            } from '@angular/router';
 import { AbstractControlOptions, FormBuilder,
-         FormGroup, Validators,                } from '@angular/forms';
+         FormGroup, Validators,               } from '@angular/forms';
 
 import { FormComponentBase,            } from '../../../../core';
 import { GetTodoListResponseDto,       } from '../../../api';
-import { TODO_LIST_ROUTE,
-         TODO_LIST_ID_PARAMETER,
+import { TODO_LIST_ID_PARAMETER,
          TodoListLinks,                } from '../../../routing';
 import { UpdateTodoListTaskRequestDto,
          TodoListTaskService,
          TodoListTaskTimeDto,          } from '../../api';
 import { TodoListTaskLinks,
-         TODO_LIST_TASK_ID_PARAMETER,
-         TODO_LIST_TASK_ROUTE,         } from '../../routing';
+         TodoListTaskNavigator,
+         TODO_LIST_TASK_ID_PARAMETER,  } from '../../routing';
 import { timePeriodValidator,          } from '../../validators';
 import { UpdateTodoListTaskPresenter,  } from './update-todo-list-task.presenter';
 import { UpdateTodoListTaskView,       } from './update-todo-list-task.view';
@@ -33,12 +32,12 @@ export class UpdateTodoListTaskComponent
   private todoListTaskIdValue: number | undefined;
 
   public constructor(
-    private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly builder: FormBuilder,
 
     private readonly todoListLinks: TodoListLinks,
     private readonly todoListTaskLinks: TodoListTaskLinks,
+    private readonly navigator: TodoListTaskNavigator,
 
     todoListTaskService: TodoListTaskService,
   ) {
@@ -112,11 +111,8 @@ export class UpdateTodoListTaskComponent
 
     if (this.form.valid) {
       this.presenter.update();
-      this.router.navigate([
-        TODO_LIST_ROUTE,
-        this.todoList.todoListId,
-        TODO_LIST_TASK_ROUTE,
-      ]);
+      this.navigator.navigateToSearchTodoListTasks(
+        this.todoList.todoListId);
     }
   }
 
