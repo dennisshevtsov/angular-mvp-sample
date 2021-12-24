@@ -1,12 +1,12 @@
 import { Injectable, } from '@angular/core';
 
 import { TODO_LIST_NEW_TASK_ROUTE,
-         TODO_LIST_TASK_ROUTE, } from './todo-list-task-routes-values';
+         TODO_LIST_TASK_ROUTE,     } from './todo-list-task-routes-values';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TodoListTaskRouteFactor {
+export class TodoListTaskRouteFactory {
   public addTodoListTaskRoute(): Array<any> {
     return [
       TODO_LIST_TASK_ROUTE,

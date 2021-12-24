@@ -1,14 +1,14 @@
 import { Injectable, } from '@angular/core';
 
-import { TODO_LIST_ROUTE,             } from '../../routing';
-import { TodoListTaskRouteFactor,     } from './todo-list-task-route-factory';
+import { TODO_LIST_ROUTE,          } from '../../routing';
+import { TodoListTaskRouteFactory, } from './todo-list-task-route-factory';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoListTaskLinks {
   public constructor(
-    private readonly todoListTaskRouteFactory: TodoListTaskRouteFactor,
+    private readonly todoListTaskRouteFactory: TodoListTaskRouteFactory,
   ) {}
 
   public addTodoListTaskLink(todoListId: string | number): Array<any> {

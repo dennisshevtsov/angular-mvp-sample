@@ -4,17 +4,17 @@ import { RouterModule, Routes, } from '@angular/router';
 import { AddTodoListTaskComponent,
          SearchTodoListTasksComponent,
          UpdateTodoListTaskComponent,  } from './components';
-import { TodoListTaskLinks,
+import { TodoListTaskRouteFactory,
          TodoListTaskRoutes,           } from './routing';
 
 const options = {
   providers: [
     {
       provide: TodoListTaskRoutes,
-      deps: [ TodoListTaskLinks ],
+      deps: [ TodoListTaskRouteFactory ],
     },
     {
-      provide: TodoListTaskLinks,
+      provide: TodoListTaskRouteFactory,
       deps: [],
     },
   ],
