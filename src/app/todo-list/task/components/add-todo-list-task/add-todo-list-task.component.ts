@@ -94,10 +94,30 @@ export class AddTodoListTaskComponent
   }
 
   private buildTimePeriodGroup(now: number): FormGroup {
+    const oneHourInMilliseconds = 1 * 60 * 60 * 1000;
+    const fullHours = now / oneHourInMilliseconds >> 0;
+    const withoutFullHours = now % oneHourInMilliseconds;
+
+    const oneMenuteInMilliseconds = 1 * 60 * 1000;
+    const fullMenutes = withoutFullHours / oneMenuteInMilliseconds >> 0;
+
+    const stepInMenutes = 15;
+    const fullSteps = fullMenutes / stepInMenutes >> 0;
+
+    let steps = fullSteps;
+
+    if (fullMenutes % stepInMenutes > 0) {
+      ++steps;
+    }
+
+    const start = fullHours * oneHourInMilliseconds +
+      steps * stepInMenutes * oneMenuteInMilliseconds;
+    const end = start + oneHourInMilliseconds;
+
     const controlConfig = {
       'fullDay': false,
-      'start': formatDate(now, 'hh:mm', 'en-US'),
-      'end': formatDate(now + 1 * 60 * 60 * 1000, 'hh:mm', 'en-US'),
+      'start': formatDate(start, 'hh:mm', 'en-US'),
+      'end': formatDate(end, 'hh:mm', 'en-US'),
     };
     const options: AbstractControlOptions = {
       validators: [
