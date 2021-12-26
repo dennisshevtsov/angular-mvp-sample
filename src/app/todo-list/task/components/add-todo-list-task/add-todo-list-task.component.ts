@@ -4,7 +4,7 @@ import { AbstractControlOptions,
          FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router,   } from '@angular/router';
 
-import { Calendar, FormComponentBase,
+import { Calendar, DateFormatter, FormComponentBase,
          ONE_HOUR_IN_MILLISECONDS,
          TimeFormatter,             } from '../../../../core';
 import { TodoListService,           } from '../../../api';
@@ -118,7 +118,7 @@ export class AddTodoListTaskComponent
 
     return this.builder.group({
       'title': this.builder.control('', Validators.required),
-      'date': this.builder.control(formatDate(now, 'yyyy-MM-dd', 'en-US'), Validators.required),
+      'date': this.builder.control(DateFormatter.toDate(now), Validators.required),
       'time': this.buildTimePeriodGroup(now),
       'description': '',
     });
