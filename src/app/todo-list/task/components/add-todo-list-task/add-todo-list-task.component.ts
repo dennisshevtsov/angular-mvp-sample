@@ -4,7 +4,9 @@ import { AbstractControlOptions,
          FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router,   } from '@angular/router';
 
-import { FormComponentBase,         } from '../../../../core';
+import { Calendar, FormComponentBase,
+         ONE_HOUR_IN_MILLISECONDS,
+         TimeFormatter,             } from '../../../../core';
 import { TodoListService,           } from '../../../api';
 import { TodoListLinks,
          TODO_LIST_ID_PARAMETER,
@@ -94,30 +96,13 @@ export class AddTodoListTaskComponent
   }
 
   private buildTimePeriodGroup(now: number): FormGroup {
-    const oneHourInMilliseconds = 1 * 60 * 60 * 1000;
-    const fullHours = now / oneHourInMilliseconds >> 0;
-    const withoutFullHours = now % oneHourInMilliseconds;
-
-    const oneMenuteInMilliseconds = 1 * 60 * 1000;
-    const fullMenutes = withoutFullHours / oneMenuteInMilliseconds >> 0;
-
-    const stepInMenutes = 15;
-    const fullSteps = fullMenutes / stepInMenutes >> 0;
-
-    let steps = fullSteps;
-
-    if (fullMenutes % stepInMenutes > 0) {
-      ++steps;
-    }
-
-    const start = fullHours * oneHourInMilliseconds +
-      steps * stepInMenutes * oneMenuteInMilliseconds;
-    const end = start + oneHourInMilliseconds;
+    const start = now;
+    const end = start + ONE_HOUR_IN_MILLISECONDS;
 
     const controlConfig = {
       'fullDay': false,
-      'start': formatDate(start, 'hh:mm', 'en-US'),
-      'end': formatDate(end, 'hh:mm', 'en-US'),
+      'start': TimeFormatter.toTime(start),
+      'end': TimeFormatter.toTime(end),
     };
     const options: AbstractControlOptions = {
       validators: [
@@ -129,7 +114,7 @@ export class AddTodoListTaskComponent
   }
 
   protected buildForm(): FormGroup {
-    const now = Date.now();
+    const now = Calendar.now();
 
     return this.builder.group({
       'title': this.builder.control('', Validators.required),
