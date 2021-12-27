@@ -1,2 +1,1 @@
-export * from './date-formatter';
-export * from './time-formatter';
+export * from './formatter';
