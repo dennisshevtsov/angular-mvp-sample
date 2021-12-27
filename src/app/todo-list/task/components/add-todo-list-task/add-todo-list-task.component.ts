@@ -1,12 +1,11 @@
-import { formatDate,                         } from '@angular/common';
 import { Component, OnInit,                  } from '@angular/core';
 import { AbstractControlOptions,
          FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router,   } from '@angular/router';
 
-import { Calendar, DateFormatter, FormComponentBase,
-         ONE_HOUR_IN_MILLISECONDS,
-         TimeFormatter,             } from '../../../../core';
+import { AppClock, Formatter,
+         FormComponentBase,
+         MILLISECONDS_IN_HOUR,      } from '../../../../core';
 import { TodoListService,           } from '../../../api';
 import { TodoListLinks,
          TODO_LIST_ID_PARAMETER,
@@ -14,7 +13,8 @@ import { TodoListLinks,
 import { AddTodoListTaskRequestDto,
          TodoListTaskService,
          TodoListTaskTimeDto,       } from '../../api';
-import { TodoListTaskLinks, TODO_LIST_TASK_ROUTE,      } from '../../routing';
+import { TodoListTaskLinks,
+         TODO_LIST_TASK_ROUTE,      } from '../../routing';
 import { timePeriodValidator,       } from '../../validators';
 import { AddTodoListTaskPresenter,  } from './add-todo-list-task.presenter';
 import { AddTodoListTaskView,       } from './add-todo-list-task.view';
@@ -38,6 +38,8 @@ export class AddTodoListTaskComponent
     private readonly route: ActivatedRoute,
     private readonly builder: FormBuilder,
 
+    private readonly clock: AppClock,
+    private readonly formatter: Formatter,
     private readonly todoListLinks: TodoListLinks,
     private readonly todoListTaskLinks: TodoListTaskLinks,
 
@@ -97,12 +99,12 @@ export class AddTodoListTaskComponent
 
   private buildTimePeriodGroup(now: number): FormGroup {
     const start = now;
-    const end = start + ONE_HOUR_IN_MILLISECONDS;
+    const end = start + MILLISECONDS_IN_HOUR;
 
     const controlConfig = {
       'fullDay': false,
-      'start': TimeFormatter.toTime(start),
-      'end': TimeFormatter.toTime(end),
+      'start': this.formatter.toLocalTime(start),
+      'end': this.formatter.toLocalTime(end),
     };
     const options: AbstractControlOptions = {
       validators: [
@@ -114,11 +116,11 @@ export class AddTodoListTaskComponent
   }
 
   protected buildForm(): FormGroup {
-    const now = Calendar.now();
+    const now = this.clock.now();
 
     return this.builder.group({
       'title': this.builder.control('', Validators.required),
-      'date': this.builder.control(DateFormatter.toDate(now), Validators.required),
+      'date': this.builder.control(this.formatter.toLocalDate(now), Validators.required),
       'time': this.buildTimePeriodGroup(now),
       'description': '',
     });
