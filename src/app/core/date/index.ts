@@ -1,1 +1,1 @@
-export * from './calendar';
+export * from './app-clock';
