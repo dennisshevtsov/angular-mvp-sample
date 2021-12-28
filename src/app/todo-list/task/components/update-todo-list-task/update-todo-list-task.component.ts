@@ -119,6 +119,7 @@ export class UpdateTodoListTaskComponent
 
   private buildTimePeriodGroup(): FormGroup {
     const controlConfig = {
+      'day': this.builder.control('', Validators.required),
       'fullDay': false,
       'start': '',
       'end': '',
@@ -135,8 +136,7 @@ export class UpdateTodoListTaskComponent
   protected buildForm(): FormGroup {
     return this.builder.group({
       'title': this.builder.control('', Validators.required),
-      'date': this.builder.control('', Validators.required),
-      'time': this.buildTimePeriodGroup(),
+      'date': this.buildTimePeriodGroup(),
       'description': '',
     });
   }

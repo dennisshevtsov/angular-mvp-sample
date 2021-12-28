@@ -68,10 +68,10 @@ export class AddTodoListTaskComponent
       this.form.value.title,
       this.form.value.description,
       new TodoListTaskDateDto(
-        this.form.value.date.day,
+        this.formatter.fromLocalDate(this.form.value.date.day),
         this.form.value.date.fullDay,
-        this.form.value.date.start,
-        this.form.value.date.end,
+        this.formatter.fromLocalTime(this.form.value.date.start),
+        this.formatter.fromLocalTime(this.form.value.date.end),
       ),
     );
   }
@@ -102,6 +102,7 @@ export class AddTodoListTaskComponent
     const end = start + MILLISECONDS_IN_HOUR;
 
     const controlConfig = {
+      'day': this.builder.control(this.formatter.toLocalDate(now), Validators.required),
       'fullDay': false,
       'start': this.formatter.toLocalTime(start),
       'end': this.formatter.toLocalTime(end),
@@ -120,8 +121,7 @@ export class AddTodoListTaskComponent
 
     return this.builder.group({
       'title': this.builder.control('', Validators.required),
-      'date': this.builder.control(this.formatter.toLocalDate(now), Validators.required),
-      'time': this.buildTimePeriodGroup(now),
+      'date': this.buildTimePeriodGroup(now),
       'description': '',
     });
   }
