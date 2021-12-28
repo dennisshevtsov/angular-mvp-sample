@@ -3,13 +3,13 @@ import { ActivatedRoute, ParamMap,            } from '@angular/router';
 import { AbstractControlOptions, FormBuilder,
          FormGroup, Validators,               } from '@angular/forms';
 
-import { FormComponentBase,            } from '../../../../core';
+import { Formatter, FormComponentBase, } from '../../../../core';
 import { GetTodoListResponseDto,       } from '../../../api';
 import { TODO_LIST_ID_PARAMETER,
          TodoListLinks,                } from '../../../routing';
 import { UpdateTodoListTaskRequestDto,
          TodoListTaskService,
-         TodoListTaskTimeDto,          } from '../../api';
+         TodoListTaskDateDto,          } from '../../api';
 import { TodoListTaskLinks,
          TodoListTaskNavigator,
          TODO_LIST_TASK_ID_PARAMETER,  } from '../../routing';
@@ -35,6 +35,7 @@ export class UpdateTodoListTaskComponent
     private readonly route: ActivatedRoute,
     private readonly builder: FormBuilder,
 
+    private readonly formatter: Formatter,
     private readonly todoListLinks: TodoListLinks,
     private readonly todoListTaskLinks: TodoListTaskLinks,
     private readonly navigator: TodoListTaskNavigator,
@@ -76,11 +77,11 @@ export class UpdateTodoListTaskComponent
       this.todoListTaskIdValue,
       this.form.value.title,
       this.form.value.description,
-      this.form.value.date,
-      new TodoListTaskTimeDto(
-        this.form.value.time.fullDay,
-        this.form.value.time.start,
-        this.form.value.time.end,
+      new TodoListTaskDateDto(
+        this.form.value.date.day,
+        this.form.value.date.fullDay,
+        this.form.value.date.start,
+        this.form.value.date.end,
       ),
     );
   }
@@ -88,11 +89,11 @@ export class UpdateTodoListTaskComponent
   public set datasource(todoListTask: UpdateTodoListTaskRequestDto) {
     this.form.setValue({
       'title': todoListTask.title,
-      'date': todoListTask.date,
-      'time': {
-        'fullDay': todoListTask.time.fullDay,
-        'start': todoListTask.time.start,
-        'end': todoListTask.time.end,
+      'date': {
+        'day': this.formatter.toLocalDate(todoListTask.date.day),
+        'fullDay': todoListTask.date.fullDay,
+        'start': this.formatter.toLocalTime(todoListTask.date.start),
+        'end': this.formatter.toLocalTime(todoListTask.date.end),
       },
       'description': todoListTask.description,
     });

@@ -12,7 +12,7 @@ import { TodoListLinks,
          TODO_LIST_ROUTE,           } from '../../../routing';
 import { AddTodoListTaskRequestDto,
          TodoListTaskService,
-         TodoListTaskTimeDto,       } from '../../api';
+         TodoListTaskDateDto,       } from '../../api';
 import { TodoListTaskLinks,
          TODO_LIST_TASK_ROUTE,      } from '../../routing';
 import { timePeriodValidator,       } from '../../validators';
@@ -67,11 +67,11 @@ export class AddTodoListTaskComponent
       this.todoListIdValue!,
       this.form.value.title,
       this.form.value.description,
-      this.form.value.date,
-      new TodoListTaskTimeDto(
-        this.form.value.time.fullDay,
-        this.form.value.time.start,
-        this.form.value.time.end,
+      new TodoListTaskDateDto(
+        this.form.value.date.day,
+        this.form.value.date.fullDay,
+        this.form.value.date.start,
+        this.form.value.date.end,
       ),
     );
   }

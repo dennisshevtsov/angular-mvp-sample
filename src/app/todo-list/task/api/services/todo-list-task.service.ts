@@ -8,7 +8,7 @@ import { AddTodoListTaskRequestDto,
          GetTodoListTaskResponseDto,
          SearchTodoListTasksRecordResponseDto,
          SearchTodoListTasksRequestDto,
-         TodoListTaskTimeDto,
+         TodoListTaskDateDto,
          UncompleteTodoListTaskRequestDto,
          UpdateTodoListTaskRequestDto,         } from '../dtos';
 
@@ -21,11 +21,11 @@ export class TodoListTaskService {
     completed     : boolean,
     title         : string,
     description   : string,
-    date          : string,
-    time: {
+    date: {
+      day     : number,
       fullDay : boolean,
-      start   : string,
-      end     : string,
+      start   : number,
+      end     : number,
     },
   }[]> = new Map();
 
@@ -61,12 +61,7 @@ export class TodoListTaskService {
         todoListTask.completed,
         todoListTask.title,
         todoListTask.description,
-        todoListTask.date,
-        new TodoListTaskTimeDto(
-          todoListTask.time.fullDay,
-          todoListTask.time.start,
-          todoListTask.time.end,
-        ),
+        { ...todoListTask.date, },
       ));
     }
 
@@ -88,12 +83,7 @@ export class TodoListTaskService {
       completed: false,
       title: addTodoListTaskRequestDto.title,
       description: addTodoListTaskRequestDto.description,
-      date: addTodoListTaskRequestDto.date,
-      time: {
-        fullDay: addTodoListTaskRequestDto.time.fullDay,
-        start: addTodoListTaskRequestDto.time.start,
-        end: addTodoListTaskRequestDto.time.end,
-      },
+      date: { ...addTodoListTaskRequestDto.date, },
     });
 
     return new AddTodoListTaskResponseDto(todoListTaskId)
@@ -110,10 +100,7 @@ export class TodoListTaskService {
 
       todoListTask.title = updateTodoListTaskRequestDto.title;
       todoListTask.description = updateTodoListTaskRequestDto.description;
-      todoListTask.date = updateTodoListTaskRequestDto.date;
-      todoListTask.time.fullDay = updateTodoListTaskRequestDto.time.fullDay;
-      todoListTask.time.start = updateTodoListTaskRequestDto.time.start;
-      todoListTask.time.end = updateTodoListTaskRequestDto.time.end;
+      todoListTask.date = { ...updateTodoListTaskRequestDto.date, };
     }
   }
 

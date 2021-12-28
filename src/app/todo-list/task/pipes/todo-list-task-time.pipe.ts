@@ -5,10 +5,10 @@ import { Pipe, PipeTransform, } from '@angular/core';
 })
 export class TodoListTaskTimePipe implements PipeTransform {
   transform(value: any): any {
-    if (value.time.fullDay) {
-      return value.date;
+    if (value.fullDay) {
+      return value.day;
     }
 
-    return `${value.date} ${value.time.start}-${value.time.end}`;
+    return `${value.day} ${value.start}-${value.end}`;
   }
 }
