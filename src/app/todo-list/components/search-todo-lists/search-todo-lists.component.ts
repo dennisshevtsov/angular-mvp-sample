@@ -1,4 +1,4 @@
-import { Component, OnInit,        } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild,        } from '@angular/core';
 import { ActivatedRoute, ParamMap, } from '@angular/router';
 
 import { DeleteTodoListRequestDto,
@@ -9,6 +9,8 @@ import { TodoListLinks,                    } from '../../routing';
 import { TodoListTaskLinks,                } from '../../task/routing';
 import { SearchTodoListsPresenter,         } from './search-todo-lists.presenter';
 import { SearchTodoListsView,              } from './search-todo-lists.view';
+
+declare var bootstrap: any;
 
 @Component({
   templateUrl: './search-todo-lists.component.html',
@@ -22,6 +24,9 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
   private selectedValue: DeleteTodoListRequestDto | undefined;
   private queryValue: SearchTodoListsRequestDto | undefined;
   private todoListsValue: SearchTodoListsRecordResponseDto[] | undefined;
+
+  @ViewChild('modal')
+  public modal!: ElementRef<HTMLDivElement>;
 
   public constructor(
     private readonly route: ActivatedRoute,
@@ -80,8 +85,15 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
   }
 
   public onDeleteTodoList(todoList: SearchTodoListsRecordResponseDto): void {
-    this.selected = { ...todoList, };
-    this.presenter.delete();
-    this.presenter.search();
+
+    console.log(this.modal);
+
+    //this.modal.nativeElement.style.display = 'block';
+
+    new bootstrap.Modal(this.modal.nativeElement).show();
+
+    //this.selected = { ...todoList, };
+    //this.presenter.delete();
+    //this.presenter.search();
   }
 }
