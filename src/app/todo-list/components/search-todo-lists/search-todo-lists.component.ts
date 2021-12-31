@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild,        } from '@angular/core';
-import { ActivatedRoute, ParamMap, } from '@angular/router';
+import { AfterViewInit, Component,
+         ElementRef, OnInit, ViewChild, } from '@angular/core';
+import { ActivatedRoute, ParamMap,      } from '@angular/router';
 
 import { DeleteTodoListRequestDto,
          SearchTodoListsRecordResponseDto,
@@ -18,7 +19,8 @@ declare var bootstrap: any;
     './search-todo-lists.component.scss',
   ],
 })
-export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
+export class SearchTodoListsComponent
+  implements OnInit, AfterViewInit, SearchTodoListsView {
   private readonly presenter: SearchTodoListsPresenter;
 
   private selectedValue: DeleteTodoListRequestDto | undefined;
@@ -26,7 +28,8 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
   private todoListsValue: SearchTodoListsRecordResponseDto[] | undefined;
 
   @ViewChild('modal')
-  public modal!: ElementRef<HTMLDivElement>;
+  private modalRef!: ElementRef<HTMLDivElement>;
+  private modal: any;
 
   public constructor(
     private readonly route: ActivatedRoute,
@@ -42,6 +45,10 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.presenter.search();
     });
+  }
+
+  public ngAfterViewInit(): void {
+    this.modal = new bootstrap.Modal(this.modalRef.nativeElement);
   }
 
   public get selected(): DeleteTodoListRequestDto {
@@ -84,16 +91,20 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
     return this.todoListTaskLinks.searchTodoListTasksLink(todoListId);
   }
 
-  public onDeleteTodoList(todoList: SearchTodoListsRecordResponseDto): void {
-
-    console.log(this.modal);
-
-    //this.modal.nativeElement.style.display = 'block';
-
-    new bootstrap.Modal(this.modal.nativeElement).show();
+  public onDeleteTodoList(
+    todoList: SearchTodoListsRecordResponseDto): void {
+    this.modal.show();
 
     //this.selected = { ...todoList, };
     //this.presenter.delete();
     //this.presenter.search();
+  }
+
+  public onOkDeleteTodoList(): void {
+    this.modal.hide();
+  }
+
+  public onCloseDeleteTodoList(): void {
+    this.modal.hide();
   }
 }
