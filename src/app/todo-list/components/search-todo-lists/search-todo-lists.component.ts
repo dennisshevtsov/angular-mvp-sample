@@ -93,15 +93,15 @@ export class SearchTodoListsComponent
 
   public onDeleteTodoList(
     todoList: SearchTodoListsRecordResponseDto): void {
+    this.selected = { ...todoList, };
     this.modal.show();
-
-    //this.selected = { ...todoList, };
-    //this.presenter.delete();
-    //this.presenter.search();
   }
 
   public onOkDeleteTodoList(): void {
     this.modal.hide();
+
+    this.presenter.delete();
+    this.presenter.search();
   }
 
   public onCloseDeleteTodoList(): void {
