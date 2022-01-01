@@ -5,7 +5,7 @@
         <h5 class="modal-title">Warning!</h5>
         <button type="button"
                 class="btn-close"
-                (click)="onCloseDeleteTodoList()"></button>
+                (click)="onCancelClicked()"></button>
       </div>
       <div class="modal-body">
         <p>Are you sure that you want to remove the TODO list?</p>
@@ -13,12 +13,12 @@
       <div class="modal-footer">
         <button type="button"
                 class="btn btn-secondary"
-                (click)="onCloseDeleteTodoList()">
+                (click)="onCancelClicked()">
           <span>Close</span>
         </button>
         <button type="button"
                 class="btn btn-primary"
-                (click)="onOkDeleteTodoList()">
+                (click)="onOkClicked()">
           <span>Ok</span>
         </button>
       </div>

@@ -1,5 +1,5 @@
-import { AfterViewInit, Component,
-         ElementRef, ViewChild,    } from '@angular/core';
+import { AfterViewInit, Component, ElementRef,
+         EventEmitter, Output, ViewChild,      } from '@angular/core';
 
 declare var bootstrap: any;
 
@@ -11,19 +11,36 @@ declare var bootstrap: any;
   ],
 })
 export class ModalComponent implements AfterViewInit {
+  @Output()
+  public readonly ok: EventEmitter<any>;
+
+  @Output()
+  public readonly cancel: EventEmitter<any>;
+
   @ViewChild('modal')
   private modalRef!: ElementRef<HTMLDivElement>;
   private modal: any;
+
+  public constructor() {
+    this.ok = new EventEmitter<any>();
+    this.cancel = new EventEmitter<any>();
+  }
 
   public ngAfterViewInit(): void {
     this.modal = new bootstrap.Modal(this.modalRef.nativeElement);
   }
 
-  public onOkClicked(): void {
-    this.modal.hide();
+  public show(): void {
+    this.modal.show();
   }
 
-  public onCloseClicked(): void {
+  public onOkClicked(): void {
     this.modal.hide();
+    this.ok.emit();
+  }
+
+  public onCancelClicked(): void {
+    this.modal.hide();
+    this.cancel.emit();
   }
 }

@@ -10,5 +10,8 @@ import { ModalComponent, } from './components';
   imports: [
     CommonModule,
   ],
+  exports: [
+    ModalComponent,
+  ],
 })
 export class CoreModule { }

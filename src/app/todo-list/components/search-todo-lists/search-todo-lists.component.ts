@@ -1,7 +1,7 @@
-import { AfterViewInit, Component,
-         ElementRef, OnInit, ViewChild, } from '@angular/core';
+import { Component, OnInit, ViewChild,  } from '@angular/core';
 import { ActivatedRoute, ParamMap,      } from '@angular/router';
 
+import { ModalComponent,                   } from '../../../core';
 import { DeleteTodoListRequestDto,
          SearchTodoListsRecordResponseDto,
          SearchTodoListsRequestDto,
@@ -19,17 +19,15 @@ declare var bootstrap: any;
     './search-todo-lists.component.scss',
   ],
 })
-export class SearchTodoListsComponent
-  implements OnInit, AfterViewInit, SearchTodoListsView {
+export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
+  @ViewChild('modal')
+  public modalRef!: ModalComponent;
+
   private readonly presenter: SearchTodoListsPresenter;
 
   private selectedValue: DeleteTodoListRequestDto | undefined;
   private queryValue: SearchTodoListsRequestDto | undefined;
   private todoListsValue: SearchTodoListsRecordResponseDto[] | undefined;
-
-  @ViewChild('modal')
-  private modalRef!: ElementRef<HTMLDivElement>;
-  private modal: any;
 
   public constructor(
     private readonly route: ActivatedRoute,
@@ -45,10 +43,6 @@ export class SearchTodoListsComponent
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.presenter.search();
     });
-  }
-
-  public ngAfterViewInit(): void {
-    this.modal = new bootstrap.Modal(this.modalRef.nativeElement);
   }
 
   public get selected(): DeleteTodoListRequestDto {
@@ -94,17 +88,11 @@ export class SearchTodoListsComponent
   public onDeleteTodoList(
     todoList: SearchTodoListsRecordResponseDto): void {
     this.selected = { ...todoList, };
-    this.modal.show();
+    this.modalRef.show();
   }
 
   public onOkDeleteTodoList(): void {
-    this.modal.hide();
-
     this.presenter.delete();
     this.presenter.search();
-  }
-
-  public onCloseDeleteTodoList(): void {
-    this.modal.hide();
   }
 }
