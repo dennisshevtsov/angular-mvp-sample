@@ -46,5 +46,11 @@
   </div>
 </main>
 
-<app-modal #modal (ok)="onOkDeleteTodoList()"></app-modal>
+<ng-template #modalBody>
+  <p>Are you sure that you want to remove TODO list #{{selected.todoListId}}?</p>
+</ng-template>
+<app-modal #modal
+          [modalBody]="modalBody"
+          (ok)="onOkDeleteTodoList()">
+</app-modal>
 
