@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild,  } from '@angular/core';
-import { ActivatedRoute, ParamMap,      } from '@angular/router';
+import { Component, OnInit, ViewChild, } from '@angular/core';
+import { ActivatedRoute, ParamMap,     } from '@angular/router';
 
 import { ModalComponent,                   } from '../../../core';
 import { DeleteTodoListRequestDto,
@@ -10,8 +10,6 @@ import { TodoListLinks,                    } from '../../routing';
 import { TodoListTaskLinks,                } from '../../task/routing';
 import { SearchTodoListsPresenter,         } from './search-todo-lists.presenter';
 import { SearchTodoListsView,              } from './search-todo-lists.view';
-
-declare var bootstrap: any;
 
 @Component({
   templateUrl: './search-todo-lists.component.html',
