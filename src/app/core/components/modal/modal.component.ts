@@ -12,7 +12,10 @@ declare var bootstrap: any;
 })
 export class ModalComponent implements AfterViewInit {
   @Input()
-  public modalBody!: any;
+  public title!: any;
+
+  @Input()
+  public body!: any;
 
   @Output()
   public readonly ok: EventEmitter<any>;
