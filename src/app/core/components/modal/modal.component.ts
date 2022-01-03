@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef,
-         EventEmitter, Input, Output, ViewChild,      } from '@angular/core';
+         EventEmitter, Input, Output, ViewChild, } from '@angular/core';
 
 declare var bootstrap: any;
 
