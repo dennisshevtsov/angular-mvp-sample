@@ -38,7 +38,7 @@
         <div class="d-flex w-100 align-items-center">
           <a class="me-2"
              style="cursor: pointer;"
-             (click)="onDelete(record)"><span>remove</span></a>
+             (click)="onDeleteTodoListTask(record)"><span>remove</span></a>
           <a class="me-2"
              style="cursor: pointer;"
              [routerLink]="updateTodoListTaskLink(record.todoListTaskId)"><span>edit</span></a>
@@ -53,3 +53,11 @@
     </a>
   </div>
 </main>
+
+<ng-template #modalBody>
+  <p>Are you sure that you want to remove the TODO list task?</p>
+</ng-template>
+<app-modal #modal
+           [body]="modalBody"
+           (ok)="onOkDeleteTodoListTask()">
+</app-modal>

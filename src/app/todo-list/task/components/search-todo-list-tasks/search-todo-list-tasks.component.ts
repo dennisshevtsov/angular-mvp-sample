@@ -1,6 +1,7 @@
-import { Component, OnInit, } from '@angular/core';
-import { ActivatedRoute,    } from '@angular/router';
+import { Component, OnInit, ViewChild, } from '@angular/core';
+import { ActivatedRoute,               } from '@angular/router';
 
+import { ModalComponent,                        } from '../../../../core';
 import { TodoListService,                       } from '../../../api';
 import { TodoListLinks, TODO_LIST_ID_PARAMETER, } from '../../../routing';
 import { SearchTodoListTasksRecordResponseDto,
@@ -16,7 +17,11 @@ import { SearchTodoListTasksView,               } from './search-todo-list-tasks
     './search-todo-list-tasks.component.scss',
   ],
 })
-export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasksView {
+export class SearchTodoListTasksComponent
+  implements OnInit, SearchTodoListTasksView {
+  @ViewChild('modal')
+  public modalRef!: ModalComponent;
+
   private readonly presenter: SearchTodoListTasksPresenter;
 
   private queryValue: SearchTodoListTasksRequestDto | undefined;
@@ -95,8 +100,13 @@ export class SearchTodoListTasksComponent implements OnInit, SearchTodoListTasks
     record.completed = !record.completed;
   }
 
-  public onDelete(record: SearchTodoListTasksRecordResponseDto): void {
-    this.selected = record;
+  public onDeleteTodoListTask(
+    record: SearchTodoListTasksRecordResponseDto): void {
+    this.selected = { ...record, };
+    this.modalRef.show();
+  }
+
+  public onOkDeleteTodoListTask(): void {
     this.presenter.delete();
     this.presenter.search();
   }
