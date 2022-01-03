@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef,
-         EventEmitter, Input, Output, ViewChild, } from '@angular/core';
+         EventEmitter, Input, Output, TemplateRef,
+         ViewChild,                                } from '@angular/core';
 
 declare var bootstrap: any;
 
@@ -12,10 +13,10 @@ declare var bootstrap: any;
 })
 export class ModalComponent implements AfterViewInit {
   @Input()
-  public title!: any;
+  public title: TemplateRef<any> | null = null;
 
   @Input()
-  public body!: any;
+  public body: TemplateRef<any> | null = null;
 
   @Output()
   public readonly ok: EventEmitter<any>;
