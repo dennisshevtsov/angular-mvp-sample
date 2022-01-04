@@ -43,7 +43,7 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
   }
 
   public get selected(): SearchTodoListsRecordResponseDto {
-    return this.selectedValue ?? (this.selectedValue = new SearchTodoListsRecordResponseDto(0, '', ''));
+    return this.selectedValue!;
   }
 
   public set selected(selected: SearchTodoListsRecordResponseDto) {
