@@ -1,9 +1,8 @@
-import { DeleteTodoListRequestDto,
-         SearchTodoListsRecordResponseDto,
+import { SearchTodoListsRecordResponseDto,
          SearchTodoListsRequestDto,        } from '../../api';
 
 export interface SearchTodoListsView {
-  selected: DeleteTodoListRequestDto;
+  selected: SearchTodoListsRecordResponseDto;
 
   query: SearchTodoListsRequestDto;
 

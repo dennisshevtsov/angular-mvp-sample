@@ -2,8 +2,7 @@ import { Component, OnInit, ViewChild, } from '@angular/core';
 import { ActivatedRoute, ParamMap,     } from '@angular/router';
 
 import { ModalComponent,                   } from '../../../core';
-import { DeleteTodoListRequestDto,
-         SearchTodoListsRecordResponseDto,
+import { SearchTodoListsRecordResponseDto,
          SearchTodoListsRequestDto,
          TodoListService,                  } from '../../api';
 import { TodoListLinks,                    } from '../../routing';
@@ -23,7 +22,7 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
 
   private readonly presenter: SearchTodoListsPresenter;
 
-  private selectedValue: DeleteTodoListRequestDto | undefined;
+  private selectedValue: SearchTodoListsRecordResponseDto | undefined;
   private queryValue: SearchTodoListsRequestDto | undefined;
   private todoListsValue: SearchTodoListsRecordResponseDto[] | undefined;
 
@@ -43,11 +42,11 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
     });
   }
 
-  public get selected(): DeleteTodoListRequestDto {
-    return this.selectedValue ?? (this.selectedValue = new DeleteTodoListRequestDto());
+  public get selected(): SearchTodoListsRecordResponseDto {
+    return this.selectedValue ?? (this.selectedValue = new SearchTodoListsRecordResponseDto(0, '', ''));
   }
 
-  public set selected(selected: DeleteTodoListRequestDto) {
+  public set selected(selected: SearchTodoListsRecordResponseDto) {
     this.selectedValue = selected;
   }
 
