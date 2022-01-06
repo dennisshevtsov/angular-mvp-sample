@@ -72,10 +72,6 @@ export class SearchTodoListTasksComponent
     this.selectedValue = selectedTodoListTask;
   }
 
-  public get homeLink(): Array<any> {
-    return this.todoListLinks.searchTodoListsLink();
-  }
-
   public get backLink(): Array<any> {
     return this.todoListLinks.searchTodoListsLink();
   }

@@ -76,10 +76,6 @@ export class AddTodoListTaskComponent
     );
   }
 
-  public get homeLink(): Array<any> {
-    return this.todoListLinks.searchTodoListsLink();
-  }
-
   public get backLink(): Array<any> {
     return this.todoListTaskLinks.searchTodoListTasksLink(this.todoListIdValue!);
   }
