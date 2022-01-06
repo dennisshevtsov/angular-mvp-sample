@@ -41,10 +41,6 @@ export class AddTodoListComponent
     return this.links.searchTodoListsLink();
   }
 
-  public get homeLink(): Array<any> {
-    return this.links.searchTodoListsLink();
-  }
-
   public onSubmit(): void {
     this.validateForm();
 
