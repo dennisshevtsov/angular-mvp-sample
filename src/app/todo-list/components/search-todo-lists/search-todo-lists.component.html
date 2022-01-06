@@ -1,50 +1,37 @@
-<header class="container-fluid border-bottom p-3">
-  <div class="row">
-    <div class="col-md-3">
-      <a class="text-dark text-decoration-none fs-4"
-         [routerLink]="homeLink">
-        <i class="bi bi-card-checklist me-2"></i>
-        <span>TODO list</span>
+<div class="list-group list-group-flush border-bottom w-100">
+  <div class="list-group-item list-group-item-action"
+        *ngFor="let record of datasource">
+    <h5><strong class="mb-1">{{ record.title }}</strong></h5>
+    <p><small>{{ record.description }}</small></p>
+    <div class="d-flex w-100 align-items-center">
+      <a class="me-2"
+          style="cursor: pointer;"
+          (click)="onDeleteTodoList(record)"><span>remove</span></a>
+      <a class="me-2"
+          [routerLink]="updateTodoListLink(record.todoListId)">
+          <span>edit</span>
       </a>
-    </div>
-    <div class="col-md-9 d-grid gap-2 d-md-flex justify-content-md-end">
-      <a class="btn btn-light"
-         style="width: 100px;"
-         [routerLink]="addTodoListLink">
-        <i class="bi bi-plus"></i>
-        <span>Add</span>
+      <a class="me-2"
+          [routerLink]="searchTodoListTasksLink(record.todoListId)">
+          <span>tasks</span>
       </a>
     </div>
   </div>
-</header>
+  <a class="list-group-item list-group-item-action"
+      [routerLink]="addTodoListLink">
+    <i class="bi bi-plus"></i>
+    <span>Add new TODO list</span>
+  </a>
+</div>
 
-<main class="d-flex">
-  <div class="list-group list-group-flush border-bottom w-100">
-    <div class="list-group-item list-group-item-action"
-         *ngFor="let record of datasource">
-      <h5><strong class="mb-1">{{ record.title }}</strong></h5>
-      <p><small>{{ record.description }}</small></p>
-      <div class="d-flex w-100 align-items-center">
-        <a class="me-2"
-           style="cursor: pointer;"
-           (click)="onDeleteTodoList(record)"><span>remove</span></a>
-        <a class="me-2"
-           [routerLink]="updateTodoListLink(record.todoListId)">
-           <span>edit</span>
-        </a>
-        <a class="me-2"
-           [routerLink]="searchTodoListTasksLink(record.todoListId)">
-           <span>tasks</span>
-        </a>
-      </div>
-    </div>
-    <a class="list-group-item list-group-item-action"
-       [routerLink]="addTodoListLink">
-      <i class="bi bi-plus"></i>
-      <span>Add new TODO list</span>
-    </a>
-  </div>
-</main>
+<ng-template #actions>
+  <a class="btn btn-light"
+     style="width: 100px;"
+     [routerLink]="addTodoListLink">
+    <i class="bi bi-plus"></i>
+    <span>Add</span>
+  </a>
+</ng-template>
 
 <ng-template #modalBody>
   <p *ngIf="selected">Are you sure that you want to remove TODO list <span class="text-nowrap">'{{ selected.title }}'</span>?</p>

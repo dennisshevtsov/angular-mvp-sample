@@ -66,10 +66,6 @@ export class SearchTodoListsComponent implements OnInit, SearchTodoListsView {
     this.todoListsValue = datasource;
   }
 
-  public get homeLink(): Array<any> {
-    return this.todoListLinks.searchTodoListsLink();
-  }
-
   public get addTodoListLink(): Array<any> {
     return this.todoListLinks.addTodoListLink();
   }
