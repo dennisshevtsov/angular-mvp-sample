@@ -63,10 +63,6 @@ export class UpdateTodoListComponent
     });
   }
 
-  public get homeLink(): Array<any> {
-    return this.links.searchTodoListsLink();
-  }
-
   public get backLink(): Array<any> {
     return this.links.searchTodoListsLink();
   }

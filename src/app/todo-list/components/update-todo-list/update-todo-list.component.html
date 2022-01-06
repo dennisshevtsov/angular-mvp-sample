@@ -1,51 +1,39 @@
-<header class="container-fluid border-bottom p-3">
-  <div class="row">
-    <div class="col-md-3">
-      <a class="text-dark text-decoration-none fs-4"
-         [routerLink]="homeLink">
-        <i class="bi bi-card-checklist me-2"></i>
-        <span>TODO list</span>
-      </a>
-    </div>
-    <div class="col-md-9 d-grid gap-2 d-md-flex justify-content-md-end">
-      <a class="btn btn-light"
-         style="width: 100px; cursor: pointer;"
-         [routerLink]="backLink">
-        <i class="bi bi-chevron-left"></i>
-        <span>Back</span>
-      </a>
-      <button class="btn btn-primary"
-              style="width: 100px;"
-              (click)="onSubmit()">
-        <i class="bi bi-check-lg"></i>
-        <span>Ok</span>
-      </button>
-    </div>
+<form class="w-100 p-3"
+      [formGroup]="form">
+  <div class="form-group mb-3"
+        [ngClass]="{ 'has-error': !isValid('title')}">
+    <label for="txtTitle" class="form-label">Title</label>
+    <input id="txtTitle"
+            class="form-control"
+            type="text"
+            placeholder="Title"
+            formControlName="title">
+    <span class="invalid-feedback"
+          *ngIf="hasErrors('title')">
+        <span *ngIf="hasError('title', 'required')">Please enter a title.</span>
+    </span>
   </div>
-</header>
-<main class="d-flex">
-  <form class="w-100 p-3"
-        [formGroup]="form">
-    <div class="form-group mb-3"
-         [ngClass]="{ 'has-error': !isValid('title')}">
-      <label for="txtTitle" class="form-label">Title</label>
-      <input id="txtTitle"
-             class="form-control"
-             type="text"
-             placeholder="Title"
-             formControlName="title">
-      <span class="invalid-feedback"
-            *ngIf="hasErrors('title')">
-          <span *ngIf="hasError('title', 'required')">Please enter a title.</span>
-      </span>
-    </div>
-    <div class="form-group mb-3">
-      <label for="txtDescription" class="form-label">Description</label>
-      <textarea id="txtDescription"
-                class="form-control"
-                type="text"
-                placeholder="Description"
-                formControlName="description"></textarea>
-    </div>
-  </form>
-</main>
+  <div class="form-group mb-3">
+    <label for="txtDescription" class="form-label">Description</label>
+    <textarea id="txtDescription"
+              class="form-control"
+              type="text"
+              placeholder="Description"
+              formControlName="description"></textarea>
+  </div>
+</form>
+
+<ng-template #actions>
+  <a class="btn btn-light"
+     style="width: 100px;"
+     [routerLink]="backLink">
+    <i class="bi bi-chevron-left"></i>
+    <span>Back</span>
+  </a>
+  <a class="btn btn-primary"
+     style="width: 100px; cursor: pointer;"
+     (click)="onSubmit()">
+    <i class="bi bi-check-lg"></i>
+    <span>Ok</span>
+</a>
+</ng-template>
