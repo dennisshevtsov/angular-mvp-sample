@@ -8,13 +8,8 @@
       </a>
     </div>
     <div class="col-md-9 d-grid gap-2 d-md-flex justify-content-md-end">
-      <!-- <a class="btn btn-light"
-         style="width: 100px;"
-         [routerLink]="backLink">
-        <i class="bi bi-chevron-left"></i>
-        <span>Back</span>
-      </a> -->
-      
+      <ng-container *ngTemplateOutlet="actions"></ng-container>
+      <ng-template #actions></ng-template>
     </div>
   </div>
 </header>
