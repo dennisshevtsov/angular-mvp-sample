@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, } from '@angular/core';
+
+import { TodoListLinks, } from '../../../todo-list/routing';
 
 @Component({
   selector: 'app-page',
   templateUrl: './page.component.html',
-  styleUrls: ['./page.component.scss']
+  styleUrls: [
+    './page.component.scss',
+  ],
 })
-export class PageComponent implements OnInit {
+export class PageComponent {
+  public constructor (
+    private readonly todoListLinks: TodoListLinks,
+  ) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  public get homeLink(): Array<any> {
+    return this.todoListLinks.searchTodoListsLink();
   }
-
 }

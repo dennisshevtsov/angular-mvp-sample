@@ -1,5 +1,4 @@
-import { Component,     } from '@angular/core';
-import { TodoListLinks, } from './todo-list/routing';
+import { Component, } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +7,4 @@ import { TodoListLinks, } from './todo-list/routing';
     './app.component.scss',
   ],
 })
-export class AppComponent {
-  public constructor (
-    private readonly todoListLinks: TodoListLinks,
-  ) {}
-
-  public get homeLink(): Array<any> {
-    return this.todoListLinks.searchTodoListsLink();
-  }
-}
+export class AppComponent {}
