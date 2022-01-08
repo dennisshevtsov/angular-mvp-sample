@@ -1,8 +1,8 @@
-import { NgModule,     } from '@angular/core';
 import { CommonModule, } from '@angular/common';
+import { NgModule,     } from '@angular/core';
+import { RouterModule, } from '@angular/router';
 
-import { ModalComponent, } from './components';
-import { PageComponent } from './components/page/page.component';
+import { ModalComponent, PageComponent, } from './components';
 
 @NgModule({
   declarations: [
@@ -11,9 +11,11 @@ import { PageComponent } from './components/page/page.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
   ],
   exports: [
     ModalComponent,
+    PageComponent,
   ],
 })
 export class CoreModule { }

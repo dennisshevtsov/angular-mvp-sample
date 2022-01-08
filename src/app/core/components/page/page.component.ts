@@ -1,4 +1,4 @@
-import { Component, } from '@angular/core';
+import { Component, Input, TemplateRef, } from '@angular/core';
 
 import { TodoListLinks, } from '../../../todo-list/routing';
 
@@ -10,6 +10,12 @@ import { TodoListLinks, } from '../../../todo-list/routing';
   ],
 })
 export class PageComponent {
+  @Input()
+  public actions: TemplateRef<any> | null = null;
+
+  @Input()
+  public body: TemplateRef<any> | null = null;
+
   public constructor (
     private readonly todoListLinks: TodoListLinks,
   ) {}
