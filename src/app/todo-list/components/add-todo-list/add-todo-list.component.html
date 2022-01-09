@@ -1,7 +1,8 @@
-<app-page [actions]="appActions"
-          [body]="appBody"></app-page>
+<app-page [actions]="pageActions"
+          [body]="pageBody">
+</app-page>
 
-<ng-template #appActions>
+<ng-template #pageActions>
   <a class="btn btn-light"
      style="width: 100px;"
      [routerLink]="backLink">
@@ -16,7 +17,7 @@
   </button>
 </ng-template>
 
-<ng-template #appBody>
+<ng-template #pageBody>
   <form class="w-100 p-3"
         [formGroup]="form">
     <div class="form-group mb-3"
