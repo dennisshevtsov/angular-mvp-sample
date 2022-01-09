@@ -78,10 +78,10 @@ export class UpdateTodoListTaskComponent
       this.form.value.title,
       this.form.value.description,
       new TodoListTaskDateDto(
-        this.form.value.date.day,
+        this.formatter.fromLocalDate(this.form.value.date.day),
         this.form.value.date.fullDay,
-        this.form.value.date.start,
-        this.form.value.date.end,
+        this.formatter.fromLocalTime(this.form.value.date.start),
+        this.formatter.fromLocalTime(this.form.value.date.end),
       ),
     );
   }
