@@ -21,13 +21,13 @@
   <form class="w-100 p-3"
         [formGroup]="form">
     <div class="form-group mb-3"
-          [ngClass]="{ 'has-error': !isValid('title')}">
+         [ngClass]="{ 'has-error': !isValid('title')}">
       <label for="txtTitle" class="form-label">Title</label>
       <input id="txtTitle"
-              class="form-control"
-              type="text"
-              placeholder="Title"
-              formControlName="title">
+             class="form-control"
+             type="text"
+             placeholder="Title"
+             formControlName="title">
       <span class="invalid-feedback"
             *ngIf="hasErrors('title')">
         <span *ngIf="hasError('title', 'required')">Please enter a title.</span>
