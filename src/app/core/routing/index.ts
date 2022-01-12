@@ -1,1 +1,1 @@
-export * from './route-values-provider';
+export * from './route-params-provider';
